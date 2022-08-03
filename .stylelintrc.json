@@ -1,4 +1,5 @@
 {
+  "plugins": ["stylelint-scss"],
   "rules": {
     "declaration-no-important": true,
     "declaration-block-no-duplicate-properties": true,
@@ -40,5 +41,5 @@
     "declaration-block-semicolon-space-before": "never",
     "max-empty-lines": 1
   },
-  "extends": ["stylelint-config-standard", "stylelint-config-prettier"]
+  "extends": ["stylelint-config-standard", "stylelint-config-prettier", "stylelint-config-standard-scss", "stylelint-config-prettier-scss"]
 }
