@@ -1,0 +1,20 @@
+@import '~bootstrap/scss/bootstrap';
+.hero{
+    @extend .container-fluid,.py-5,.bg-secondary; 
+    form{
+        @extend .d-flex,.justify-content-center,.mx-auto,.w-50;
+    
+        @media screen and(max-width: 375px) {
+           width: 100% !important;
+        }
+
+        input{
+            @extend .form-control,.me-2,.w-75,.rounded-0,.border,.border-dark; 
+        }
+        button{
+            @extend .btn,.btn-light,.btn,.btn-outline-dark;
+        }
+    }
+    
+}
+
