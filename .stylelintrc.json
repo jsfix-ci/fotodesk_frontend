@@ -1,7 +1,7 @@
 {
   "plugins": ["stylelint-scss"],
   "rules": {
-    "declaration-no-important": true,
+    "declaration-no-important": null,
     "declaration-block-no-duplicate-properties": true,
     "declaration-block-no-shorthand-property-overrides": true,
     "color-no-invalid-hex": true,
@@ -39,7 +39,8 @@
     "value-list-max-empty-lines": 0,
     "at-rule-semicolon-space-before": "never",
     "declaration-block-semicolon-space-before": "never",
-    "max-empty-lines": 1
+    "max-empty-lines": 1,
+    "scss/at-extend-no-missing-placeholder": false
   },
   "extends": ["stylelint-config-standard", "stylelint-config-prettier", "stylelint-config-standard-scss", "stylelint-config-prettier-scss"]
 }
