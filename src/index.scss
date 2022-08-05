@@ -1,2 +1,7 @@
-@import '~bootstrap/scss/bootstrap';
-@import './styles/App';
+// include customized bootstrap
+@import './styles/config/_config';
+// include all of Bootstrap
+@import 'bootstrap/scss/bootstrap';
+@import './styles/components/_App';
+@import './styles/components/_Header';
+// etc

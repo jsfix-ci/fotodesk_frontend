@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/App.scss';
 import Header from './components/Header/Header';
 import {Route, Routes} from 'react-router-dom';
 import {HomePage, AdminPage, DetailPage, NotFoundPage, RegisterPage, UserPage} from './Pages';
