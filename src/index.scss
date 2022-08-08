@@ -2,6 +2,11 @@
 @import './styles/config/_config';
 // include all of Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// include components
 @import './styles/components/_App';
 @import './styles/components/_Header';
-// etc
+@import './styles/components/Sidebar';
+
+
+
