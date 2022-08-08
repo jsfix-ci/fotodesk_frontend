@@ -10,8 +10,8 @@ export default function SideBar({isAdmin}: any) {
           <button
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
+            data-bs-target="#navbar-nav-alt-markup"
+            aria-controls="navbar-nav-alt-markup"
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
