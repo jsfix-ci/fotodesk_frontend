@@ -1,4 +1,3 @@
-
 .hero {
   @extend .container-fluid, .py-5, .bg-secondary;
 
@@ -12,7 +11,7 @@
     input {
       @extend .form-control, .me-2, .w-75, .rounded-0, .border, .border-dark;
     }
-    
+
     button {
       @extend .btn, .btn-light, .btn, .btn-outline-dark;
     }
