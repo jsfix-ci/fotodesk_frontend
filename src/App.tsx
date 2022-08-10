@@ -1,23 +1,38 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import {Route, Routes} from 'react-router-dom';
+import {Outlet, Route, Routes} from 'react-router-dom';
 import {HomePage, AdminPage, DetailPage, NotFoundPage, RegisterPage, UserPage} from './Pages';
-import SideBar from './components/Sidebar/Sidebar';
+import {CommonLayout, WithSideBarLayout} from './layouts';
 
 function App() {
   return (
     <div className="app">
       <Header />
-      <div className="row p-2 px-2">
-        <SideBar isAdmin={true} />
-        <div className="col-10">
+      <div className="container">
+        <div className="row p-2 px-2">
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/admin-page" element={<AdminPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/details/:id" element={<DetailPage />} />
-            <Route path="/users/:id" element={<UserPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route
+              element={
+                <WithSideBarLayout>
+                  <Outlet />
+                </WithSideBarLayout>
+              }
+            >
+              <Route path="/admin-page" element={<AdminPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/users/:id" element={<UserPage />} />
+            </Route>
+            <Route
+              element={
+                <CommonLayout>
+                  <Outlet />
+                </CommonLayout>
+              }
+            >
+              <Route path="/" element={<HomePage />} />
+              <Route path="/details/:id" element={<DetailPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
           </Routes>
         </div>
       </div>
