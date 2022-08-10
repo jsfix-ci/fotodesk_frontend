@@ -20,8 +20,16 @@ export default function SideBar({isAdmin}: any) {
           <div id="navbar-nav-alt-markup">
             <div className="link">
               {isAdmin
-                ? adminLinks.map((adminLink: ILink) => <Link key={adminLink.label} to={adminLink.path}>{adminLink.label}</Link>)
-                : userLinks.map((userLink: ILink) => <Link key={userLink.path} to={userLink.path}>{userLink.label}</Link>)}
+                ? adminLinks.map((adminLink: ILink) => (
+                    <Link key={adminLink.label} to={adminLink.path}>
+                      {adminLink.label}
+                    </Link>
+                  ))
+                : userLinks.map((userLink: ILink) => (
+                    <Link key={userLink.path} to={userLink.path}>
+                      {userLink.label}
+                    </Link>
+                  ))}
             </div>
           </div>
         </div>

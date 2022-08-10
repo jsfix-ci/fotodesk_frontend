@@ -5,17 +5,14 @@ import {HomePage, AdminPage, DetailPage, NotFoundPage, RegisterPage, UserPage} f
 import SideBar from './components/Sidebar/Sidebar';
 
 function App() {
-    
-    
-    return (
-      <div className="app">
+  return (
+    <div className="app">
       <Header />
-      
+
       <div className="container">
         <div className="row p-2 px-2">
-        
-         {false && <SideBar isAdmin={false} hasSidebar={true}/>}
-          <div className='col-12'>
+          {false && <SideBar isAdmin={false} hasSidebar={true} />}
+          <div className="col-12">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/admin-page" element={<AdminPage />} />
@@ -30,6 +27,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
