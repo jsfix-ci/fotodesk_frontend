@@ -1,5 +1,5 @@
 .sidebar {
-  @extend .col-2, .h-100,.w-100;
+  @extend .col-2, .h-100, .w-100;
 
   aside {
     @extend .navbar, .navbar-expand-lg, .bg-light, .h-100;
