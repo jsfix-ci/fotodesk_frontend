@@ -6,7 +6,7 @@ export default function Header() {
     <header className="container-fluid p-0">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid py-2">
-          <Link className="navbar-brand ms-3" to="#">
+          <Link className="navbar-brand ms-3" to="/">
             Logo
           </Link>
           <button
