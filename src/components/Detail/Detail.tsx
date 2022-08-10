@@ -1,5 +1,5 @@
 import React from 'react';
-// import Sea from './components/Gallery/sea.jpg';
+import Gallery from '../Gallery/Gallery';
 
 export default function Detail({isAdmin}: any) {
   return (
@@ -10,15 +10,7 @@ export default function Detail({isAdmin}: any) {
 
           <div className="row mt-4">
             <h4 className="text-start">Related images</h4>
-            <div className="col-4">
-              <img src="/images/sea.jpg" className="img-fluid" alt="..." />
-            </div>
-            <div className="col-4">
-              <img src="/images/sea.jpg" className="img-fluid" alt="..." />
-            </div>
-            <div className="col-4">
-              <img src="/images/sea.jpg" className="img-fluid" alt="..." />
-            </div>
+            <Gallery />
           </div>
         </div>
 
