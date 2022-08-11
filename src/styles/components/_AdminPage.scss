@@ -1,0 +1,17 @@
+.admin{
+    @extend .container, .mt-4, .pt-2;
+
+   
+
+    .input_group {
+        @extend .input-group, .w-25, .me-3;    
+    }
+    .upload {
+        @extend .btn, .btn-outline-dark,  .px-5;
+    }
+    .add {
+        @extend .btn, .btn-outline-dark, .px-5, .ms-auto;
+    }
+
+
+}

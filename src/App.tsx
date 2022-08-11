@@ -18,7 +18,7 @@ function App() {
                 </WithSideBarLayout>
               }
             >
-              <Route path="/admin-page" element={<AdminPage />} />
+              <Route path="/admin-page/" element={<AdminPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/users/:id" element={<UserPage />} />
             </Route>
