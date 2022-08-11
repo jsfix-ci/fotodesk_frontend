@@ -1,4 +1,5 @@
 import React from 'react';
+import { imageSizes } from '../../utilities/image-utilities';
 import Gallery from '../Gallery/Gallery';
 
 export default function Detail({isAdmin}: any) {
@@ -10,7 +11,7 @@ export default function Detail({isAdmin}: any) {
 
           <div className="row mt-4">
             <h4 className="text-start">Related images</h4>
-            <Gallery />
+            <Gallery hasSidebar />
           </div>
         </div>
 
@@ -46,21 +47,17 @@ export default function Detail({isAdmin}: any) {
               Download
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {
+                imageSizes.map((imageSize:any)=>(
+
               <li>
-                <a className="dropdown-item" href="#">
-                  Large (1920x1080)
+                <a className="dropdown-item" href="https://www.freecodecamp.org/news/content/images/size/w1600/2021/06/image-169.png" data-value={imageSize.value} download>
+                  {imageSize.label}
                 </a>
               </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Medium (800x600)
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Small (640x480)
-                </a>
-              </li>
+                ))
+              }
+          
             </ul>
           </div>
         </div>
@@ -68,3 +65,5 @@ export default function Detail({isAdmin}: any) {
     </div>
   );
 }
+
+
