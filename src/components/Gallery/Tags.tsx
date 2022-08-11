@@ -5,7 +5,7 @@ export default function Tags() {
 
   const tagEle = tags
     .split(',')
-    .map((t) => <Link className="text-dark text-decoration-none" to={`/?keyword=${t.trim()}`} key={t}>{` #${t}`}</Link>);
+    .map((t) => <Link onClick={e=>e.stopPropagation()} className="text-dark text-decoration-none" to={`/?keyword=${t.trim()}`} key={t}>{` #${t}`}</Link>);
 
   return (
     <div className="text-start">
