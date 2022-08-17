@@ -1,5 +1,5 @@
 import React from 'react';
-import { imageSizes } from '../../utilities/image-utilities';
+import {imageSizes} from '../../utilities/image-utilities';
 import Gallery from '../Gallery/Gallery';
 
 export default function Detail({isAdmin}: any) {
@@ -47,17 +47,18 @@ export default function Detail({isAdmin}: any) {
               Download
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              {
-                imageSizes.map((imageSize:any)=>(
-
-              <li>
-                <a className="dropdown-item" href="https://www.freecodecamp.org/news/content/images/size/w1600/2021/06/image-169.png" data-value={imageSize.value} download>
-                  {imageSize.label}
-                </a>
-              </li>
-                ))
-              }
-          
+              {imageSizes.map((imageSize: any) => (
+                <li>
+                  <a
+                    className="dropdown-item"
+                    href="https://www.freecodecamp.org/news/content/images/size/w1600/2021/06/image-169.png"
+                    data-value={imageSize.value}
+                    download
+                  >
+                    {imageSize.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -65,5 +66,3 @@ export default function Detail({isAdmin}: any) {
     </div>
   );
 }
-
-
