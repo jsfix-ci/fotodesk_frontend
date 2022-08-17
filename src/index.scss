@@ -4,6 +4,6 @@
 @import 'bootstrap/scss/bootstrap';
 @import './styles/components/_App';
 @import './styles/components/_Header';
-@import './styles/components/_Gallery';
-@import './styles/components/_Sidebar';
-// etc
+@import './styles/components/Sidebar';
+@import './styles/components/AdminPage';
+@import './styles/components/UsersList';

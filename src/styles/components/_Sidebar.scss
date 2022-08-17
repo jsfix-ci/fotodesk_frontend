@@ -2,7 +2,7 @@
   @extend .col-2, .h-100, .w-100;
 
   aside {
-    @extend .navbar, .navbar-expand-lg, .bg-light, .h-100;
+    @extend .navbar, .navbar-expand-lg, .h-100;
 
     .toogle {
       @extend .container-fluid, .h-100;
