@@ -1,6 +1,6 @@
 .card {
   max-width: 285px;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
   img {
@@ -8,5 +8,4 @@
     aspect-ratio: 3/2;
     object-fit: cover;
   }
-
 }

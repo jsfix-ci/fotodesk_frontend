@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import LoginForm from '../LoginForm/LoginForm';
 
 export default function Header() {
   return (
@@ -23,9 +24,7 @@ export default function Header() {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item ms-auto">
-                <Link className="nav-link active me-md-0 me-3" aria-current="page" to="#">
-                  Login
-                </Link>
+                <LoginForm />
               </li>
               <li className="nav-item me-3 ms-auto">
                 <Link className="nav-link active" to="#">
