@@ -6,13 +6,9 @@ export default function Gallery({isAdmin, hasSidebar}: any) {
     <div className="container">
       <div className="row m-0">
         {new Array(22).fill({thumb}).map((image) => (
-          <Image thumb={image.thumb} isAdmin={isAdmin} hasSidebar={hasSidebar}/>
+          <Image thumb={image.thumb} isAdmin={isAdmin} hasSidebar={hasSidebar} />
         ))}
       </div>
     </div>
   );
 }
-
-
-
-
