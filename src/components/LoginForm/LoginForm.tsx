@@ -16,11 +16,9 @@ export default function LoginForm() {
   function handleSubmit(event: any) {
     event.preventDefault();
 
-    console.log(formData);
     return;
   }
 
-  console.log(formData);
   return (
     <div className="dropdown login">
       <button className="btn-login" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">

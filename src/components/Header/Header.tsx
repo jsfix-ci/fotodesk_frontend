@@ -1,8 +1,20 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, {useState} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import LoginForm from '../LoginForm/LoginForm';
 
 export default function Header() {
+  const navigate = useNavigate();
+  const [searchData, setSearchData] = useState('');
+
+  function onChange(e: any) {
+    setSearchData(e.target.value);
+  }
+
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    navigate(`/?keywords=${searchData}`);
+  }
+
   return (
     <header className="container-fluid p-0">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -40,8 +52,8 @@ export default function Header() {
       </nav>
 
       <div className="hero">
-        <form>
-          <input type="search" placeholder="Search here..." aria-label="Search" />
+        <form onSubmit={handleSubmit}>
+          <input type="search" placeholder="Search here..." aria-label="Search" onChange={onChange} value={searchData} />
           <button type="submit">Search</button>
         </form>
       </div>
