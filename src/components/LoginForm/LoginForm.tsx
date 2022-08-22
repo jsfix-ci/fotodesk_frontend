@@ -15,7 +15,7 @@ export default function LoginForm() {
   }
   function handleSubmit(event: any) {
     event.preventDefault();
-    console.log(formData);
+
     return;
   }
 

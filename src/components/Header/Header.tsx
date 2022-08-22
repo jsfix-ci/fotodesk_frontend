@@ -5,7 +5,7 @@ import LoginForm from '../LoginForm/LoginForm';
 export default function Header() {
   const navigate = useNavigate();
   const [searchData, setSearchData] = useState('');
-  console.log(navigate);
+
   function onChange(e: any) {
     setSearchData(e.target.value);
   }
