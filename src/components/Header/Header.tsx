@@ -39,7 +39,7 @@ export default function Header() {
                 <LoginForm />
               </li>
               <li className="nav-item me-3 ms-auto">
-                <Link className="nav-link active" to="#">
+                <Link className="nav-link active" to="/register">
                   Register
                 </Link>
               </li>

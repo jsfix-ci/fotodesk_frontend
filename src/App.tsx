@@ -20,7 +20,6 @@ function App() {
               }
             >
               <Route path="/admin-page/" element={<AdminPage />} />
-              <Route path="/register" element={<RegisterPage />} />
               <Route path="/users/:id" element={<UserPage />} />
               <Route path="/admin-page/images" element={<Images />} />
             </Route>
@@ -32,6 +31,7 @@ function App() {
               }
             >
               <Route path="/" element={<HomePage />} />
+              <Route path="/register" element={<RegisterPage />} />
               <Route path="/details/:id" element={<DetailPage />} />
               <Route path="*" element={<NotFoundPage />} />
             </Route>
