@@ -10,13 +10,11 @@ export default function Image({thumb, isAdmin, hasSidebar}: any) {
   };
   const colSize = hasSidebar ? 'col-md-4' : 'col-md-3';
   return (
-    <div className={colSize}>
+    <div className={colSize} onClick={(e: any) => handleClick(e)}>
       <div className="card p-3 col-12 border-0 ">
-        <img className="card-img-none" src={thumb} alt="Card image cap" onClick={(e: any) => handleClick(e)} />
+        <img className="card-img-none" src={thumb} alt="Card image cap" />
         <div className="card-body border">
-          <h4 className="text-dark text-start" onClick={(e: any) => handleClick(e)}>
-            Author Name
-          </h4>
+          <h4 className="text-dark text-start">Author Name</h4>
           <Tags />
 
           <div className="row mt-5">
