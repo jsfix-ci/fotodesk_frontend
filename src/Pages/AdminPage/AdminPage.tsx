@@ -15,7 +15,7 @@ export default function AdminPage() {
             </div>
 
             <button className="upload" type="submit">
-              Upload
+              Search
             </button>
             <button className="add" type="submit">
               +Add

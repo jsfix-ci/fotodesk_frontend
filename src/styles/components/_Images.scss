@@ -1,0 +1,35 @@
+.images {
+    @extend .row,.mt-3, .pt-3;
+
+    .keywords {
+        @extend .col-3, .input_group, .p-0, .ms-4;
+
+        input {
+            @extend .form-control, .w-100;
+        }
+    }
+
+    .author {
+        @extend .col-12, .d-flex;
+
+        input {
+            @extend .rounded-start, .border, .border-1, .ps-2, .col-5, .ms-1;
+        }
+
+        .author-dropdown {
+            @extend .btn, .btn-outline-secondary, .dropdown-toggle, .text-end;
+        }
+        .author-dropdown {
+            border-radius: 0 0.375rem 0.375rem 0;
+
+           
+        }
+
+        .search {
+            @extend .upload, .btn, .btn-outline-dark, .px-5, .ms-3;
+        }
+
+
+    }
+}
+

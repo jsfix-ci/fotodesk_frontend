@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './components/Header/Header';
+import Images from './components/Images/Images';
 import {Outlet, Route, Routes} from 'react-router-dom';
 import {HomePage, AdminPage, DetailPage, NotFoundPage, RegisterPage, UserPage} from './Pages';
 import {CommonLayout, WithSideBarLayout} from './layouts';
@@ -21,6 +22,7 @@ function App() {
               <Route path="/admin-page/" element={<AdminPage />} />
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/users/:id" element={<UserPage />} />
+              <Route path="/admin-page/images" element={<Images />} />
             </Route>
             <Route
               element={

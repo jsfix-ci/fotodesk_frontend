@@ -20,30 +20,30 @@ export const userLinks: ILink[] = [
 export const adminLinks: ILink[] = [
   {
     label: 'Profile',
-    path: 'admin/profile',
+    path: 'admin-page/profile',
   },
   {
     label: 'Users',
-    path: 'admin/users',
+    path: 'admin-page/users',
   },
   {
     label: 'Pending users',
-    path: 'admin/pending-users',
+    path: 'admin-page/pending-users',
   },
   {
     label: 'Images',
-    path: 'admin/images',
+    path: 'admin-page/images',
   },
   {
     label: 'Pending images',
-    path: 'admin/pending-images',
+    path: 'admin-page/pending-images',
   },
   {
     label: 'Upload images',
-    path: 'admin/upload-images',
+    path: 'admin-page/upload-images',
   },
   {
     label: 'Watermarks',
-    path: 'admin/watermarks',
+    path: 'admin-page/watermarks',
   },
 ];
