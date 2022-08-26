@@ -15,7 +15,6 @@ export default function Images() {
   }
   function handleSubmit(event: any) {
     event.preventDefault();
-    console.log(formData);
 
     return;
   }
