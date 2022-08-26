@@ -26,31 +26,28 @@ fieldset {
     width: auto;
   }
 
-  input[type='password']{
-    & ~  .hide-pass{
+  input[type='password'] {
+    & ~ .hide-pass {
       display: none;
-    
-  }
-    & ~  .show-pass{
-    width:25px;
-      position:absolute;
-       top: 0.5rem;
-       right:1rem;
-  }
-}
-
-input[type='text']{
-  & ~  .show-pass{
-    display: none;
+    }
+    & ~ .show-pass {
+      width: 25px;
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+    }
   }
 
-& ~  .hide-pass{
-  width:25px;
-    position:absolute;
-     top: 0.5rem;
-     right:1rem;
-  
-}
-}
+  input[type='text'] {
+    & ~ .show-pass {
+      display: none;
+    }
 
+    & ~ .hide-pass {
+      width: 25px;
+      position: absolute;
+      top: 0.5rem;
+      right: 1rem;
+    }
+  }
 }

@@ -15,7 +15,6 @@ export interface IFromItem {
   required?: boolean;
   min?: number;
   max?: number;
-  
 }
 export default function Input({className, handleChange, ...rest}: IFromItem) {
   return <input className={`${'form-control '.concat(className)}`} onChange={handleChange} {...rest} />;

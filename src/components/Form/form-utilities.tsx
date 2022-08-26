@@ -3,18 +3,17 @@ import Input, {IFromItem} from './Input';
 import Password from './Password';
 import Select from './Select';
 
-
 export const renderFormTypes = (formField: IFromItem, isAdmin: boolean) => {
   if (formField.adminOnly && !isAdmin) return null;
 
   switch (formField.type) {
     case 'password':
-      return <Password key={formField.name} {...formField}/>
+      return <Password key={formField.name} {...formField} />;
     case 'email':
     case 'text':
     case 'number':
-      case 'range':
-      return <Input key={formField.name}  {...formField} />;
+    case 'range':
+      return <Input key={formField.name} {...formField} />;
 
     case 'select':
       return <Select key={formField.name} {...formField} />;
@@ -40,7 +39,7 @@ export const formFields: IFromItem[] = [
     placeholder: 'Last Name',
     // pattern: '[A-z]{4,}',
     required: true,
-    min:5,
+    min: 5,
     max: 10,
   },
   {
@@ -64,7 +63,7 @@ export const formFields: IFromItem[] = [
     type: 'password',
     className: '',
     placeholder: 'Password',
-    pattern: '[A-z0-9\W]{8,}',
+    pattern: '[A-z0-9W]{8,}',
     required: true,
   },
   {
@@ -72,7 +71,7 @@ export const formFields: IFromItem[] = [
     type: 'password',
     className: '',
     placeholder: 'Repeat Password',
-    pattern: '[A-z0-9\W]{8,}',
+    pattern: '[A-z0-9W]{8,}',
     required: true,
   },
   {
