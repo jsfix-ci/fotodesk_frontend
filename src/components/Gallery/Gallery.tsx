@@ -5,7 +5,7 @@ export default function Gallery({isAdmin, hasSidebar}: any) {
   return (
     <div className="container">
       <div className="row m-0">
-        {new Array(22).fill({thumb}).map((image) => (
+        {new Array(10).fill({thumb}).map((image) => (
           <Image thumb={image.thumb} isAdmin={isAdmin} hasSidebar={hasSidebar} />
         ))}
       </div>

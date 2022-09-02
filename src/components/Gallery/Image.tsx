@@ -12,7 +12,7 @@ export default function Image({thumb, isAdmin, hasSidebar}: any) {
   return (
     <div className={colSize} onClick={(e: any) => handleClick(e)}>
       <div className="card p-3 col-12 border-0 ">
-        <img className="card-img-none" src={thumb} alt="Card image cap" />
+        <img className="card-img-none" src={thumb} alt="#" />
         <div className="card-body border">
           <h4 className="text-dark text-start">Author Name</h4>
           <Tags />
