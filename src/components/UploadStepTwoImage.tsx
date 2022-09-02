@@ -6,11 +6,9 @@ export default function UploadStepTwoImage({hasSidebar, handleChange, addTags, s
 
   const warningMsg = isEmpty ? 'Please add at least one tag' : '';
 
-  
-
   return (
-    <div className={`${colSize} mb-4`} data-is-empty={isEmpty} title={warningMsg} >
-      <div className='card p-3 col-12 border-0'>
+    <div className={`${colSize} mb-4`} data-is-empty={isEmpty} title={warningMsg}>
+      <div className="card p-3 col-12 border-0">
         <img className="card-img-none" src={thumb} alt="#" />
         <div className="card-body border">
           <h4 className="text-dark text-start">Author Name</h4>
