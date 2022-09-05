@@ -44,9 +44,11 @@ export default function Header() {
                 </Link>
               </li>
             </ul>
-            <button className="btn btn-outline-dark d-none d-md-block" type="submit">
-              Upload
-            </button>
+            <Link className="text-decoration-none" to="/uploadstep1">
+              <button className="btn btn-outline-dark d-none d-md-block" type="submit">
+                Upload
+              </button>
+            </Link>
           </div>
         </div>
       </nav>
