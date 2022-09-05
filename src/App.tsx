@@ -4,6 +4,7 @@ import Images from './components/Images/Images';
 import {Outlet, Route, Routes} from 'react-router-dom';
 import {HomePage, AdminPage, DetailPage, NotFoundPage, RegisterPage, UserPage} from './Pages';
 import {CommonLayout, WithSideBarLayout} from './layouts';
+import UploadStep1 from './components/UploadStep1/UploadStep1';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route path="/admin-page/" element={<AdminPage />} />
               <Route path="/users/:id" element={<UserPage />} />
               <Route path="/admin-page/images" element={<Images />} />
+              <Route path="/uploadstep1" element={<UploadStep1 />} />
             </Route>
             <Route
               element={

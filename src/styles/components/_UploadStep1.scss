@@ -1,0 +1,36 @@
+.dropzone{
+    display: 'inline-flex';
+    border: '1px solid #eaeaea';
+    margin-top: 32px;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    width: 100%;
+    min-height: 250px;
+    padding: 4px;
+    box-sizing: 'border-box';
+    background-color: rgb(227, 227, 227);
+}
+
+
+.remove {
+    @extend 
+        .btn,.btn-outline-dark;
+    
+    height: 38px;
+    position: absolute;
+    right: 0;
+    margin-right: 12px;
+    margin-top: 10px;
+    background-color: rgba(131, 171, 138, 0.908);
+}
+.proceed {
+    @extend 
+        .btn,.btn-outline-dark;
+}
+.thumb {
+    // min-width: 150px !important;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    
+}
