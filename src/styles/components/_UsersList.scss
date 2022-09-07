@@ -3,20 +3,26 @@
 
   .col-12 {
     @extend .d-flex, .bg-info, .mt-3, .py-2;
+
     .full-name {
       @extend .me-5, .ms-2, .mb-0;
     }
+
     .admin-action {
       @extend .d-flex, .ms-auto, .me-3, .mb-0;
+
       .edit {
         @extend .mb-0, .text-decoration-none, .text-dark;
       }
+
       .delete {
         @extend .mb-0, .text-decoration-none, .text-dark;
       }
+
       .approve {
         @extend .mb-0, .text-decoration-none, .text-dark;
       }
+
       p {
         cursor: pointer;
       }

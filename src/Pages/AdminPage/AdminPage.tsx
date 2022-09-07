@@ -7,10 +7,10 @@ export default function AdminPage() {
       <div className="row">
         <div className="col-12 ">
           <div className="d-flex">
-            <div className="input_group">
+            <div className="input-group">
               <input type="text" aria-label="First name" className="form-control" placeholder="Name" />
             </div>
-            <div className="input_group">
+            <div className="input-group">
               <input type="text" aria-label="First name" className="form-control" placeholder="Email" />
             </div>
 

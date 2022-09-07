@@ -28,7 +28,7 @@
     "value-keyword-case": "lower",
     "selector-type-case": "lower",
     "color-hex-case": "lower",
-    "number-leading-zero": "never",
+    "number-leading-zero": "always",
     "string-quotes": "single",
     "property-case": "lower",
     "declaration-block-semicolon-newline-after": "always",
@@ -40,7 +40,8 @@
     "at-rule-semicolon-space-before": "never",
     "declaration-block-semicolon-space-before": "never",
     "max-empty-lines": 1,
-    "scss/at-extend-no-missing-placeholder": false
+    "scss/at-extend-no-missing-placeholder": false,
+    "scss/at-import-no-partial-leading-underscore": false
   },
   "extends": ["stylelint-config-standard", "stylelint-config-prettier", "stylelint-config-standard-scss", "stylelint-config-prettier-scss"]
 }

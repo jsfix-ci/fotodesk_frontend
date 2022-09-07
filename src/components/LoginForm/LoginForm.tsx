@@ -27,7 +27,7 @@ export default function LoginForm() {
       <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
         <form className="text-end" onSubmit={handleSubmit}>
           <div>
-            <h5 className="please_login">Please Login</h5>
+            <h5 className="please-login">Please Login</h5>
           </div>
           <div className="mb-4 mt-1">
             <input
