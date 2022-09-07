@@ -18,10 +18,10 @@
 
     .author-dropdown {
       @extend .btn, .btn-outline-secondary, .dropdown-toggle, .text-end;
-      
+
       border-radius: 0 0.375rem 0.375rem 0;
     }
-    
+
     .search {
       @extend .upload, .btn, .btn-outline-dark, .px-5, .ms-3;
     }
