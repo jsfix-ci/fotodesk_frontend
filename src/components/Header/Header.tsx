@@ -1,8 +1,12 @@
 import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom';
+import {authSlice} from '../../store/slices/auth.slice';
 import LoginForm from '../LoginForm/LoginForm';
 
 export default function Header() {
+  const {user} = useSelector((state: any) => state.auth);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchData, setSearchData] = useState('');
 
@@ -10,9 +14,14 @@ export default function Header() {
     setSearchData(e.target.value);
   }
 
-  function handleSubmit(e: any) {
+  function login(e: any) {
     e.preventDefault();
-    navigate(`/?keywords=${searchData}`);
+  }
+
+  function logout(e: any) {
+    e.preventDefault();
+    dispatch(authSlice.actions.logout());
+    navigate('/');
   }
 
   return (
@@ -33,28 +42,37 @@ export default function Header() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-              <li className="nav-item ms-auto">
-                <LoginForm />
-              </li>
-              <li className="nav-item me-3 ms-auto">
-                <Link className="nav-link active" to="/register">
-                  Register
-                </Link>
-              </li>
-            </ul>
-            <Link className="text-decoration-none" to="/uploadstep1">
-              <button className="btn btn-outline-dark d-none d-md-block" type="submit">
-                Upload
-              </button>
-            </Link>
+          <div className="collapse navbar-collapse d-flex" id="navbarTogglerDemo02">
+            {!user?.token && (
+              <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex justify-content-end">
+                <li className="nav-item">
+                  <LoginForm />
+                </li>
+                <li className="nav-item me-3 ms-auto d-flex">
+                  <Link className="nav-link active ms-auto d-flex" to="/register">
+                    Register
+                  </Link>
+                </li>
+              </ul>
+            )}
           </div>
+          {user?.token && (
+            <li className="nav-item me-3 ms-auto d-flex" onClick={logout}>
+              <Link className="nav-link active ms-auto d-flex" to="">
+                Logout
+              </Link>
+            </li>
+          )}
+          <Link className="text-decoration-none ms-auto" to="/uploadstep1">
+            <button className="btn btn-outline-dark d-none d-md-flex" type="submit">
+              Upload
+            </button>
+          </Link>
         </div>
       </nav>
 
       <div className="hero">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={login}>
           <input type="search" placeholder="Search here..." aria-label="Search" onChange={onChange} value={searchData} />
           <button type="submit">Search</button>
         </form>
