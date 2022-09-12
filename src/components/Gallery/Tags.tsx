@@ -16,7 +16,7 @@ export default function Tags() {
 
   return (
     <div className="text-start">
-      <a>{tagEle}</a>
+      {tagEle}
     </div>
   );
 }
