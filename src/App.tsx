@@ -21,10 +21,10 @@ function App() {
                 </WithSideBarLayout>
               }
             >
-              <Route path="/admin-page/" element={<AdminPage />} />
-              <Route path="/users/:id" element={<UserPage />} />
+              <Route path="/admin-page/users" element={<AdminPage />} />
+              <Route path="/profile" element={<UserPage />} />
               <Route path="/admin-page/images" element={<Images />} />
-              <Route path="/uploadstep1" element={<UploadStep1 />} />
+              <Route path="/images/upload/step-1" element={<UploadStep1 />} />
             </Route>
             <Route
               element={
@@ -37,7 +37,7 @@ function App() {
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/details/:id" element={<DetailPage />} />
               <Route path="*" element={<NotFoundPage />} />
-              <Route path="/image/upload/step-2" element={<UploadStepTwo />} />
+              <Route path="/images/upload/step-2" element={<UploadStepTwo />} />
             </Route>
           </Routes>
         </div>

@@ -10,40 +10,40 @@ export const userLinks: ILink[] = [
   },
   {
     label: 'Profile',
-    path: '/user/profile',
+    path: '/profile',
   },
   {
     label: 'Upload',
-    path: '/user/upload',
+    path: '/images/upload/step-1',
   },
 ];
 export const adminLinks: ILink[] = [
   {
     label: 'Profile',
-    path: 'admin-page/profile',
+    path: '/profile',
   },
   {
     label: 'Users',
-    path: 'admin-page/users',
+    path: '/admin-page/users',
   },
   {
     label: 'Pending users',
-    path: 'admin-page/pending-users',
+    path: '/admin-page/pending-users',
   },
   {
     label: 'Images',
-    path: 'admin-page/images',
+    path: '/admin-page/images',
   },
   {
     label: 'Pending images',
-    path: 'admin-page/pending-images',
+    path: '/admin-page/pending-images',
   },
   {
     label: 'Upload images',
-    path: 'admin-page/upload-images',
+    path: '/images/upload/step-1',
   },
   {
     label: 'Watermarks',
-    path: 'admin-page/watermarks',
+    path: '/admin-page/watermarks',
   },
 ];

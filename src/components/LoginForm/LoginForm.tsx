@@ -31,7 +31,7 @@ export default function LoginForm() {
         email: 'a@a.com',
       })
     );
-    navigate('/users/283');
+    navigate('/profile');
     return;
   }
 
