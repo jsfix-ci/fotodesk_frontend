@@ -57,7 +57,6 @@ export const imagesSlice = createSlice({
   },
 });
 
-
 //setuje se lista  slika
 //dodaje se jos slika na listu
 //uzima se jedna slikaa
