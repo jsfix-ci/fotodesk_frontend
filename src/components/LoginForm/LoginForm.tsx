@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import {authSlice} from '../../store/slices/auth.slice';
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     data: '',
     password: '',
@@ -15,9 +20,26 @@ export default function LoginForm() {
   }
   function handleSubmit(event: any) {
     event.preventDefault();
-
+    dispatch(
+      authSlice.actions.login({
+        token: 'sasasasas',
+        role: 'admin',
+        id: 798,
+        firstName: 'Mile',
+        lastName: 'lemi',
+        displayName: 'stosasas',
+        email: 'a@a.com',
+      })
+    );
+    navigate('/users/283');
     return;
   }
+
+  // function logout(event: any) {
+  //   event.preventDefault();
+  //   dispatch(authSlice.actions.logout());
+  //   return;
+  // }
 
   return (
     <div className="dropdown login">
