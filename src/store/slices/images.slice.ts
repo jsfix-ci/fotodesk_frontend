@@ -33,7 +33,7 @@ export const imagesSlice = createSlice({
   name: 'image',
   initialState,
   reducers: {
-    images: (state, action) => {
+    setImages: (state, action) => {
       state.images = action.payload;
       return state;
     },
@@ -42,14 +42,19 @@ export const imagesSlice = createSlice({
       return state;
     },
 
-    image: (state, action) => {
+    setImage: (state, action) => {
       state.image = action.payload;
       return state;
     },
-    newImages: (state, action: IImagePayload) => {
+    setNewImages: (state, action: IImagePayload) => {
       state.newImages = action.payload;
       return state;
     },
+    updateNewImage:(state, action) =>{
+       state.newImages = state.newImages.map((ele: any)=> ele.id=== action.payload.id ? {...ele, tags: action.payload.tag} : ele)
+       return state
+    },
+
     resetNewImages: (state) => {
       state.newImages = [];
       return state;
@@ -62,3 +67,5 @@ export const imagesSlice = createSlice({
 //uzima se jedna slikaa
 //dodaju se nove slike
 //kad se zavrsi upload stejt za nove slike se resetuje
+
+

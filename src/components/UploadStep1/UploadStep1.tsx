@@ -98,7 +98,7 @@ export default function UploadStep1() {
           <p>Drag 'n' drop some files here, or click to select files</p>
           <aside style={thumbsContainer as CSSProperties}>{thumbs}</aside>
         </div>
-        <Link className="text-decoration-none" to="image/upload/step-2">
+        <Link className="text-decoration-none" to="/image/upload/step-2">
           <button className={`proceed ${toggleProceed}`} type="submit">
             Proceed
           </button>

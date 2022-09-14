@@ -1,28 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import UploadStepTwoImage from '../components/UploadStepTwoImage';
 import {useDispatch, useSelector} from 'react-redux';
-import {IImage, imagesSlice} from '../store/slices/images.slice';
+import {imagesSlice} from '../store/slices/images.slice';
 
 export default function UploadStepTwo({hasSidebar}: any) {
-  const [imageWithTags, setImageWithTags] = useState<IImage[]>([]);
-  const {newImages} = useSelector((state: any) => state.images);
+  const {newImages=[]} = useSelector((state: any) => state.images);
+  const dispatch = useDispatch();
 
   function handleChange(event: any, id: any) {
-    const tag = event.target.value;
-    setImageWithTags((prevState) => {
-      const copyState = [...prevState];
-      copyState[id] = {...copyState[id], tags: tag};
-      return copyState;
-    });
-    console.log(imageWithTags.map((e) => e.tags));
+    const tag = event.target.value.split(',').filter((s:string)=>!!s.length);
+
+    
+    
+    dispatch(imagesSlice.actions.updateNewImage({id,tag}))
   }
 
-  const dispatch = useDispatch();
 
   function handleSubmit(event: any) {
     event.preventDefault();
     dispatch(
-      imagesSlice.actions.newImages([
+      imagesSlice.actions.setNewImages([
         {
           author: 'Bob',
           id: 1,
@@ -37,12 +34,13 @@ export default function UploadStepTwo({hasSidebar}: any) {
           url: 'https://www.blabla.com',
           relatedImages: [],
         },
+
       ])
     );
   }
   useEffect(() => {
     dispatch(
-      imagesSlice.actions.newImages([
+      imagesSlice.actions.setNewImages([
         {
           author: 'Bob',
           id: 1,
@@ -61,10 +59,7 @@ export default function UploadStepTwo({hasSidebar}: any) {
     );
   }, []);
 
-  useEffect(() => {
-    setImageWithTags(newImages);
-    console.log(newImages);
-  }, [{newImages}]);
+
 
   return (
     <div className="container">
@@ -74,14 +69,14 @@ export default function UploadStepTwo({hasSidebar}: any) {
             Submit
           </button>
         </div>
-        {imageWithTags.map((upload: any, id: any) => (
+        {newImages.map((upload: any, id: any) => (
           <UploadStepTwoImage
             key={id}
             isEmpty={upload.tags.length === 0}
             thumb={upload.thumb}
             hasSidebar={hasSidebar}
-            handleChange={(e: any) => handleChange(e, id)}
-            addTags={imageWithTags}
+            handleChange={(e: any) => handleChange(e, upload.id)}
+            addTags={newImages}
           />
         ))}
       </div>
