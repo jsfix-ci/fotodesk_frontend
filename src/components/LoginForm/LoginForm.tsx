@@ -23,7 +23,7 @@ export default function LoginForm() {
     dispatch(
       authSlice.actions.login({
         token: 'sasasasas',
-        role: 'admin',
+        role: 'korisnik',
         id: 798,
         firstName: 'Mile',
         lastName: 'lemi',
@@ -31,7 +31,8 @@ export default function LoginForm() {
         email: 'a@a.com',
       })
     );
-    navigate('/users/283');
+    navigate('/profile');
+
     return;
   }
 

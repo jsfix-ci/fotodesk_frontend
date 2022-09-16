@@ -16,9 +16,8 @@ export default function UploadStepTwo({hasSidebar}: any) {
   }
 
   function handleSubmit(event: any) {
-
     event.preventDefault();
-    setModalOpen(false)
+    setModalOpen(false);
     //kad se klikne na sumbit da li je upozoren korisnik
     //ako je upozoren korisnik nastaviti operaciju do kraja
     //ako korisnik nije upozoren prvo setovati da se korisnik upozori
@@ -40,8 +39,6 @@ export default function UploadStepTwo({hasSidebar}: any) {
   function showHide() {
     setModalOpen(false);
   }
-
- 
 
   useEffect(() => {
     dispatch(
@@ -87,20 +84,19 @@ export default function UploadStepTwo({hasSidebar}: any) {
                       <span aria-hidden="true">×</span>
                     </button>
                   </div>
-                  <div className='d-flex align-items-center'>
-
-                  <div className="modal-body">Please add tags in every picture</div>
-                  <button className='btn btn-danger h-50 me-2' onClick={handleSubmit}>Continue anyway</button>
+                  <div className="d-flex align-items-center">
+                    <div className="modal-body">Please add tags in every picture</div>
+                    <button className="btn btn-danger h-50 me-2" onClick={handleSubmit}>
+                      Continue anyway
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-          )  }
-            <button className="btn btn-secondary" onClick={handleSubmit}>
-              Submit
-            </button>
-            
-          
+          )}
+          <button className="btn btn-secondary" onClick={handleSubmit}>
+            Submit
+          </button>
         </div>
         {newImages.map((upload: any, id: any) => (
           <UploadStepTwoImage

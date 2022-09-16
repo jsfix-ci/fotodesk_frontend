@@ -1,10 +1,12 @@
+import {AuthApi} from './auth.api';
+import BaseApi from './base.api';
 import {ImagesApi} from './images.api';
 import {UsersApi} from './users.api';
 
-const request = (...args: any) => {
-  return Promise.all(args.map((arg: any) => Promise.resolve(arg)));
-};
+export const imagesApi = new ImagesApi();
 
-export const imagesApi = new ImagesApi(request);
+export const usersApi = new UsersApi();
 
-export const usersApi = new UsersApi(request);
+export const authApi = new AuthApi();
+
+export const baseApi = new BaseApi();

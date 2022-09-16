@@ -57,17 +57,27 @@ export default function Header() {
             )}
           </div>
           {user?.token && (
+            <li className="nav-item me-3 ms-auto d-flex">
+              <Link className="nav-link active ms-auto d-flex" to="/profile">
+                Profile
+              </Link>
+            </li>
+          )}
+
+          {user?.token && (
             <li className="nav-item me-3 ms-auto d-flex" onClick={logout}>
               <Link className="nav-link active ms-auto d-flex" to="">
                 Logout
               </Link>
             </li>
           )}
-          <Link className="text-decoration-none ms-auto" to="/uploadstep1">
-            <button className="btn btn-outline-dark d-none d-md-flex" type="submit">
-              Upload
-            </button>
-          </Link>
+          {user?.token && (
+            <Link className="text-decoration-none ms-auto" to="/images/upload/step-1">
+              <button className="btn btn-outline-dark d-none d-md-flex" type="submit">
+                Upload
+              </button>
+            </Link>
+          )}
         </div>
       </nav>
 
