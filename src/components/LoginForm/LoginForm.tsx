@@ -23,7 +23,7 @@ export default function LoginForm() {
     dispatch(
       authSlice.actions.login({
         token: 'sasasasas',
-        role: 'admin',
+        role: 'korisnik',
         id: 798,
         firstName: 'Mile',
         lastName: 'lemi',
