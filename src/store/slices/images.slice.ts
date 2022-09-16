@@ -50,9 +50,9 @@ export const imagesSlice = createSlice({
       state.newImages = action.payload;
       return state;
     },
-    updateNewImage:(state, action) =>{
-       state.newImages = state.newImages.map((ele: any)=> ele.id=== action.payload.id ? {...ele, tags: action.payload.tag} : ele)
-       return state
+    updateNewImage: (state, action) => {
+      state.newImages = state.newImages.map((ele: any) => (ele.id === action.payload.id ? {...ele, tags: action.payload.tag} : ele));
+      return state;
     },
 
     resetNewImages: (state) => {
@@ -67,5 +67,3 @@ export const imagesSlice = createSlice({
 //uzima se jedna slikaa
 //dodaju se nove slike
 //kad se zavrsi upload stejt za nove slike se resetuje
-
-
