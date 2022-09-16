@@ -6,26 +6,21 @@ import {HomePage, AdminPage, DetailPage, NotFoundPage, UserPage} from './Pages';
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import UploadStepTwo from './components/UploadStepTwo';
 import UploadStep1 from './components/UploadStep1/UploadStep1';
-import {PrivateRoute, AdminRoute, OnlyPublicRoute} from './RouteGuards/RouteGuards';
+import {baseApi} from './api';
+import {useSelector} from 'react-redux';
+import {RootState} from './store';
+import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
 import Register from './components/Register/Register';
-import {useDispatch} from 'react-redux';
-import {authSlice} from './store/slices/auth.slice';
 
 function App() {
-  const dispatch = useDispatch();
+  const {user} = useSelector((state: RootState) => state.auth);
+
   useEffect(() => {
-    dispatch(
-      authSlice.actions.login({
-        token: 'sasasasas',
-        role: 'korisnik',
-        id: 798,
-        firstName: 'Mile',
-        lastName: 'lemi',
-        displayName: 'stosasas',
-        email: 'a@a.com',
-      })
-    );
-  }, []);
+    if (user.token) {
+      baseApi.updateHeader(user.token);
+    }
+  }, [user]);
+
   return (
     <div className="app">
       <Header />
