@@ -1,22 +1,19 @@
-export class ImagesApi {
-  private readonly request: any;
-  constructor(request: any) {
-    this.request = request;
-  }
+import BaseApi from './base.api';
 
+export class ImagesApi extends BaseApi {
   public async getImages(): Promise<any> {
-    return await this.request();
+    return await this.request({});
   }
 
   public async getImage(id: number): Promise<any> {
-    return await this.request({id});
+    return await this.request({});
   }
 
   public async updateImage(id: number, payload: any): Promise<any> {
-    return await this.request(id, payload);
+    return await this.request({});
   }
 
   public async deleteImage(id: number): Promise<any> {
-    return await this.request(id);
+    return await this.request({});
   }
 }

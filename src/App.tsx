@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from './components/Header/Header';
 import Images from './components/Images/Images';
 import {Outlet, Route, Routes} from 'react-router-dom';
@@ -6,8 +6,19 @@ import {HomePage, AdminPage, DetailPage, NotFoundPage, RegisterPage, UserPage} f
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import UploadStepTwo from './components/UploadStepTwo';
 import UploadStep1 from './components/UploadStep1/UploadStep1';
+import {baseApi} from './api';
+import {useSelector} from 'react-redux';
+import {RootState} from './store';
 
 function App() {
+  const {user} = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    if (user.token) {
+      baseApi.updateHeader(user.token);
+    }
+  }, [user]);
+
   return (
     <div className="app">
       <Header />
