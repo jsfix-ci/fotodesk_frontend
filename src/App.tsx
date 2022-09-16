@@ -6,7 +6,7 @@ import {HomePage, AdminPage, DetailPage, NotFoundPage, UserPage} from './Pages';
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import UploadStepTwo from './components/UploadStepTwo';
 import UploadStep1 from './components/UploadStep1/UploadStep1';
-import {PrivateRoute, AdminRoute, OnlyPublicRoute} from './components/RouteGuards/RouteGuards';
+import {PrivateRoute, AdminRoute, OnlyPublicRoute} from './RouteGuards/RouteGuards';
 import Register from './components/Register/Register';
 import {useDispatch} from 'react-redux';
 import {authSlice} from './store/slices/auth.slice';
