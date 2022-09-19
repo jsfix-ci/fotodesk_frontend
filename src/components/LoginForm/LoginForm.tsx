@@ -22,7 +22,8 @@ export default function LoginForm() {
     event.preventDefault();
     dispatch(
       authSlice.actions.login({
-        token: 'sasasasas',
+        token:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InpsYWphQHlvcG1haWwuY29tIiwiaWF0IjoxNjYzNjAwOTI1LCJleHAiOjE2NjM2MDEwMTF9.lMJ_0jIdobv_vXnPWfHvdLCS_sXkdoDKIgqFYwNFctw',
         role: 'korisnik',
         id: 798,
         firstName: 'Mile',

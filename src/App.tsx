@@ -6,7 +6,7 @@ import {HomePage, AdminPage, DetailPage, NotFoundPage, UserPage} from './Pages';
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import UploadStepTwo from './components/UploadStepTwo';
 import UploadStep1 from './components/UploadStep1/UploadStep1';
-import {baseApi} from './api';
+import {baseApi, usersApi} from './api';
 import {useSelector} from 'react-redux';
 import {RootState} from './store';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
@@ -18,6 +18,7 @@ function App() {
   useEffect(() => {
     if (user.token) {
       baseApi.updateHeader(user.token);
+      usersApi.getUsers(user?.token).then((r) => console.log);
     }
   }, [user]);
 

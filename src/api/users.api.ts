@@ -1,14 +1,11 @@
 import BaseApi from './base.api';
 
 export class UsersApi extends BaseApi {
-  constructor() {
-    super();
-  }
-  public async getUsers(): Promise<any> {
-    console.log(this.request.defaults.headers);
+  public async getUsers(token: string = ''): Promise<any> {
     return await this.request({
       url: '/admin/users',
       method: 'GET',
+      ...this.headers(token),
     });
   }
 

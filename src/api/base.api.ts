@@ -3,6 +3,7 @@ import {StoreKeeper} from '../store';
 
 export default class BaseApi {
   protected request: AxiosInstance;
+  protected token: string | null = null;
 
   constructor() {
     this.request = axios.create({
@@ -13,12 +14,15 @@ export default class BaseApi {
     });
   }
 
-  updateHeader(token: string) {
-    this.request = axios.create({
-      baseURL: process.env.REACT_APP_BACKEND_URL,
+  protected headers(token: string) {
+    return {
       headers: {
-        Authorization: `Bearer: ${token}`,
+        Authorization: `Bearer ${this.token ?? token}`,
       },
-    });
+    };
+  }
+
+  updateHeader(token: string) {
+    this.token = token;
   }
 }
