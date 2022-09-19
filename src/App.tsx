@@ -37,8 +37,11 @@ function App() {
             >
               <Route path="/admin-page/users" element={<AdminRoute component={AdminPage} />} />
               <Route path="/profile" element={<PrivateRoute component={UserPage} />} />
-              <Route path="/admin-page/images" element={<Images />} />
-              <Route path="/images/upload/step-1" element={<UploadStep1 />} />
+              <Route path="/admin-page/images" element={<AdminRoute component={Images} />} />
+              <Route path="/images/upload/step-1" element={<PrivateRoute component={UploadStep1} />} />
+              <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPage} />} />
+              <Route path="/admin-page/watermarks" element={<AdminRoute component={AdminPage} />} />
+              <Route path="/admin-page/pending-users" element={<AdminRoute component={AdminPage} />} />
             </Route>
             <Route
               element={
@@ -51,7 +54,7 @@ function App() {
               <Route path="/register" element={<OnlyPublicRoute component={Register} />} />
               <Route path="/details/:id" element={<DetailPage />} />
               <Route path="*" element={<NotFoundPage />} />
-              <Route path="/images/upload/step-2" element={<UploadStepTwo />} />
+              <Route path="/images/upload/step-2" element={<PrivateRoute component={UploadStepTwo} />} />
             </Route>
           </Routes>
         </div>
