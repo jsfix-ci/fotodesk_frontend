@@ -1,17 +1,18 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {Navigate} from 'react-router-dom';
+import {RootState} from '../store';
 
 export function PrivateRoute({component: Component, ...rest}: any) {
-  const isLoggedIn = !!useSelector((state: any) => state.auth.user.token);
+  const isLoggedIn = !!useSelector((state: RootState) => state.auth.user.token);
   if (isLoggedIn) return <Component {...rest} />;
 
   return <Navigate to={'/'} />;
 }
 
 export function AdminRoute({component: Component, ...rest}: any) {
-  const isAdmin = useSelector((state: any) => state.auth.user.role === 'admin');
-  const isLoggedIn = !!useSelector((state: any) => state.auth.user.token);
+  const isAdmin = useSelector((state: RootState) => state.auth.user.role === 'admin');
+  const isLoggedIn = !!useSelector((state: RootState) => state.auth.user.token);
 
   if (isLoggedIn && isAdmin) {
     return <Component {...rest} />;

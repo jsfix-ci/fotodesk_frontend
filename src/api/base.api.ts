@@ -26,22 +26,22 @@ export default class BaseApi {
     this.token = token;
   }
 
-  async get(url: string, token: string): Promise<any> {
+  protected async get(url: string, token: string): Promise<any> {
     return this.request({
       url,
       method: 'GET',
       ...this.headers(token),
     });
   }
-  async post(url: string, data: any, token: string): Promise<any> {
+  protected async post(url: string, data: any, token?: string): Promise<any> {
     return this.request({
       url,
       method: 'POST',
       data,
-      ...this.headers(token),
+      ...this.headers(token!),
     });
   }
-  async put(url: string, data: any, token: string): Promise<any> {
+  protected async put(url: string, data: any, token: string): Promise<any> {
     return this.request({
       url,
       method: 'PUT',
@@ -49,7 +49,7 @@ export default class BaseApi {
       ...this.headers(token),
     });
   }
-  async patch(url: string, data: any, token: string): Promise<any> {
+  protected async patch(url: string, data: any, token: string): Promise<any> {
     return this.request({
       url,
       method: 'PATCH',
@@ -57,7 +57,7 @@ export default class BaseApi {
       ...this.headers(token),
     });
   }
-  async delete(url: string, data: any, token: string): Promise<any> {
+  protected async delete(url: string, data: any, token: string): Promise<any> {
     return this.request({
       url,
       method: 'DELETE',

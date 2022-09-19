@@ -6,21 +6,27 @@ import {HomePage, AdminPage, DetailPage, NotFoundPage, UserPage} from './Pages';
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import UploadStepTwo from './components/UploadStepTwo';
 import UploadStep1 from './components/UploadStep1/UploadStep1';
-import {baseApi, usersApi} from './api';
-import {useSelector} from 'react-redux';
-import {RootState} from './store';
+import {authApi, baseApi} from './api';
+import {useDispatch} from 'react-redux';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
 import Register from './components/Register/Register';
+import {authSlice} from './store/slices/auth.slice';
 
 function App() {
-  const {user} = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+
+  const initializeUser = async (token: string) => {
+    const {data} = await authApi.me(token);
+    baseApi.updateHeader(token);
+    dispatch(authSlice.actions.login({token, ...data}));
+  };
 
   useEffect(() => {
-    if (user.token) {
-      baseApi.updateHeader(user.token);
-      usersApi.getUsers(user?.token).then((r) => console.log);
+    const token = localStorage.getItem('token');
+    if (token) {
+      initializeUser(token);
     }
-  }, [user]);
+  }, []);
 
   return (
     <div className="app">
