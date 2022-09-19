@@ -25,4 +25,44 @@ export default class BaseApi {
   updateHeader(token: string) {
     this.token = token;
   }
+
+  async get(url: string, token: string): Promise<any> {
+    return this.request({
+      url,
+      method: 'GET',
+      ...this.headers(token),
+    });
+  }
+  async post(url: string, data: any, token: string): Promise<any> {
+    return this.request({
+      url,
+      method: 'POST',
+      data,
+      ...this.headers(token),
+    });
+  }
+  async put(url: string, data: any, token: string): Promise<any> {
+    return this.request({
+      url,
+      method: 'PUT',
+      data,
+      ...this.headers(token),
+    });
+  }
+  async patch(url: string, data: any, token: string): Promise<any> {
+    return this.request({
+      url,
+      method: 'PATCH',
+      data,
+      ...this.headers(token),
+    });
+  }
+  async delete(url: string, data: any, token: string): Promise<any> {
+    return this.request({
+      url,
+      method: 'DELETE',
+      data,
+      ...this.headers(token),
+    });
+  }
 }
