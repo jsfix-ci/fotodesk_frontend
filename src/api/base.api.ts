@@ -14,10 +14,11 @@ export default class BaseApi {
     });
   }
 
-  protected headers(token: string) {
+  protected headers(token: string, isMultipart?: boolean) {
     return {
       headers: {
         Authorization: `Bearer ${this.token ?? token}`,
+        'Content-Type': isMultipart ? 'multipart/form-data' : 'application/json',
       },
     };
   }
