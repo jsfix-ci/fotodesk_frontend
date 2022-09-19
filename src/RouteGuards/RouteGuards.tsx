@@ -8,6 +8,7 @@ export function PrivateRoute({component: Component, ...rest}: any) {
 
   return <Navigate to={'/'} />;
 }
+
 export function AdminRoute({component: Component, ...rest}: any) {
   const isAdmin = useSelector((state: any) => state.auth.user.role === 'admin');
   const isLoggedIn = !!useSelector((state: any) => state.auth.user.token);
@@ -15,6 +16,7 @@ export function AdminRoute({component: Component, ...rest}: any) {
   if (isLoggedIn && isAdmin) {
     return <Component {...rest} />;
   }
+
   return <Navigate to={'/'} />;
 }
 
