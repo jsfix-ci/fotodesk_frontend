@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import {authApi} from '../../api';
 import {authSlice} from '../../store/slices/auth.slice';
+import {emailPattern, passwordPattern} from '../../utilities/helper';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    data: '',
+    username: '',
     password: '',
   });
 
@@ -18,30 +20,35 @@ export default function LoginForm() {
       [name]: value,
     }));
   }
-  function handleSubmit(event: any) {
-    event.preventDefault();
-    dispatch(
-      authSlice.actions.login({
-        token:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InpsYWphQHlvcG1haWwuY29tIiwiaWF0IjoxNjYzNjAwOTI1LCJleHAiOjE2NjM2MDEwMTF9.lMJ_0jIdobv_vXnPWfHvdLCS_sXkdoDKIgqFYwNFctw',
-        role: 'korisnik',
-        id: 798,
-        firstName: 'Mile',
-        lastName: 'lemi',
-        displayName: 'stosasas',
-        email: 'a@a.com',
-      })
-    );
-    navigate('/profile');
 
-    return;
+  const isSubmitDisabled = useMemo(() => {
+    console.log(!emailPattern.test(formData.username));
+    console.log(!passwordPattern.test(formData.password));
+    return !emailPattern.test(formData.username) || !passwordPattern.test(formData.password);
+  }, [formData]);
+
+  async function handleSubmit(event: any) {
+    try {
+      event.preventDefault();
+      const {
+        data: {token},
+      } = await authApi.login(formData);
+      const {data: user} = await authApi.me(token);
+      setFormData({username: '', password: ''});
+      dispatch(
+        authSlice.actions.login({
+          token,
+          ...user,
+        })
+      );
+      localStorage.setItem('token', token);
+      navigate('/profile');
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  // function logout(event: any) {
-  //   event.preventDefault();
-  //   dispatch(authSlice.actions.logout());
-  //   return;
-  // }
+ 
 
   return (
     <div className="dropdown login">
@@ -57,10 +64,9 @@ export default function LoginForm() {
             <input
               type="text"
               className="form-control"
-              name="data"
+              name="username"
               onChange={handleChange}
-              value={formData.data}
-              id="exampleInputEmail1"
+              value={formData.username}
               aria-describedby="emailHelp"
               placeholder="Display name/email"
             />
@@ -72,12 +78,11 @@ export default function LoginForm() {
               name="password"
               onChange={handleChange}
               value={formData.password}
-              id="exampleInputPassword1"
               placeholder="Password"
             />
           </div>
 
-          <button type="submit" className="submit">
+          <button type="submit" className="submit" disabled={isSubmitDisabled}>
             Submit
           </button>
         </form>
