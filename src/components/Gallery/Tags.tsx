@@ -14,9 +14,5 @@ export default function Tags() {
       >{` #${t}`}</Link>
     ));
 
-  return (
-    <div className="text-start">
-      <a>{tagEle}</a>
-    </div>
-  );
+  return <div className="text-start">{tagEle}</div>;
 }
