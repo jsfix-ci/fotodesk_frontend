@@ -48,11 +48,7 @@ export default function LoginForm() {
     }
   }
 
-  // function logout(event: any) {
-  //   event.preventDefault();
-  //   dispatch(authSlice.actions.logout());
-  //   return;
-  // }
+ 
 
   return (
     <div className="dropdown login">
