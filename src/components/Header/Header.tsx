@@ -20,6 +20,7 @@ export default function Header() {
 
   function logout(e: any) {
     e.preventDefault();
+    localStorage.removeItem('token');
     dispatch(authSlice.actions.logout());
     navigate('/');
   }
