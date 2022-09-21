@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import UploadStepTwoImage from '../components/UploadStepTwoImage';
 import {useDispatch, useSelector} from 'react-redux';
 import {imagesSlice} from '../store/slices/images.slice';
@@ -11,7 +11,7 @@ export default function UploadStepTwo({hasSidebar}: any) {
   const [isUserWarned, setUserIsWarned] = useState(false);
 
   function handleChange(event: any, id: any) {
-    const tag = event.target.value.split(',').filter((s: string) => !!s.length);
+    const tag = event.target.value;
     dispatch(imagesSlice.actions.updateNewImage({id, tag}));
   }
 
@@ -39,27 +39,6 @@ export default function UploadStepTwo({hasSidebar}: any) {
   function showHide() {
     setModalOpen(false);
   }
-
-  useEffect(() => {
-    dispatch(
-      imagesSlice.actions.setNewImages([
-        {
-          author: 'Bob',
-          id: 1,
-          tags: [],
-          url: '/images/thumb.jpeg',
-          relatedImages: [],
-        },
-        {
-          author: 'Bob',
-          id: 2,
-          tags: [],
-          url: 'https://www.blabla.com',
-          relatedImages: [],
-        },
-      ])
-    );
-  }, []);
 
   return (
     <div className="container">
@@ -101,11 +80,11 @@ export default function UploadStepTwo({hasSidebar}: any) {
         {newImages.map((upload: any, id: any) => (
           <UploadStepTwoImage
             key={id}
-            isEmpty={upload.tags.length === 0}
-            thumb={upload.thumb}
+            isEmpty={upload?.tags?.length === 0}
             hasSidebar={hasSidebar}
             handleChange={(e: any) => handleChange(e, upload.id)}
             addTags={newImages}
+            path={upload?.path}
           />
         ))}
       </div>
