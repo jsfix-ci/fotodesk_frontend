@@ -1,9 +1,16 @@
 import React, {CSSProperties, useState} from 'react';
 import {useEffect} from 'react';
 import {useDropzone} from 'react-dropzone';
-import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
+import {imagesApi} from '../../api';
+import {RootState} from '../../store';
+import {imagesSlice} from '../../store/slices/images.slice';
 
 export default function UploadStep1() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector((state: RootState) => state.auth.user.token);
   const thumbsContainer = {
     display: 'flex',
     flexDirection: 'row',
@@ -57,6 +64,17 @@ export default function UploadStep1() {
       },
     });
 
+    async function handleProceed() {
+      const data = new FormData();
+      for (const file of files) {
+        data.append('files', file.file);
+      }
+      const {data: newImages} = await imagesApi.uploadImage(data, token!);
+      dispatch(imagesSlice.actions.setNewImages(newImages));
+
+      navigate('/images/upload/step-2');
+    }
+
     const removeFile = (e: any, fileName: string) => {
       e.preventDefault();
       e.stopPropagation();
@@ -98,11 +116,10 @@ export default function UploadStep1() {
           <p>Drag 'n' drop some files here, or click to select files</p>
           <aside style={thumbsContainer as CSSProperties}>{thumbs}</aside>
         </div>
-        <Link className="text-decoration-none" to="/images/upload/step-2">
-          <button className={`proceed ${toggleProceed}`} type="submit">
-            Proceed
-          </button>
-        </Link>
+
+        <button className={`proceed ${toggleProceed}`} type="submit" onClick={handleProceed}>
+          Proceed
+        </button>
       </section>
     );
   }
