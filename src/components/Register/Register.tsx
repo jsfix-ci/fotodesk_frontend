@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux';
 // import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {authApi} from '../../api';
+import {IRegisterData} from '../../api/auth.api';
 import {authSlice} from '../../store/slices/auth.slice';
 import Form from '../Form/Form';
 import {formFields} from '../Form/form-utilities';
@@ -15,15 +16,7 @@ export default function Register({isAdmin}: any) {
   const initialState = registerFormFields.reduce((a, b) => ({...a, [b.name]: {...b, value: '', onChange: handleChange}}), {});
   const [enteredFormFIelds, setEnteredFormField] = useState<any>(initialState);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [registerData, setRegisterData] = useState(
-    {
-      firstName: '',
-      lastName: '',
-      email: '',
-      displayName: '',
-      password: 'string',
-    }
-  )
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   function changeDisable(enteredFormFIelds: any) {
@@ -46,15 +39,15 @@ export default function Register({isAdmin}: any) {
   async function handleSubmit(event: any) {
     try {
       event.preventDefault();
-      const {
-        data
-      } = await authApi.register(registerData);
-      
-      setRegisterData({firstName: '', lastName: '', email:'', displayName:'', password:''});
+      const payload = Object.keys(enteredFormFIelds).reduce(
+        (acc, curr) => ({...acc, [curr]: enteredFormFIelds[curr]['value']}),
+        {}
+      ) as IRegisterData;
+      const {data} = await authApi.register(payload);
+
       dispatch(
-        authSlice.actions.setUsers({
-          
-          ...data
+        authSlice.actions.login({
+          ...data,
         })
       );
       localStorage.setItem('token', data.token);
@@ -62,13 +55,7 @@ export default function Register({isAdmin}: any) {
     } catch (error) {
       console.log(error);
     }
-    
-  
   }
-    
-  
 
-  return ( <Form formFields={enteredFormFIelds} handleChange={handleChange} handleSubmit={handleSubmit} isDisabled={isDisabled} />)
+  return <Form formFields={enteredFormFIelds} handleChange={handleChange} handleSubmit={handleSubmit} isDisabled={isDisabled} />;
 }
-
-

@@ -16,9 +16,13 @@ function App() {
   const dispatch = useDispatch();
 
   const initializeUser = async (token: string) => {
-    const {data} = await authApi.me(token);
-    baseApi.updateHeader(token);
-    dispatch(authSlice.actions.login({token, ...data}));
+    try {
+      const {data} = await authApi.me(token);
+      baseApi.updateHeader(token);
+      dispatch(authSlice.actions.login({token, ...data}));
+    } catch {
+      localStorage.removeItem('token');
+    }
   };
 
   useEffect(() => {

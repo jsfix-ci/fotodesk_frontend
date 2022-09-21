@@ -48,8 +48,6 @@ export default function LoginForm() {
     }
   }
 
- 
-
   return (
     <div className="dropdown login">
       <button className="btn-login" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">

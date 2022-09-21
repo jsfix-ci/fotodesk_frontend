@@ -5,7 +5,7 @@ interface ILoginData {
   password: string;
 }
 
-interface IREgisterData {
+export interface IRegisterData {
   firstName: string;
   lastName: string;
   email: string;
@@ -18,7 +18,7 @@ export class AuthApi extends BaseApi {
     return await this.post('/auth/login', data);
   }
 
-  public async register(data: IREgisterData): Promise<any> {
+  public async register(data: IRegisterData): Promise<any> {
     return await this.post('/auth/register', data);
   }
 
