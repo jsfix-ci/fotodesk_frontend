@@ -2,38 +2,46 @@ import React, {useState} from 'react';
 import UploadStepTwoImage from '../components/UploadStepTwoImage';
 import {useDispatch, useSelector} from 'react-redux';
 import {imagesSlice} from '../store/slices/images.slice';
+import {imagesApi} from '../api';
+import {RootState} from '../store';
+import {useNavigate} from 'react-router-dom';
 
 export default function UploadStepTwo({hasSidebar}: any) {
-  const {newImages} = useSelector((state: any) => state.images);
+  const {newImages} = useSelector((state: RootState) => state.images);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector((state: RootState) => state.auth.user.token);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [isUserWarned, setUserIsWarned] = useState(false);
+  // const [isUserWarned, setUserIsWarned] = useState(false);
 
   function handleChange(event: any, id: any) {
     const tag = event.target.value;
     dispatch(imagesSlice.actions.updateNewImage({id, tag}));
   }
 
-  function handleSubmit(event: any) {
+  async function handleSubmit(event: any) {
     event.preventDefault();
-    setModalOpen(false);
-    //kad se klikne na sumbit da li je upozoren korisnik
-    //ako je upozoren korisnik nastaviti operaciju do kraja
-    //ako korisnik nije upozoren prvo setovati da se korisnik upozori
-    //prikazi modal
-    //
-    if (isUserWarned) {
-      dispatch(imagesSlice.actions.resetNewImages());
-      return;
-    }
+    await imagesApi.addTags(
+      {
+        images: newImages,
+      },
+      token!
+    );
+    navigate('/profile');
+    //   setModalOpen(false);
 
-    if (newImages.some((i: any) => !i?.tags?.length)) {
-      setModalOpen(true);
-      setUserIsWarned(true);
-      return;
-    }
-    dispatch(imagesSlice.actions.resetNewImages());
+    //   if (isUserWarned) {
+    //     dispatch(imagesSlice.actions.resetNewImages());
+    //     return;
+    //   }
+
+    //   if (newImages.some((i: any) => !i?.tags?.length)) {
+    //     setModalOpen(true);
+    //     setUserIsWarned(true);
+    //     return;
+    //   }
+    //   dispatch(imagesSlice.actions.resetNewImages());
   }
 
   function showHide() {
