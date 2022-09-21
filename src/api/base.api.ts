@@ -34,12 +34,12 @@ export default class BaseApi {
       ...this.headers(token),
     });
   }
-  protected async post(url: string, data: any, token?: string): Promise<any> {
+  protected async post(url: string, data: any, token?: string, isMultipart?: boolean): Promise<any> {
     return this.request({
       url,
       method: 'POST',
       data,
-      ...this.headers(token!),
+      ...this.headers(token!, isMultipart),
     });
   }
   protected async put(url: string, data: any, token: string): Promise<any> {
