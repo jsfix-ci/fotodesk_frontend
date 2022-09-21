@@ -6,11 +6,11 @@ interface ILoginData {
 }
 
 interface IREgisterData {
-  firstName: 'string';
-  lastName: 'string';
-  email: 'string';
-  displayName: 'string';
-  password: 'string';
+  firstName: string;
+  lastName: string;
+  email: string;
+  displayName: string;
+  password: string;
 }
 
 export class AuthApi extends BaseApi {
