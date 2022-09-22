@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {imagesApi} from '../../api';
 import {RootState} from '../../store';
+import {commonSlice} from '../../store/slices/common.slice';
 import {imagesSlice} from '../../store/slices/images.slice';
 
 export default function UploadStep1() {
@@ -65,12 +66,14 @@ export default function UploadStep1() {
     });
 
     async function handleProceed() {
+      dispatch(commonSlice.actions.setLoading(true));
       const data = new FormData();
       for (const file of files) {
         data.append('files', file.file);
       }
       const {data: newImages} = await imagesApi.uploadImage(data, token!);
       dispatch(imagesSlice.actions.setNewImages(newImages));
+      dispatch(commonSlice.actions.setLoading(false));
 
       navigate('/images/upload/step-2');
     }

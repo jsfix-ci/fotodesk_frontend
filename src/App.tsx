@@ -11,6 +11,7 @@ import {useDispatch} from 'react-redux';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
 import Register from './components/Register/Register';
 import {authSlice} from './store/slices/auth.slice';
+import Loader from './components/Loader/Loader';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div className="app">
+      <Loader />
       <Header />
       <div className="container">
         <div className="row p-2 px-2">
