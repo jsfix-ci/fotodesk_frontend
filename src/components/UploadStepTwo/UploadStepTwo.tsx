@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import UploadStepTwoImage from '../components/UploadStepTwoImage';
 import {useDispatch, useSelector} from 'react-redux';
-import {imagesSlice} from '../store/slices/images.slice';
-import {imagesApi} from '../api';
-import {RootState} from '../store';
 import {useNavigate} from 'react-router-dom';
+import {imagesApi} from '../../api';
+import {RootState} from '../../store';
+import {imagesSlice} from '../../store/slices/images.slice';
+import UploadStepTwoImage from './UploadStepTwoImage';
 
 export default function UploadStepTwo({hasSidebar}: any) {
   const {newImages} = useSelector((state: RootState) => state.images);

@@ -7,7 +7,7 @@ import {imagesApi} from '../../api';
 import {RootState} from '../../store';
 import {imagesSlice} from '../../store/slices/images.slice';
 
-export default function UploadStep1() {
+export default function UploadStepOne() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector((state: RootState) => state.auth.user.token);
@@ -95,10 +95,10 @@ export default function UploadStep1() {
           <img
             src={file.preview}
             style={img}
-            // Revoke data uri after image is loaded
             onLoad={() => {
               URL.revokeObjectURL(file.preview);
             }}
+            alt="preview"
           />
         </div>
       </div>
@@ -107,7 +107,7 @@ export default function UploadStep1() {
     useEffect(() => {
       // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
       return () => files.forEach((file: any) => URL.revokeObjectURL(file.preview));
-    }, []);
+    }, [files]);
 
     return (
       <section className="container">
