@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import ShowPassword from '../Form/show.png';
 import HidePassword from '../Form/hide.png';
+import ShowPassword from '../Form/show.png';
 
 export default function Password({className, handleChange, type, ...rest}: any) {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,8 +17,8 @@ export default function Password({className, handleChange, type, ...rest}: any) 
         onChange={handleChange}
         {...rest}
       />
-      <img className="hide-pass" src={HidePassword} onClick={() => passwordToggle(false)} />
-      <img className="show-pass" src={ShowPassword} onClick={() => passwordToggle(true)} />
+      <img className="hide-pass" src={HidePassword} onClick={() => passwordToggle(false)} alt="hide password" />
+      <img className="show-pass" src={ShowPassword} onClick={() => passwordToggle(true)} alt="show password" />
     </>
   );
 }

@@ -1,15 +1,18 @@
 // include customized bootstrap
-@import './styles/config/_config';
+@import './styles/config/config';
 
 // include all of Bootstrap
 @import 'bootstrap/scss/bootstrap';
-@import './styles/components/_App';
-@import './styles/components/_Header';
+
+// include components
+@import './styles/components/App';
+@import './styles/components/Header';
 @import './styles/components/Sidebar';
 @import './styles/components/AdminPage';
 @import './styles/components/UsersList';
 @import './styles/components/LoginForm';
 @import './styles/components/Images';
 @import './styles/components/Register';
+@import './styles/components/UploadStepOne';
 @import './styles/components/UploadStepTwo';
-@import './styles/components/UploadStep1';
+@import './styles/components/Loader';

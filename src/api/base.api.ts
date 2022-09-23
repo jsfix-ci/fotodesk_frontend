@@ -1,10 +1,10 @@
 import axios, {AxiosInstance} from 'axios';
 import {StoreKeeper} from '../store';
+import {commonSlice} from '../store/slices/common.slice';
 
 export default class BaseApi {
   protected request: AxiosInstance;
   protected token: string | null = null;
-
   constructor() {
     this.request = axios.create({
       baseURL: process.env.REACT_APP_BACKEND_URL,
@@ -12,6 +12,27 @@ export default class BaseApi {
         Authorization: `Bearer: ${StoreKeeper.store.getState().auth.user.token}`,
       },
     });
+    let loadingTimeout: NodeJS.Timeout;
+    this.request.interceptors.request.use((config) => {
+      loadingTimeout && clearTimeout(loadingTimeout);
+      loadingTimeout = setTimeout(() => {
+        StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(true));
+      }, 500);
+      return config;
+    });
+    this.request.interceptors.response.use(
+      (success) => {
+        clearTimeout(loadingTimeout);
+        StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
+        StoreKeeper.store.dispatch(commonSlice.actions.setMessage({}));
+        return success;
+      },
+      (error) => {
+        clearTimeout(loadingTimeout);
+        StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
+        return error;
+      }
+    );
   }
 
   protected headers(token: string, isMultipart?: boolean) {

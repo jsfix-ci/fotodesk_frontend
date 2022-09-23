@@ -1,5 +1,6 @@
 import React from 'react';
 import {IFromItem} from './Input';
+
 export interface IOption {
   label: string;
   value: string;

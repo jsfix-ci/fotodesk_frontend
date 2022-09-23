@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 // import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
@@ -7,6 +7,7 @@ import {IRegisterData} from '../../api/auth.api';
 import {authSlice} from '../../store/slices/auth.slice';
 import Form from '../Form/Form';
 import {formFields} from '../Form/form-utilities';
+
 // import {authApi} from '../../api';
 // import {authSlice} from '../../store/slices/auth.slice';
 // import {emailPattern,} from '../../utilities/helper';

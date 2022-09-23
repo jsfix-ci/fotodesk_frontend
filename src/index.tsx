@@ -1,11 +1,11 @@
 import React from 'react';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ReactDOM from 'react-dom/client';
-import './index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {BrowserRouter} from 'react-router-dom';
 import {Provider as ReduxProvider} from 'react-redux';
+import {BrowserRouter} from 'react-router-dom';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import App from './App';
+import './index.scss';
+import reportWebVitals from './reportWebVitals';
 import {store} from './store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);

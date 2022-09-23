@@ -1,4 +1,4 @@
-import {configureStore, EnhancedStore} from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import {rootReducer} from './slices';
 
 export const store = configureStore({
@@ -6,7 +6,7 @@ export const store = configureStore({
 });
 
 export class StoreKeeper {
-  public static store: EnhancedStore;
+  public static store: any;
 }
 
 export type RootState = ReturnType<typeof rootReducer>;

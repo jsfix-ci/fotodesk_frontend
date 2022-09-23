@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {userLinks, adminLinks, ILink} from '../../utilities/nav-links';
+import {adminLinks, ILink, userLinks} from '../../utilities/nav-links';
 
 export default function SideBar({isAdmin}: any) {
   return (

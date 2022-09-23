@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import SideBar from '../components/Sidebar/Sidebar';
 import {isAdmin} from '../utilities/helper';
+
 export default function WithSideBarLayout({children}: any) {
   const {user} = useSelector((state: any) => state.auth);
 

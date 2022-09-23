@@ -22,8 +22,6 @@ export default function LoginForm() {
   }
 
   const isSubmitDisabled = useMemo(() => {
-    console.log(!emailPattern.test(formData.username));
-    console.log(!passwordPattern.test(formData.password));
     return !emailPattern.test(formData.username) || !passwordPattern.test(formData.password);
   }, [formData]);
 
