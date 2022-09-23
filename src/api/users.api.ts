@@ -19,4 +19,9 @@ export class UsersApi extends BaseApi {
   public async deleteUser(id: number,  token: string): Promise<any> {
     return await this.delete(`/admin/users/${id}`, token);
   }
+
+  public async getStats(token:string):Promise<any>{
+    return await this.get('/admin/statistics/count', token)
+  }
+
 }
