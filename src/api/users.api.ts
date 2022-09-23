@@ -16,7 +16,7 @@ export class UsersApi extends BaseApi {
     return await this.put(`/admin/users/${id}`, data, token);
   }
 
-  public async deleteUser(id: number, data: any, token: string): Promise<any> {
-    return await this.delete(`/admin/users/${id}`, data, token);
+  public async deleteUser(id: number,  token: string): Promise<any> {
+    return await this.delete(`/admin/users/${id}`, token);
   }
 }
