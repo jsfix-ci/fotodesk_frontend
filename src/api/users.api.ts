@@ -16,12 +16,11 @@ export class UsersApi extends BaseApi {
     return await this.put(`/admin/users/${id}`, data, token);
   }
 
-  public async deleteUser(id: number,  token: string): Promise<any> {
+  public async deleteUser(id: number, token: string): Promise<any> {
     return await this.delete(`/admin/users/${id}`, token);
   }
 
-  public async getStats(token:string):Promise<any>{
-    return await this.get('/admin/statistics/count', token)
+  public async getStats(token: string): Promise<any> {
+    return await this.get('/admin/statistics/count', token);
   }
-
 }

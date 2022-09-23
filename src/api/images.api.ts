@@ -10,14 +10,14 @@ export class ImagesApi extends BaseApi {
   }
 
   public async getLatestImages(): Promise<any> {
-    return await this.get('/images/latest-images')
+    return await this.get('/images/latest-images');
   }
 
-  public async updateImage(id: number, data:any, token:string): Promise<any> {
+  public async updateImage(id: number, data: any, token: string): Promise<any> {
     return await this.put(`/admin/images/${id}`, data, token);
   }
 
-  public async deleteImage(id: number, token:string): Promise<any> {
+  public async deleteImage(id: number, token: string): Promise<any> {
     return await this.delete(`/admin/images/${id}`, token);
   }
   public async uploadImage(data: any, token: string) {
@@ -27,7 +27,7 @@ export class ImagesApi extends BaseApi {
   public async addTags(data: any, token: string): Promise<any> {
     return await this.put('/admin/images/bulk-update', data, token);
   }
-  public async myImages(token:string): Promise<any> {
-    return await this.get('/admin/images',token)
+  public async myImages(token: string): Promise<any> {
+    return await this.get('/admin/images', token);
   }
 }
