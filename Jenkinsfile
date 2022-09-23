@@ -9,7 +9,7 @@ pipeline {
 
     stage('Install packages') {
       steps {
-        sh 'cd fotodesk_frontend && npm i '
+        sh 'cd /home/zlaja/projects/fotodesk_frontend && npm i'
       }
     }
 
