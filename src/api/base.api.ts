@@ -3,7 +3,7 @@ import {StoreKeeper} from '../store';
 import {commonSlice} from '../store/slices/common.slice';
 
 export default class BaseApi {
-  protected request: AxiosInstance;
+  private request: AxiosInstance;
   protected token: string | null = null;
   constructor() {
     this.request = axios.create({
@@ -48,11 +48,11 @@ export default class BaseApi {
     this.token = token;
   }
 
-  protected async get(url: string, token: string): Promise<any> {
+  protected async get(url: string, token?: string): Promise<any> {
     return this.request({
       url,
       method: 'GET',
-      ...this.headers(token),
+      ...this.headers(token!),
     });
   }
   protected async post(url: string, data: any, token?: string, isMultipart?: boolean): Promise<any> {
@@ -79,11 +79,10 @@ export default class BaseApi {
       ...this.headers(token),
     });
   }
-  protected async delete(url: string, data: any, token: string): Promise<any> {
+  protected async delete(url: string, token: string): Promise<any> {
     return this.request({
       url,
       method: 'DELETE',
-      data,
       ...this.headers(token),
     });
   }
