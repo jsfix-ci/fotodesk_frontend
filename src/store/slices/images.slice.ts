@@ -4,7 +4,8 @@ export interface IImage {
   author: null | string;
   tags: string[];
   id: null | number;
-  url: null | string;
+  path: null | string;
+  name: null | string;
   relatedImages: IImage[];
 }
 interface IImagesState {
@@ -19,7 +20,8 @@ const initialState: IImagesState = {
     author: null,
     tags: [],
     id: null,
-    url: null,
+    path: null,
+    name: null,
     relatedImages: [],
   },
   newImages: [],

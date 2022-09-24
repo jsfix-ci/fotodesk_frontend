@@ -11,7 +11,7 @@ export default function Detail({isAdmin}: any) {
 
           <div className="row mt-4">
             <h4 className="text-start">Related images</h4>
-            <Gallery hasSidebar />
+            <Gallery hasSidebar images={[]} />
           </div>
         </div>
 
@@ -51,9 +51,11 @@ export default function Detail({isAdmin}: any) {
                 <li>
                   <a
                     className="dropdown-item"
-                    href="https://www.freecodecamp.org/news/content/images/size/w1600/2021/06/image-169.png"
+                    href="http://localhost:3000/images/sea.jpg"
                     data-value={imageSize.value}
                     download
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     {imageSize.label}
                   </a>
