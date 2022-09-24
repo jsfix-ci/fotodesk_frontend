@@ -14,7 +14,7 @@ export default function HomePage() {
         const params = new URLSearchParams(location.search.slice(1));
         const obj = Object.fromEntries(params);
         const {data} = await imagesApi.getImages(obj);
-        dispatch(imagesSlice.actions.setImages(data.data));
+        dispatch(imagesSlice.actions.setImages(data));
       } catch (error) {
         console.log(error);
       }

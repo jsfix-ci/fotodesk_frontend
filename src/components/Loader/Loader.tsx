@@ -5,7 +5,6 @@ import {RootState} from '../../store';
 
 export default function Loader() {
   const {isLoading} = useSelector((state: RootState) => state.common);
-  console.log(isLoading);
   if (!isLoading) return null;
   return (
     <div className="loader-parent">

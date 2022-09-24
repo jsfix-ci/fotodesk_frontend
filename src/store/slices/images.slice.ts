@@ -2,23 +2,46 @@ import {createSlice} from '@reduxjs/toolkit';
 
 export interface IImage {
   author: null | string;
-  tags: string[];
+  tags: null | string;
   id: null | number;
   path: null | string;
   name: null | string;
   relatedImages: IImage[];
 }
+
+interface ILinks {
+  first?: string;
+  previous?: string;
+  current: string;
+  next?: string;
+  last?: string;
+}
+
+interface IMeta {
+  itemsPerPage: number;
+  totalItems: number;
+  currentPage: number;
+  totalPages: number;
+  sortBy: any;
+}
+interface IImages {
+  data: IImage[];
+  links?: ILinks;
+  meta?: IMeta;
+}
 interface IImagesState {
-  images: IImage[];
+  images: IImages;
   image: IImage;
   newImages: IImage[];
 }
 
 const initialState: IImagesState = {
-  images: [],
+  images: {
+    data: [],
+  },
   image: {
     author: null,
-    tags: [],
+    tags: null,
     id: null,
     path: null,
     name: null,
@@ -40,7 +63,9 @@ export const imagesSlice = createSlice({
       return state;
     },
     addMoreImages: (state, action) => {
-      state.images = [...state.images, ...action.payload];
+      state.images.data = state.images.data.concat(action.payload.data);
+      state.images.links = action.payload.links;
+      state.images.meta = action.payload.meta;
       return state;
     },
 
