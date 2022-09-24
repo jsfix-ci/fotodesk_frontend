@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import {store} from './store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+kkkkkk;
 root.render(
   <React.StrictMode>
     <ReduxProvider store={store}>
