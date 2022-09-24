@@ -2,20 +2,20 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import Tags from './Tags';
 
-export default function Image({thumb, isAdmin, hasSidebar}: any) {
+export default function Image({thumb, isAdmin, hasSidebar, id, tags}: any) {
   const navigate = useNavigate();
-  const handleClick = (e: MouseEvent) => {
+  const handleClick = (e: any) => {
     e.preventDefault();
-    navigate('/details/fksdfgdsjfda');
+    navigate(`/details/${id}`);
   };
   const colSize = hasSidebar ? 'col-md-4' : 'col-md-3';
   return (
-    <div className={colSize} onClick={(e: any) => handleClick(e)}>
+    <div className={colSize} onClick={handleClick}>
       <div className="card p-3 col-12 border-0 ">
         <img className="card-img-none" src={thumb} alt="#" />
         <div className="card-body border">
           <h4 className="text-dark text-start">Author Name</h4>
-          <Tags />
+          <Tags tags={tags} />
 
           <div className="row mt-5">
             {isAdmin ? (

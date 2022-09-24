@@ -30,7 +30,7 @@ export default class BaseApi {
       (error) => {
         clearTimeout(loadingTimeout);
         StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
-        return error;
+        throw error;
       }
     );
   }
@@ -48,11 +48,12 @@ export default class BaseApi {
     this.token = token;
   }
 
-  protected async get(url: string, token?: string): Promise<any> {
+  protected async get(url: string, token?: string, params?: any): Promise<any> {
     return this.request({
       url,
       method: 'GET',
       ...this.headers(token!),
+      params,
     });
   }
   protected async post(url: string, data: any, token?: string, isMultipart?: boolean): Promise<any> {

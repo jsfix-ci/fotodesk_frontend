@@ -1,12 +1,18 @@
 import React from 'react';
+import {IImage} from '../../store/slices/images.slice';
 import Image from './Image';
 
-export default function Gallery({isAdmin, hasSidebar}: any) {
+interface IGalleryProps {
+  isAdmin?: boolean;
+  hasSidebar?: boolean;
+  images: IImage[];
+}
+export default function Gallery({isAdmin, hasSidebar, images}: IGalleryProps) {
   return (
     <div className="container">
       <div className="row m-0">
-        {new Array(10).fill({thumb: '/images/thumb.jpeg'}).map((image) => (
-          <Image key={Math.random()} thumb={image.thumb} isAdmin={isAdmin} hasSidebar={hasSidebar} />
+        {images?.map((image) => (
+          <Image key={image.name} thumb={image.path} isAdmin={isAdmin} hasSidebar={hasSidebar} id={image.id} tags={image.tags} />
         ))}
       </div>
     </div>
