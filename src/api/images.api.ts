@@ -1,8 +1,8 @@
 import BaseApi from './base.api';
 
 export class ImagesApi extends BaseApi {
-  public async getImages(): Promise<any> {
-    return await this.get('/images');
+  public async getImages(query?: any): Promise<any> {
+    return await this.get('/images', undefined, query);
   }
 
   public async getImage(id: number): Promise<any> {

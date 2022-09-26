@@ -13,5 +13,12 @@ pipeline {
       }
     }
 
+    stage('Lint project JS/TS') {
+      steps {
+        sh ' npm run lint:check'
+        sh 'npm run css:lint'
+      }
+    }
+
   }
 }

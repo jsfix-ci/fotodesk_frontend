@@ -1,27 +1,34 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store';
 import {imageSizes} from '../../utilities/image-utilities';
 import Gallery from '../Gallery/Gallery';
+import Tags from '../Gallery/Tags';
 
 export default function Detail({isAdmin}: any) {
+  const {image} = useSelector((state: RootState) => state.images);
+  const {user} = useSelector((state: RootState) => state.auth);
   return (
     <div className="container">
       <div className="row">
         <div className="col-9">
-          <img src="/images/sea.jpg" className="img-fluid" alt="..." />
+          <img src={image.path!} className="img-fluid" alt="..." />
 
           <div className="row mt-4">
             <h4 className="text-start">Related images</h4>
-            <Gallery hasSidebar />
+            <Gallery hasSidebar images={image.relatedImages} />
           </div>
         </div>
 
         <div className="col-3">
           <h4 className="fw-bold text-start">Author</h4>
           <div className="input-group w-75">
-            <input type="text" aria-label="First name" className="form-control" placeholder="Author name" readOnly />
+            <input type="text" aria-label="First name" className="form-control" placeholder={image.author!} readOnly />
           </div>
           <h4 className="fw-bold text-start mt-4">Keywords</h4>
-          <p className="text-start w-50">Image, keyword, description</p>
+          <div className="text-start w-50">
+            <Tags tags={image.tags} />
+          </div>
           {isAdmin && (
             <>
               <h4 className="fw-bold text-start mt-4">Watermark</h4>
@@ -36,31 +43,28 @@ export default function Detail({isAdmin}: any) {
             </>
           )}
 
-          <div className="dropdown text-start">
-            <button
-              className="btn btn-secondary dropdown-toggle mt-3 w-75 p-2"
-              type="button"
-              id="dropdownMenuButton1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Download
-            </button>
-            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              {imageSizes.map((imageSize: any) => (
-                <li>
-                  <a
-                    className="dropdown-item"
-                    href="https://www.freecodecamp.org/news/content/images/size/w1600/2021/06/image-169.png"
-                    data-value={imageSize.value}
-                    download
-                  >
-                    {imageSize.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {user?.token && (
+            <div className="dropdown text-start">
+              <button
+                className="btn btn-secondary dropdown-toggle mt-3 w-75 p-2"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Download
+              </button>
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                {imageSizes.map((imageSize: any) => (
+                  <li key={imageSize.value}>
+                    <a className="dropdown-item" href={image.path!} data-value={imageSize.value} download target="_blank" rel="noreferrer">
+                      {imageSize.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </div>
