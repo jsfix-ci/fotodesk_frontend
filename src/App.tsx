@@ -36,7 +36,7 @@ function App() {
     <div className="app">
       <Loader />
       <Header />
-      <div className="container"> 
+      <div className="container">
         <div className="row p-2 px-2">
           <Routes>
             <Route

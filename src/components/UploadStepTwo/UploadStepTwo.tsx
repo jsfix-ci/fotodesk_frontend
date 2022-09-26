@@ -13,7 +13,6 @@ export default function UploadStepTwo({hasSidebar}: any) {
   const token = useSelector((state: RootState) => state.auth.user.token);
 
   const [modalOpen, setModalOpen] = useState(false);
-  
 
   function handleChange(event: any, id: any) {
     const tag = event.target.value;
@@ -29,7 +28,6 @@ export default function UploadStepTwo({hasSidebar}: any) {
       token!
     );
     navigate('/profile');
-   
   }
 
   function showHide() {

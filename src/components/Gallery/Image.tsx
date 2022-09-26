@@ -6,8 +6,8 @@ export default function Image({thumb, isAdmin, hasSidebar, id}: any) {
   const navigate = useNavigate();
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
-    console.log('sdsdf')
-    navigate('/details/fksdfgdsjfdsd'+id);
+    console.log('sdsdf');
+    navigate('/details/fksdfgdsjfdsd' + id);
   };
   const colSize = hasSidebar ? 'col-md-4' : 'col-md-3';
   return (
