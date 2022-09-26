@@ -23,7 +23,7 @@ export default function AdminPage() {
           </div>
 
           {new Array(3).fill(0).map((_: any) => (
-            <UsersList />
+            <UsersList key={Math.random()} />
           ))}
         </div>
       </div>
