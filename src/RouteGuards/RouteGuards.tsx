@@ -5,8 +5,8 @@ import {RootState} from '../store';
 
 export function PrivateRoute({component: Component, ...rest}: any) {
   const isLoggedIn = !!useSelector((state: RootState) => state.auth.user.token);
-  if (isLoggedIn) return <Component {...rest} />;
-
+  const userToken = !!localStorage.getItem('token');
+  if (isLoggedIn || userToken) return <Component {...rest} />;
   return <Navigate to={'/'} />;
 }
 
