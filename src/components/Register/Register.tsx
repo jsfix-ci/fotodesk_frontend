@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
-// import {useDispatch} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {authApi} from '../../api';
 import {IRegisterData} from '../../api/auth.api';
@@ -8,9 +7,6 @@ import {authSlice} from '../../store/slices/auth.slice';
 import Form from '../Form/Form';
 import {formFields} from '../Form/form-utilities';
 
-// import {authApi} from '../../api';
-// import {authSlice} from '../../store/slices/auth.slice';
-// import {emailPattern,} from '../../utilities/helper';
 export default function Register({isAdmin}: any) {
   const registerFields = ['firstName', 'lastName', 'displayName', 'email', 'password', 'repeatPassword'];
   const registerFormFields = formFields.filter((formField) => registerFields.includes(formField.name));

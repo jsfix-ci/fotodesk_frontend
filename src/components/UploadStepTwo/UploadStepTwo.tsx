@@ -13,7 +13,7 @@ export default function UploadStepTwo({hasSidebar}: any) {
   const token = useSelector((state: RootState) => state.auth.user.token);
 
   const [modalOpen, setModalOpen] = useState(false);
-  // const [isUserWarned, setUserIsWarned] = useState(false);
+  
 
   function handleChange(event: any, id: any) {
     const tag = event.target.value;
@@ -29,19 +29,7 @@ export default function UploadStepTwo({hasSidebar}: any) {
       token!
     );
     navigate('/profile');
-    //   setModalOpen(false);
-
-    //   if (isUserWarned) {
-    //     dispatch(imagesSlice.actions.resetNewImages());
-    //     return;
-    //   }
-
-    //   if (newImages.some((i: any) => !i?.tags?.length)) {
-    //     setModalOpen(true);
-    //     setUserIsWarned(true);
-    //     return;
-    //   }
-    //   dispatch(imagesSlice.actions.resetNewImages());
+   
   }
 
   function showHide() {

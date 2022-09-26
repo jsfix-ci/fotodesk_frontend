@@ -1,8 +1,6 @@
 import React from 'react';
 import {renderFormTypes} from './form-utilities';
 
-// import {IFromItem} from './Input';
-
 export default function Form({formFields, handleChange, handleSubmit, isDisabled}: any) {
   return (
     <>

@@ -19,7 +19,7 @@ export default function SideBar({isAdmin}: any) {
           </button>
           <div id="navbar-nav-alt-markup">
             <div className="link">
-              {isAdmin
+              {!isAdmin
                 ? adminLinks.map((adminLink: ILink) => (
                     <Link key={adminLink.label} to={adminLink.path}>
                       {adminLink.label}

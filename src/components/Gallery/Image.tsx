@@ -2,11 +2,12 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import Tags from './Tags';
 
-export default function Image({thumb, isAdmin, hasSidebar}: any) {
+export default function Image({thumb, isAdmin, hasSidebar, id}: any) {
   const navigate = useNavigate();
   const handleClick = (e: MouseEvent) => {
     e.preventDefault();
-    navigate('/details/fksdfgdsjfda');
+    console.log('sdsdf')
+    navigate('/details/fksdfgdsjfdsd'+id);
   };
   const colSize = hasSidebar ? 'col-md-4' : 'col-md-3';
   return (

@@ -37,7 +37,6 @@ export const formFields: IFromItem[] = [
     type: 'text',
     className: 'text-danger',
     placeholder: 'Last Name',
-    // pattern: '[A-z]{4,}',
     required: true,
     min: 5,
     max: 10,
