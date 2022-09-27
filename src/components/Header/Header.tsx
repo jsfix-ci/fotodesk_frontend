@@ -27,7 +27,8 @@ export default function Header() {
 
   const handleSearch = (e: any) => {
     e.preventDefault();
-    navigate(`/?search=${searchData}`);
+    const data = searchData.split(/,|\s+/).filter(Boolean).join('+');
+    navigate(`/?search=${data}`);
   };
 
   return (
