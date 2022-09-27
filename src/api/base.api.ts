@@ -1,6 +1,7 @@
 import axios, {AxiosInstance} from 'axios';
 import {StoreKeeper} from '../store';
 import {commonSlice} from '../store/slices/common.slice';
+import {errorResponses, getMessage, successResponses} from '../utilities/toast-messages';
 
 export default class BaseApi {
   private request: AxiosInstance;
@@ -24,12 +25,19 @@ export default class BaseApi {
       (success) => {
         clearTimeout(loadingTimeout);
         StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
-        StoreKeeper.store.dispatch(commonSlice.actions.setMessage({}));
+        const message = successResponses[success.config.method! + success.config.url?.split('/').at(-1) ?? ''];
+
+        // console.log(success.config.method! + success.config.url?.split('/').at(-1));
+        const dispatchMessage = getMessage(message);
+        if (dispatchMessage) StoreKeeper.store.dispatch(commonSlice.actions.setMessage(dispatchMessage));
         return success;
       },
       (error) => {
         clearTimeout(loadingTimeout);
         StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
+        const message = errorResponses[error.config.url?.split('/').at(-1) ?? ''];
+        const dispatchMessage = getMessage(message);
+        if (dispatchMessage) StoreKeeper.store.dispatch(commonSlice.actions.setMessage(dispatchMessage));
         throw error;
       }
     );
