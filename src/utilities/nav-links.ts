@@ -6,7 +6,7 @@ export interface ILink {
 export const userLinks: ILink[] = [
   {
     label: 'Images',
-    path: '/user/images',
+    path: '/profile/images',
   },
   {
     label: 'Profile',

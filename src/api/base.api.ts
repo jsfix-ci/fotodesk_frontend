@@ -1,10 +1,11 @@
 import axios, {AxiosInstance} from 'axios';
 import {StoreKeeper} from '../store';
 import {commonSlice} from '../store/slices/common.slice';
-import {errorResponses, getMessage, successResponses} from '../utilities/toast-messages';
+import Messages from '../utilities/Messages';
 
 export default class BaseApi {
   private request: AxiosInstance;
+  private readonly messages = new Messages(commonSlice.actions.setMessage);
   protected token: string | null = null;
   constructor() {
     this.request = axios.create({
@@ -25,19 +26,15 @@ export default class BaseApi {
       (success) => {
         clearTimeout(loadingTimeout);
         StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
-        const message = successResponses[success.config.method! + success.config.url?.split('/').at(-1) ?? ''];
-
-        // console.log(success.config.method! + success.config.url?.split('/').at(-1));
-        const dispatchMessage = getMessage(message);
-        if (dispatchMessage) StoreKeeper.store.dispatch(commonSlice.actions.setMessage(dispatchMessage));
+        const key = success.config.method! + success.config.url?.split('/').at(-1) ?? '';
+        this.messages.generateSuccess(key);
         return success;
       },
       (error) => {
         clearTimeout(loadingTimeout);
         StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
-        const message = errorResponses[error.config.url?.split('/').at(-1) ?? ''];
-        const dispatchMessage = getMessage(message);
-        if (dispatchMessage) StoreKeeper.store.dispatch(commonSlice.actions.setMessage(dispatchMessage));
+        const key = error.config.method! + error.config.url?.split('/').at(-1) ?? '';
+        this.messages.generateError(key);
         throw error;
       }
     );
