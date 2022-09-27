@@ -29,7 +29,6 @@ export const commonSlice = createSlice({
       return state;
     },
     setMessage: (state, action) => {
-      console.log(action.payload);
       state.message = action.payload;
       return state;
     },

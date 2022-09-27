@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {ILinks, IMeta} from '../../utilities/common-interfaces';
 
 export interface IImage {
   author: null | string;
@@ -7,23 +8,11 @@ export interface IImage {
   path: null | string;
   name: null | string;
   relatedImages: IImage[];
+  user?: {
+    displayName: string;
+  };
 }
 
-interface ILinks {
-  first?: string;
-  previous?: string;
-  current: string;
-  next?: string;
-  last?: string;
-}
-
-interface IMeta {
-  itemsPerPage: number;
-  totalItems: number;
-  currentPage: number;
-  totalPages: number;
-  sortBy: any;
-}
 interface IImages {
   data: IImage[];
   links?: ILinks;
@@ -81,16 +70,13 @@ export const imagesSlice = createSlice({
       state.newImages = state.newImages.map((ele: any) => (ele.id === action.payload.id ? {...ele, tags: action.payload.tag} : ele));
       return state;
     },
-
+    resetImage: (state) => {
+      state.image = initialState.image;
+      return state;
+    },
     resetNewImages: (state) => {
       state.newImages = [];
       return state;
     },
   },
 });
-
-//setuje se lista  slika
-//dodaje se jos slika na listu
-//uzima se jedna slikaa
-//dodaju se nove slike
-//kad se zavrsi upload stejt za nove slike se resetuje

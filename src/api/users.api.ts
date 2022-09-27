@@ -4,7 +4,7 @@ export class UsersApi extends BaseApi {
   public async createUser(data: any, token: string): Promise<any> {
     return await this.post('/admin/users', data, token);
   }
-  public async getUsers(token: string = ''): Promise<any> {
+  public async getUsers(token: string): Promise<any> {
     return await this.get('/admin/users', token);
   }
 
