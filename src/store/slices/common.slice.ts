@@ -1,11 +1,11 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-enum TypeEnum {
+export enum TypeEnum {
   success = 'success',
-  warning = 'warning',
+  error = 'error',
 }
 
-interface IMessage {
+export interface IMessage {
   text: string;
   type: TypeEnum;
 }
@@ -29,6 +29,7 @@ export const commonSlice = createSlice({
       return state;
     },
     setMessage: (state, action) => {
+      console.log(action.payload);
       state.message = action.payload;
       return state;
     },

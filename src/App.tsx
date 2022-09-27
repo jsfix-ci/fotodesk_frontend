@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Images from './components/Images/Images';
 import Loader from './components/Loader/Loader';
 import Register from './components/Register/Register';
+import Toaster from './components/Toaster/Toaster';
 import UploadStepOne from './components/UploadStepOne/UploadStepOne';
 import UploadStepTwo from './components/UploadStepTwo/UploadStepTwo';
 import {CommonLayout, WithSideBarLayout} from './layouts';
@@ -35,6 +36,7 @@ function App() {
   return (
     <div className="app">
       <Loader />
+      <Toaster />
       <Header />
       <div className="container">
         <div className="row p-2 px-2">
