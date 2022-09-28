@@ -31,8 +31,8 @@ export default function AdminPage() {
 
   async function handleSubmit(payload: any) {
     try {
-      await usersApi.createUser({...payload,isApproved: true},user?.token!)
-      setModalOpen(false)
+      await usersApi.createUser({...payload, isApproved: true}, user?.token!);
+      setModalOpen(false);
     } catch (error) {
       console.log(error);
     }

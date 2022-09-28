@@ -3,11 +3,12 @@ import {IRegisterData} from '../../api/auth.api';
 import Form from '../Form/Form';
 import {formFields} from '../Form/form-utilities';
 
-
-export default function Register({isAdmin,registerFields,handleSubmit, initialValues}: any) {
-  
+export default function Register({isAdmin, registerFields, handleSubmit, initialValues}: any) {
   const registerFormFields = formFields.filter((formField) => registerFields?.includes(formField.name));
-  const initialState = registerFormFields.reduce((a, b) => ({...a, [b.name]: {...b, value: initialValues? initialValues[b.name] : '', onChange: handleChange}}), {});
+  const initialState = registerFormFields.reduce(
+    (a, b) => ({...a, [b.name]: {...b, value: initialValues ? initialValues[b.name] : '', onChange: handleChange}}),
+    {}
+  );
   const [enteredFormFIelds, setEnteredFormField] = useState<any>(initialState);
   const [isDisabled, setIsDisabled] = useState(true);
 
@@ -15,20 +16,19 @@ export default function Register({isAdmin,registerFields,handleSubmit, initialVa
     let isDisabled = !Object.values(enteredFormFIelds)
       .filter((field: any) => field?.required)
       .every((field: any) => !!field?.value?.length);
-      if(enteredFormFIelds?.repeatPassword){
-
-        isDisabled = isDisabled || enteredFormFIelds?.password?.value !== enteredFormFIelds?.repeatPassword?.value;
-      }
+    if (enteredFormFIelds?.repeatPassword) {
+      isDisabled = isDisabled || enteredFormFIelds?.password?.value !== enteredFormFIelds?.repeatPassword?.value;
+    }
     setIsDisabled(isDisabled);
   }
-  const onSubmit = (e:any)=>{
-    e.preventDefault()
+  const onSubmit = (e: any) => {
+    e.preventDefault();
     const payload = Object.keys(enteredFormFIelds).reduce(
       (acc, curr) => ({...acc, [curr]: enteredFormFIelds[curr]?.['value']}),
       {}
     ) as IRegisterData;
-    handleSubmit(payload)
-  }
+    handleSubmit(payload);
+  };
   useEffect(() => {
     changeDisable(enteredFormFIelds);
   }, [enteredFormFIelds]);
@@ -37,8 +37,6 @@ export default function Register({isAdmin,registerFields,handleSubmit, initialVa
     const {name, value} = event.target;
     setEnteredFormField((prevState: any) => ({...prevState, [name]: {...prevState[name], value: value.trim()}}));
   }
-
-
 
   return <Form formFields={enteredFormFIelds} handleChange={handleChange} handleSubmit={onSubmit} isDisabled={isDisabled} />;
 }
