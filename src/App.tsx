@@ -5,13 +5,12 @@ import {authApi, baseApi} from './api';
 import Header from './components/Header/Header';
 import Images from './components/Images/Images';
 import Loader from './components/Loader/Loader';
-import Register from './components/Register/Register';
 import Toaster from './components/Toaster/Toaster';
 import UploadStepOne from './components/UploadStepOne/UploadStepOne';
 import UploadStepTwo from './components/UploadStepTwo/UploadStepTwo';
 import UserImages from './components/UserImages/UserImages';
 import {CommonLayout, WithSideBarLayout} from './layouts';
-import {AdminPage, DetailPage, HomePage, NotFoundPage, UserPage} from './Pages';
+import {AdminPage, DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
 import {authSlice} from './store/slices/auth.slice';
 
@@ -66,7 +65,7 @@ function App() {
               }
             >
               <Route path="/" element={<HomePage />} />
-              <Route path="/register" element={<OnlyPublicRoute component={Register} />} />
+              <Route path="/register" element={<OnlyPublicRoute component={RegisterPage} />} />
               <Route path="/details/:id" element={<DetailPage />} />
               <Route path="*" element={<NotFoundPage />} />
               <Route path="/images/upload/step-2" element={<PrivateRoute component={UploadStepTwo} />} />

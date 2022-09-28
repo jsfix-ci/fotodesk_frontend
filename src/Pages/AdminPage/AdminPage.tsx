@@ -1,13 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {usersApi} from '../../api';
+import Register from '../../components/Register/Register';
 import UsersList from '../../components/UsersList/UsersList';
 import {RootState} from '../../store';
 import {authSlice} from '../../store/slices/auth.slice';
 
 export default function AdminPage() {
+  const registerFields = ['firstName', 'lastName', 'displayName', 'email', 'password', 'role'];
+
   const {users, user} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function showHide() {
+    setModalOpen(!modalOpen);
+  }
   useEffect(() => {
     const getUsers = async () => {
       try {
@@ -20,6 +28,15 @@ export default function AdminPage() {
     };
     user.token && getUsers();
   }, [dispatch, user?.token]);
+
+  async function handleSubmit(payload: any) {
+    try {
+      await usersApi.createUser({...payload, isApproved: true}, user?.token!);
+      setModalOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="admin">
@@ -36,8 +53,15 @@ export default function AdminPage() {
             <button className="upload" type="submit">
               Search
             </button>
-            <button className="add" type="submit">
-              +Add
+            <button
+              type="button"
+              className="btn btn-primary ms-auto"
+              data-toggle="modal"
+              data-target="#exampleModal"
+              data-whatever="@mdo"
+              onClick={showHide}
+            >
+              Add
             </button>
           </div>
 
@@ -46,6 +70,29 @@ export default function AdminPage() {
           ))}
         </div>
       </div>
+      {modalOpen && (
+        <div
+          className="modal fade bd-example-modal-xl show"
+          tabIndex={-1}
+          role="dialog"
+          aria-labelledby="myExtraLargeModalLabel"
+          style={{display: 'block', paddingRight: '15px'}}
+          aria-modal="true"
+        >
+          <div className="modal-dialog modal-xl">
+            <div className="modal-content">
+              <div className="modal-header">
+                <Register registerFields={registerFields} isAdmin={true} handleSubmit={handleSubmit} />
+
+                <button onClick={showHide} type="button" className="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div className="d-flex align-items-center"></div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
