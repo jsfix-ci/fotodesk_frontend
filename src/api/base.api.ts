@@ -27,7 +27,7 @@ export default class BaseApi {
         StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
         const message = successResponses[success.config.method! + success.config.url?.split('/').at(-1) ?? ''];
 
-        // console.log(success.config.method! + success.config.url?.split('/').at(-1));
+        console.log(success.config.method! + success.config.url?.split('/').at(-1));
         const dispatchMessage = getMessage(message);
         if (dispatchMessage) StoreKeeper.store.dispatch(commonSlice.actions.setMessage(dispatchMessage));
         return success;
