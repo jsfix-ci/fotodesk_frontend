@@ -23,7 +23,7 @@
 
           a {
             @extend .text-decoration-none, .text-start, .text-dark;
-            
+
             &:has(span) {
               @extend .text-danger;
             }
