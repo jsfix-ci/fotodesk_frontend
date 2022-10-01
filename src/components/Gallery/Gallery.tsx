@@ -1,36 +1,25 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {useDispatch, useSelector} from 'react-redux';
-import {imagesApi} from '../../api';
+import {useSelector} from 'react-redux';
 import {RootState} from '../../store';
 import {IImage} from '../../store/slices/images.slice';
-import {imagesSlice} from '../../store/slices/images.slice';
 import Image from './Image';
 
 interface IGalleryProps {
   isAdmin?: boolean;
   hasSidebar?: boolean;
   images: IImage[];
+  next?: (...args: any) => void;
 }
-export default function Gallery({isAdmin, hasSidebar, images}: IGalleryProps) {
-  const dispatch = useDispatch();
+export default function Gallery({isAdmin, hasSidebar, images, next}: IGalleryProps) {
   const {images: moreImages} = useSelector((state: RootState) => state.images);
-  const next = async (url: string) => {
-    try {
-      const params = new URLSearchParams(url.split('?')[1]);
-      const obj = Object.fromEntries(params);
-      const {data} = await imagesApi.getImages(obj);
-      dispatch(imagesSlice.actions.addMoreImages(data));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   return (
     <div className="container">
       <InfiniteScroll
         dataLength={images.length}
         next={() => {
-          next(moreImages.links?.next!);
+          next?.(moreImages.links?.next!);
         }}
         hasMore={!!moreImages.links?.next}
         loader={<></>}

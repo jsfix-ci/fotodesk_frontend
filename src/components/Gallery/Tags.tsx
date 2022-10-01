@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-export default function Tags({tags = ''}: any) {
+export default function Tags({tags}: any) {
+  if (!tags) return null;
   const tagEle = (tags ?? '')
     .split(',')
     .map((t: any) => (

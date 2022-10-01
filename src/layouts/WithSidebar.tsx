@@ -1,15 +1,16 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import SideBar from '../components/Sidebar/Sidebar';
+import {RootState} from '../store';
 import {isAdmin} from '../utilities/helper';
 
 export default function WithSideBarLayout({children}: any) {
-  const {user} = useSelector((state: any) => state.auth);
+  const {user} = useSelector((state: RootState) => state.auth);
 
   return (
     <>
       <div className="col-2">
-        <SideBar isAdmin={isAdmin(user.role)} />
+        <SideBar isAdmin={isAdmin(user.role!)} />
       </div>
       <div className="col-10">{children}</div>
     </>

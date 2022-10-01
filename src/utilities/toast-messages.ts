@@ -1,6 +1,6 @@
 import {TypeEnum} from '../store/slices/common.slice';
 
-const messages: {[key: string]: any} = {
+export const messagesMap: {[key: string]: any} = {
   postloginSuccess: {
     text: 'Dobro dosli',
     type: TypeEnum.success,
@@ -14,7 +14,7 @@ const messages: {[key: string]: any} = {
     type: TypeEnum.success,
   },
   postimagesError: {
-    text: 'Greska pri ucitavanju ',
+    text: 'Greska pri ucitavanju',
     type: TypeEnum.error,
   },
   'putbulk-updateSuccess': {
@@ -45,7 +45,3 @@ export const errorResponses: {[key: string]: string} = {
   postimages: 'postimagesError',
   'putbulk-update': 'putbulk-updateError',
 };
-
-export function getMessage(messageStatus: string) {
-  return messages[messageStatus];
-}

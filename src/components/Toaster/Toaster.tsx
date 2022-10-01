@@ -13,22 +13,12 @@ export default function Toaster(props: any) {
     });
     setTimeout(() => {
       dispatch(commonSlice.actions.setMessage(undefined));
-    }, 1500);
-  }, [message]);
+    }, 5000);
+  }, [message, dispatch]);
   if (!message) return null;
   return (
     <div className="toster-parent">
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <ToastContainer position="top-right" autoClose={1000} closeOnClick pauseOnFocusLoss draggable pauseOnHover />
     </div>
   );
 }

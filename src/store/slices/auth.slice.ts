@@ -1,6 +1,27 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {ILinks, IMeta} from '../../utilities/common-interfaces';
 
-const initialState = {
+interface IUser {
+  token: null | string;
+  role: null | string;
+  id: null | number;
+  firstName: null | string;
+  lastName: null | string;
+  displayName: null | string;
+  email: null | string;
+}
+interface IUsers {
+  data: IUser[];
+  links?: ILinks;
+  meta?: IMeta;
+}
+
+interface IUserState {
+  user: IUser;
+  users: IUsers;
+}
+
+const initialState: IUserState = {
   user: {
     token: null,
     role: null,
@@ -11,7 +32,9 @@ const initialState = {
     email: null,
   },
 
-  users: [],
+  users: {
+    data: [],
+  },
 };
 
 export const authSlice = createSlice({
@@ -31,7 +54,10 @@ export const authSlice = createSlice({
       return state;
     },
     setMoreUsers: (state, action) => {
-      state.users = state.users.concat(action.payload);
+      state.users.data = state.users.data.concat(action.payload.data);
+      state.users.links = action.payload.links;
+      state.users.meta = action.payload.meta;
+
       return state;
     },
     resetUsers: (state) => {
