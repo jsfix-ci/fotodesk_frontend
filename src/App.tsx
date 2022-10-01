@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {Outlet, Route, Routes} from 'react-router-dom';
-import {authApi, baseApi} from './api';
+import {authApi, baseApi, usersApi} from './api';
 import Header from './components/Header/Header';
 import Images from './components/Images/Images';
 import Loader from './components/Loader/Loader';
@@ -10,9 +10,15 @@ import UploadStepOne from './components/UploadStepOne/UploadStepOne';
 import UploadStepTwo from './components/UploadStepTwo/UploadStepTwo';
 import UserImages from './components/UserImages/UserImages';
 import {CommonLayout, WithSideBarLayout} from './layouts';
-import {AdminPage, DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
+import {DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
+import AdminPagePendingImages from './Pages/AdminPage/AdminPagePendingImages';
+import AdminPagePendingUsers from './Pages/AdminPage/AdminPagePendingUsers';
+import AdminPageUsers from './Pages/AdminPage/AdminPageUsers';
+import AdminPageWaterMark from './Pages/AdminPage/AdminPageWaterMark';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
 import {authSlice} from './store/slices/auth.slice';
+import {statisticSlice} from './store/slices/statistics.slice';
+import {isAdmin} from './utilities/helper';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +29,10 @@ function App() {
         const {data} = await authApi.me(token);
         baseApi.updateHeader(token);
         dispatch(authSlice.actions.login({token, ...data}));
+        if (isAdmin(data.role)) {
+          const {data: statistics} = await usersApi.getStats(token);
+          dispatch(statisticSlice.actions.setStatistics({...statistics}));
+        }
       } catch {
         localStorage.removeItem('token');
       }
@@ -48,14 +58,14 @@ function App() {
                 </WithSideBarLayout>
               }
             >
-              <Route path="/admin-page/users" element={<AdminRoute component={AdminPage} />} />
+              <Route path="/admin-page/users" element={<AdminRoute component={AdminPageUsers} />} />
               <Route path="/profile" element={<PrivateRoute component={UserPage} />} />
               <Route path="/profile/images" element={<PrivateRoute component={UserImages} />} />
               <Route path="/admin-page/images" element={<AdminRoute component={Images} />} />
               <Route path="/images/upload/step-1" element={<PrivateRoute component={UploadStepOne} />} />
-              <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPage} />} />
-              <Route path="/admin-page/watermarks" element={<AdminRoute component={AdminPage} />} />
-              <Route path="/admin-page/pending-users" element={<AdminRoute component={AdminPage} />} />
+              <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPagePendingImages} />} />
+              <Route path="/admin-page/watermarks" element={<AdminRoute component={AdminPageWaterMark} />} />
+              <Route path="/admin-page/pending-users" element={<AdminRoute component={AdminPagePendingUsers} />} />
             </Route>
             <Route
               element={

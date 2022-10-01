@@ -6,7 +6,8 @@ import UsersList from '../../components/UsersList/UsersList';
 import {RootState} from '../../store';
 import {authSlice} from '../../store/slices/auth.slice';
 
-export default function AdminPage() {
+export default function AdminPageUsers() {
+  const [search, setSearch] = useState('');
   const registerFields = ['firstName', 'lastName', 'displayName', 'email', 'password', 'role'];
 
   const {users, user} = useSelector((state: RootState) => state.auth);
@@ -38,19 +39,39 @@ export default function AdminPage() {
     }
   }
 
+  const handleSearch = (e: any) => {
+    setSearch(e.target.value);
+  };
+
+  const findUser = async (e: any) => {
+    try {
+      e.preventDefault();
+
+      const {data} = await usersApi.getUsers(user?.token!, {search});
+      dispatch(authSlice.actions.setUsers(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="admin">
       <div className="row">
         <div className="col-12 ">
           <div className="d-flex">
             <div className="input-group">
-              <input type="text" aria-label="First name" className="form-control" placeholder="Name" />
-            </div>
-            <div className="input-group">
-              <input type="text" aria-label="First name" className="form-control" placeholder="Email" />
+              <input
+                type="text"
+                aria-label="First name"
+                className="form-control"
+                placeholder="Email"
+                name="email"
+                value={search}
+                onChange={handleSearch}
+              />
             </div>
 
-            <button className="upload" type="submit">
+            <button className="upload" onClick={findUser}>
               Search
             </button>
             <button
@@ -68,6 +89,7 @@ export default function AdminPage() {
           {users?.data?.map((user) => (
             <UsersList key={user.id} user={user} />
           ))}
+          {!users?.data?.length && <p>EMprtyyyyyyy</p>}
         </div>
       </div>
       {modalOpen && (

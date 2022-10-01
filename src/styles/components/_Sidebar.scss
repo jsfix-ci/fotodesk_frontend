@@ -22,8 +22,11 @@
           @extend .navbar-nav, .flex-column, .border, .border-secondary, .p-3, .mt-4, .h-100;
 
           a {
-            @extend .text-decoration-none, .text-start, .text-dark;
-
+            @extend .text-decoration-none, .text-start,.text-dark;
+            &:has(span){
+              @extend .text-danger;
+            }
+           
             margin-bottom: 1rem;
 
             &:is(:last-of-type) {
