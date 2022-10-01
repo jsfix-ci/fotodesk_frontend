@@ -10,7 +10,7 @@ export default function AdminPageUsers() {
   const [search, setSearch] = useState('');
   const registerFields = ['firstName', 'lastName', 'displayName', 'email', 'password', 'role'];
 
-  const {users, user} = useSelector((state: RootState) => state.auth);
+  const {users, user: admin} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -20,19 +20,19 @@ export default function AdminPageUsers() {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const {data} = await usersApi.getUsers(user.token!);
+        const {data} = await usersApi.getUsers(admin.token!);
 
         dispatch(authSlice.actions.setUsers(data));
       } catch (error) {
         console.log(error);
       }
     };
-    user.token && getUsers();
-  }, [dispatch, user?.token]);
+    admin.token && getUsers();
+  }, [dispatch, admin?.token]);
 
   async function handleSubmit(payload: any) {
     try {
-      await usersApi.createUser({...payload, isApproved: true}, user?.token!);
+      await usersApi.createUser({...payload, isApproved: true}, admin?.token!);
       setModalOpen(false);
     } catch (error) {
       console.log(error);
@@ -47,7 +47,7 @@ export default function AdminPageUsers() {
     try {
       e.preventDefault();
 
-      const {data} = await usersApi.getUsers(user?.token!, {search});
+      const {data} = await usersApi.getUsers(admin?.token!, {search});
       dispatch(authSlice.actions.setUsers(data));
     } catch (error) {
       console.log(error);
@@ -87,9 +87,8 @@ export default function AdminPageUsers() {
           </div>
 
           {users?.data?.map((user) => (
-            <UsersList key={user.id} user={user} />
+            <UsersList key={user.id} user={user} admin={admin} />
           ))}
-          {!users?.data?.length && <p>EMprtyyyyyyy</p>}
         </div>
       </div>
       {modalOpen && (

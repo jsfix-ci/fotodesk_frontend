@@ -68,5 +68,9 @@ export const authSlice = createSlice({
       state.user = {...state.user, ...action.payload};
       return state;
     },
+    deleteUser: (state, action) => {
+      state.users.data = state.users.data.filter((user) => user?.id !== action.payload);
+      return state;
+    },
   },
 });
