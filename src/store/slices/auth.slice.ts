@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {ILinks, IMeta} from '../../utilities/common-interfaces';
 
-interface IUser {
+export interface IUser {
   token: null | string;
   role: null | string;
   id: null | number;
@@ -9,8 +9,9 @@ interface IUser {
   lastName: null | string;
   displayName: null | string;
   email: null | string;
+  isApproved?: boolean;
 }
-interface IUsers {
+export interface IUsers {
   data: IUser[];
   links?: ILinks;
   meta?: IMeta;

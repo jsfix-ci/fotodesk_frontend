@@ -1,31 +1,37 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {usersApi} from '../../api';
-import UsersList from '../../components/UsersList/UsersList';
+import UserList from '../../components/User/UserList';
+import {UserSearchForm} from '../../components/User/UserSearchForm';
 import {RootState} from '../../store';
 import {authSlice} from '../../store/slices/auth.slice';
 
 function AdminPagePendingUsers() {
-  const {users, user} = useSelector((state: RootState) => state.auth);
+  const {users, user: admin} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   useEffect(() => {
     const getPendingUsers = async () => {
       try {
-        const {data} = await usersApi.getUsers(user?.token!, {isApproved: 1});
+        const {data} = await usersApi.getUsers(admin?.token!, {isApproved: 1});
         dispatch(authSlice.actions.setUsers(data));
       } catch (error) {
         console.log(error);
       }
     };
     getPendingUsers();
-  }, [user?.token, dispatch]);
+  }, [admin?.token, dispatch]);
 
   return (
-    <>
-      {users?.data?.map((user) => (
-        <UsersList user={user} />
-      ))}
-    </>
+    <div className="admin">
+      <div className="row">
+        <div className="col-12 ">
+          <UserSearchForm findUser={findUser} handleSearch={handleSearch} showHide={showHide} search={search} />
+
+          <UserList users={users?.data} admin={admin} />
+        </div>
+      </div>
+      <UserModal handleSubmit={handleSubmit} showHide={showHide} modalClosed={!modalOpen} />
+    </div>
   );
 }
 
