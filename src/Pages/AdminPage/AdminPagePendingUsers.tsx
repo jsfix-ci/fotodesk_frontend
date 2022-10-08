@@ -2,11 +2,12 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {usersApi} from '../../api';
 import UserList from '../../components/User/UserList';
+import {UserModal} from '../../components/User/UserModal';
 import {UserSearchForm} from '../../components/User/UserSearchForm';
 import {RootState} from '../../store';
 import {authSlice} from '../../store/slices/auth.slice';
 
-function AdminPagePendingUsers() {
+function AdminPagePendingUsers({findUser, handleSearch, showHide, search, handleSubmit, modalOpen}: any) {
   const {users, user: admin} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -27,7 +28,7 @@ function AdminPagePendingUsers() {
         <div className="col-12 ">
           <UserSearchForm findUser={findUser} handleSearch={handleSearch} showHide={showHide} search={search} />
 
-          <UserList users={users?.data} admin={admin} />
+          <UserList users={users?.data} admin={admin} findUsers={findUser} />
         </div>
       </div>
       <UserModal handleSubmit={handleSubmit} showHide={showHide} modalClosed={!modalOpen} />
