@@ -13,8 +13,8 @@ export default function UserList({users, admin}: IUserList) {
   const approveUser = async (updateUser: any) => {
     try {
       const {data} = await usersApi.updateUser(updateUser?.id, {...updateUser, isApproved: !updateUser.isApproved}, admin?.token!);
-        console.log(data);
-        
+      console.log(data);
+
       dispatch(authSlice.actions.updateUser(data));
     } catch (error) {
       console.log(error);

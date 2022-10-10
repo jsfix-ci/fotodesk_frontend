@@ -20,14 +20,13 @@ export default function AdminPageUsers() {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const {data} = await usersApi.getUsers(admin.token!,{'filter.isApproved': 1});
+        const {data} = await usersApi.getUsers(admin.token!, {'filter.isApproved': 1});
         dispatch(authSlice.actions.setUsers(data));
       } catch (error) {
         console.log(error);
       }
     };
     admin.token && getUsers();
-    
   }, [dispatch, admin?.token]);
 
   async function handleSubmit(payload: any) {

@@ -5,7 +5,7 @@ import {adminLinks, ILink, userLinks} from '../../utilities/nav-links';
 export default function SideBar({isAdmin}: any) {
   return (
     <div className="sidebar col-2">
-      <aside className='p-0'>
+      <aside className="p-0">
         <div className="toogle">
           <button
             type="button"

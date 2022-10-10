@@ -11,7 +11,7 @@ function AdminPagePendingUsers() {
   const {users, user: admin} = useSelector((state: RootState) => state.auth);
   const [modalOpen, setModalOpen] = useState(false);
   const [search, setSearch] = useState('');
-  
+
   const dispatch = useDispatch();
   useEffect(() => {
     const getPendingUsers = async () => {

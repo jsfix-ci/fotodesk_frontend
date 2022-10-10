@@ -64,7 +64,7 @@ export default function Header() {
             )}
           </div>
           {user?.token && (
-            <ul className='navbar-nav me-auto mb-2 mb-lg-0 g-2'>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0 g-2">
               <li className="nav-item">
                 <Link className="nav-link active" to="/profile">
                   Profile
@@ -77,9 +77,9 @@ export default function Header() {
                 </Link>
               </li>
 
-              <li className='nav-item'>
+              <li className="nav-item">
                 <Link className="btn btn-outline-dark" to="/images/upload/step-1">
-                    Upload
+                  Upload
                 </Link>
               </li>
             </ul>
@@ -89,7 +89,14 @@ export default function Header() {
 
       <div className="hero input-group">
         <form onSubmit={login}>
-          <input className='form-control' type="text" placeholder="Search here..." aria-label="Search" onChange={onChange} value={searchData} />
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Search here..."
+            aria-label="Search"
+            onChange={onChange}
+            value={searchData}
+          />
           <button onClick={handleSearch}>Search</button>
         </form>
       </div>

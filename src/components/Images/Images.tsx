@@ -52,7 +52,7 @@ export default function Images() {
         </datalist>
       </div>
 
-      <div className='col-2 m-0'>
+      <div className="col-2 m-0">
         <button className="btn btn-primary" type="submit">
           Search
         </button>
