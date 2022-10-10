@@ -46,5 +46,7 @@ export default function Register({isAdmin, registerFields, handleSubmit, initial
     setEnteredFormField((prevState: any) => ({...prevState, [name]: {...prevState[name], value: value.trim()}}));
   }
 
-  return <Form formFields={enteredFormFIelds} handleChange={handleChange} handleSubmit={onSubmit} isDisabled={isDisabled} legend={legend} />;
+  return (
+    <Form formFields={enteredFormFIelds} handleChange={handleChange} handleSubmit={onSubmit} isDisabled={isDisabled} legend={legend} />
+  );
 }

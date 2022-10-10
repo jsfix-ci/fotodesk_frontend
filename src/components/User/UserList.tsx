@@ -22,7 +22,7 @@ export default function UserList({users, admin, findUsers}: IUserList) {
     try {
       const {data} = await usersApi.updateUser(updateUser?.id, {...updateUser, isApproved: !updateUser.isApproved}, admin?.token!);
       console.log(data);
-      
+
       dispatch(authSlice.actions.updateUsers(data));
     } catch (error) {
       console.log(error);
@@ -94,4 +94,3 @@ export default function UserList({users, admin, findUsers}: IUserList) {
     </div>
   );
 }
-

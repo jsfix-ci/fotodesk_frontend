@@ -23,10 +23,9 @@ export function UserModal({showHide, handleSubmit, modalClosed, user, legend}: I
     >
       <div className="modal-dialog modal-xl">
         <div className="modal-content col-auto">
-          <div className='modal-header align-items-start'>
+          <div className="modal-header align-items-start">
             <Register registerFields={registerFields} isAdmin={true} handleSubmit={handleSubmit} initialValues={user} legend={legend} />
-            <button onClick={() => showHide(user)} type="button" className="btn-close" data-dismiss="modal" aria-label="Close">
-            </button>
+            <button onClick={() => showHide(user)} type="button" className="btn-close" data-dismiss="modal" aria-label="Close"></button>
           </div>
         </div>
       </div>
