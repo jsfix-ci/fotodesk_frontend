@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store';
 import {commonSlice, TypeEnum} from '../../store/slices/common.slice';
@@ -9,6 +9,7 @@ import Tags from '../Gallery/Tags';
 export default function Detail({isAdmin}: any) {
   const {image} = useSelector((state: RootState) => state.images);
   const {user} = useSelector((state: RootState) => state.auth);
+  const [currentWatermark, setCurrentWatermark] = useState('InfoBijeljina');
   const dispatch = useDispatch();
   const handleCopyUser = (value: string) => {
     navigator.clipboard.writeText(value);
@@ -18,6 +19,10 @@ export default function Detail({isAdmin}: any) {
         type: TypeEnum.success,
       })
     );
+  };
+
+  const handleWatermark = (e: any) => {
+    setCurrentWatermark(e.target.value);
   };
 
   return (
@@ -52,12 +57,31 @@ export default function Detail({isAdmin}: any) {
             <>
               <h4 className="fw-bold text-start mt-4">Watermark</h4>
               <div className="form-check text-start">
-                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                <label className="form-check-label">InfoBijeljina</label>
+                <label className="form-check-label w-100">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="watermark"
+                    checked={currentWatermark === 'InfoBijeljina'}
+                    onChange={handleWatermark}
+                    value="InfoBijeljina"
+                  />
+                  InfoBijeljina
+                </label>
               </div>
               <div className="form-check text-start">
-                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                <label className="form-check-label">Cafe.ba</label>
+                <label className="form-check-label w-100">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="watermark"
+                    id="flexRadioDefault2"
+                    checked={currentWatermark === 'Cafe.ba'}
+                    onChange={handleWatermark}
+                    value="Cafe.ba"
+                  />
+                  Cafe.ba
+                </label>
               </div>
             </>
           )}

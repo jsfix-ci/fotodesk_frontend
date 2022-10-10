@@ -30,7 +30,7 @@ export const formFields: IFromItem[] = [
     className: 'text-primary',
     placeholder: 'First Name',
     pattern: '[A-z]{4,}',
-    required: false,
+    required: true,
   },
   {
     name: 'lastName',

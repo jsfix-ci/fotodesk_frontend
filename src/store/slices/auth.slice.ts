@@ -11,8 +11,7 @@ export interface IUser {
   email: null | string;
   isApproved?: boolean;
 }
-
-interface IUsers {
+export interface IUsers {
   data: IUser[];
   links?: ILinks;
   meta?: IMeta;
@@ -68,6 +67,19 @@ export const authSlice = createSlice({
     },
     updateUser: (state, action) => {
       state.users = {...state.users, ...action.payload};
+      return state;
+    },
+    deleteUser: (state, action) => {
+      state.users.data = state.users.data.filter((user) => user?.id !== action.payload);
+      return state;
+    },
+    updateUsers: (state, action) => {
+      const newUser = action.payload as IUser;
+      const newUsers = state.users.data.map((user) => {
+        if (newUser.id === user.id) return newUser;
+        return user;
+      });
+      state.users.data = newUsers;
       return state;
     },
     deleteUser: (state, action) => {

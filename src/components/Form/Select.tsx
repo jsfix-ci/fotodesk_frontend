@@ -12,7 +12,9 @@ export default function Select({className, handleChange, options, ...rest}: IFro
       <select className={className ?? 'form-select'} aria-label="Default select example" onChange={handleChange} {...rest}>
         <option>Select Role</option>
         {options?.map((option) => (
-          <option value={option.value}>{option.label}</option>
+          <option key={option?.value} value={option.value}>
+            {option.label}
+          </option>
         ))}
       </select>
     </label>

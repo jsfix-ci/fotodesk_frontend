@@ -33,6 +33,7 @@ export default class BaseApi {
       (error) => {
         clearTimeout(loadingTimeout);
         StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
+        console.log(error);
         const key = error.config.method! + error.config.url?.split('/').at(-1) ?? '';
         this.messages.generateError(key);
         throw error;
@@ -70,6 +71,7 @@ export default class BaseApi {
     });
   }
   protected async put(url: string, data: any, token: string): Promise<any> {
+    console.log(data);
     return this.request({
       url,
       method: 'PUT',

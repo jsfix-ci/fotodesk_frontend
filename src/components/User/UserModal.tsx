@@ -1,12 +1,14 @@
 import React from 'react';
+import {IUser} from '../../store/slices/auth.slice';
 import Register from '../Register/Register';
 
 interface IUserModal {
   showHide: (...args: any) => void;
-  handleSubmit: (...args: any) => void;
+  handleSubmit: (user: IUser) => void;
   modalClosed: boolean;
+  user?: any;
 }
-export function UserModal({showHide, handleSubmit, modalClosed}: IUserModal) {
+export function UserModal({showHide, handleSubmit, modalClosed, user}: IUserModal) {
   const registerFields = ['firstName', 'lastName', 'displayName', 'email', 'password', 'role'];
   if (modalClosed) return null;
   return (
@@ -21,9 +23,9 @@ export function UserModal({showHide, handleSubmit, modalClosed}: IUserModal) {
       <div className="modal-dialog modal-xl">
         <div className="modal-content">
           <div className="modal-header">
-            <Register registerFields={registerFields} isAdmin={true} handleSubmit={handleSubmit} />
+            <Register registerFields={registerFields} isAdmin={true} handleSubmit={handleSubmit} initialValues={user} />
 
-            <button onClick={showHide} type="button" className="close" data-dismiss="modal" aria-label="Close">
+            <button onClick={() => showHide(user)} type="button" className="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>

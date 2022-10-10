@@ -1,6 +1,7 @@
 export interface ILink {
   label: string;
   path: string;
+  key?: string;
 }
 
 export const userLinks: ILink[] = [
@@ -29,6 +30,7 @@ export const adminLinks: ILink[] = [
   {
     label: 'Pending users',
     path: '/admin-page/pending-users',
+    key: 'pendingUsers',
   },
   {
     label: 'Images',
@@ -37,6 +39,7 @@ export const adminLinks: ILink[] = [
   {
     label: 'Pending images',
     path: '/admin-page/pending-images',
+    key: 'pendingImages',
   },
   {
     label: 'Upload images',

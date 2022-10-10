@@ -6,8 +6,9 @@ interface IUserListItem {
   admin: IUser;
   deleteUser: (...args: any) => void;
   approveUser: (...args: any) => void;
+  editUser: (...args: any) => void;
 }
-export function UserListItem({user, admin, deleteUser, approveUser}: IUserListItem) {
+export function UserListItem({user, admin, deleteUser, approveUser, editUser}: IUserListItem) {
   return (
     <div className="users-list">
       <div className="col-12">
@@ -20,7 +21,9 @@ export function UserListItem({user, admin, deleteUser, approveUser}: IUserListIt
           </div>
           <div className="offset-2 col-4">
             <div className="admin-action">
-              <p className="edit">Edit</p>
+              <p className="edit" onClick={() => editUser(user)}>
+                Edit
+              </p>
 
               {user?.id !== admin?.id && (
                 <>
