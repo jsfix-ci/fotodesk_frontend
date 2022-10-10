@@ -10,37 +10,24 @@ export default function AdminPageUsers() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getUsers = async () => {
-      try {
-        const {data} = await usersApi.getUsers(admin.token!);
-
+    usersApi
+      .getUsers(admin.token!)
+      .then(({data}: any) => {
         dispatch(authSlice.actions.setUsers(data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    admin.token && getUsers();
+      })
+      .catch((error) => console.log);
   }, [dispatch, admin?.token]);
 
-  // async function handleSubmit(payload: any) {
-  //   try {
-  //     await usersApi.createUser({...payload, isApproved: true}, admin?.token!);
-  //     // setModalOpen(false);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
-  const findUsers = async (e: any) => {
+  const getUsers = async (e: any, search?: any) => {
     try {
       e.preventDefault();
+      const {data} = await usersApi.getUsers(admin.token!, {search});
 
-      const {data} = await usersApi.getUsers(admin?.token!, {});
       dispatch(authSlice.actions.setUsers(data));
     } catch (error) {
       console.log(error);
     }
   };
 
-  return <UserList admin={admin} users={users.data} findUsers={findUsers} />;
+  return <UserList admin={admin} users={users.data} findUsers={getUsers} />;
 }

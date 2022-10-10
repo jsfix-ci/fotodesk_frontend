@@ -2,38 +2,31 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {usersApi} from '../../api';
 import UserList from '../../components/User/UserList';
-import {UserModal} from '../../components/User/UserModal';
-import {UserSearchForm} from '../../components/User/UserSearchForm';
 import {RootState} from '../../store';
 import {authSlice} from '../../store/slices/auth.slice';
 
-function AdminPagePendingUsers({findUser, handleSearch, showHide, search, handleSubmit, modalOpen}: any) {
+function AdminPagePendingUsers({findUser}: any) {
   const {users, user: admin} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
+  const getPendingUsers = async (e: any, search?: any) => {
+    try {
+      e.preventDefault();
+      const {data} = await usersApi.getUsers(admin?.token!, {'filter.isApproved': 0, search});
+      dispatch(authSlice.actions.setUsers(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const getPendingUsers = async () => {
-      try {
-        const {data} = await usersApi.getUsers(admin?.token!, {isApproved: 1});
+    usersApi
+      .getUsers(admin?.token!, {'filter.isApproved': 0})
+      .then(({data}: any) => {
         dispatch(authSlice.actions.setUsers(data));
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getPendingUsers();
+      })
+      .catch((error) => console.log);
   }, [admin?.token, dispatch]);
 
-  return (
-    <div className="admin">
-      <div className="row">
-        <div className="col-12 ">
-          <UserSearchForm findUser={findUser} handleSearch={handleSearch} showHide={showHide} search={search} />
-
-          <UserList users={users?.data} admin={admin} findUsers={findUser} />
-        </div>
-      </div>
-      <UserModal handleSubmit={handleSubmit} showHide={showHide} modalClosed={!modalOpen} />
-    </div>
-  );
+  return <UserList users={users?.data} admin={admin} findUsers={getPendingUsers} />;
 }
 
 export default AdminPagePendingUsers;

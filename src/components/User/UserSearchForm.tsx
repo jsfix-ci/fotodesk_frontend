@@ -21,7 +21,7 @@ export function UserSearchForm({search, handleSearch, findUser, showHide}: IUser
         />
       </div>
 
-      <button className="upload" onClick={findUser}>
+      <button className="upload" onClick={(e) => findUser(e, search)}>
         Search
       </button>
       <button

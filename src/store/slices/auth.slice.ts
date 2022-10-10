@@ -69,6 +69,15 @@ export const authSlice = createSlice({
       state.user = {...state.user, ...action.payload};
       return state;
     },
+    updateUsers: (state, action) => {
+      const newUser = action.payload as IUser;
+      const newUsers = state.users.data.map((user) => {
+        if (newUser.id === user.id) return newUser;
+        return user;
+      });
+      state.users.data = newUsers;
+      return state;
+    },
     deleteUser: (state, action) => {
       state.users.data = state.users.data.filter((user) => user?.id !== action.payload);
       return state;

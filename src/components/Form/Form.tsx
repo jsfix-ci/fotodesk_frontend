@@ -12,7 +12,7 @@ export default function Form({formFields, handleChange, handleSubmit, isDisabled
           <div className="row">
             {Object.values(formFields).map((formField: any) => (
               <div key={formField.name} className="col-md-6 col-12 mb-1 position-relative">
-                {renderFormTypes({...formField, handleChange}, true)}
+                {renderFormTypes({...formField, handleChange, value: formField.value ?? ''}, true)}
               </div>
             ))}
           </div>
