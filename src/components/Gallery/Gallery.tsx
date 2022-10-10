@@ -26,7 +26,7 @@ export default function Gallery({isAdmin, hasSidebar, images, next}: IGalleryPro
       >
         <div className="row m-0">
           {images?.map((image) => (
-            <Image key={image.name} thumb={image.path} isAdmin={isAdmin} hasSidebar={hasSidebar} id={image.id} tags={image.tags} />
+            <Image key={image?.name} thumb={image?.path} isAdmin={isAdmin} hasSidebar={hasSidebar} id={image?.id} tags={image?.tags} />
           ))}
         </div>
       </InfiniteScroll>
