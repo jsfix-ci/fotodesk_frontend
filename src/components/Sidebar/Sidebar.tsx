@@ -5,7 +5,7 @@ import {adminLinks, ILink, userLinks} from '../../utilities/nav-links';
 export default function SideBar({isAdmin}: any) {
   return (
     <div className="sidebar col-2">
-      <aside>
+      <aside className='p-0'>
         <div className="toogle">
           <button
             type="button"
@@ -18,7 +18,7 @@ export default function SideBar({isAdmin}: any) {
             <span></span>
           </button>
           <div id="navbar-nav-alt-markup">
-            <div className="link">
+            <div className="link m-0">
               {isAdmin
                 ? adminLinks.map((adminLink: ILink) => (
                     <Link key={adminLink.label} to={adminLink.path}>

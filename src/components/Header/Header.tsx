@@ -64,33 +64,32 @@ export default function Header() {
             )}
           </div>
           {user?.token && (
-            <li className="nav-item me-3 ms-auto d-flex">
-              <Link className="nav-link active ms-auto d-flex" to="/profile">
-                Profile
-              </Link>
-            </li>
-          )}
+            <ul className='navbar-nav me-auto mb-2 mb-lg-0 g-2'>
+              <li className="nav-item">
+                <Link className="nav-link active" to="/profile">
+                  Profile
+                </Link>
+              </li>
 
-          {user?.token && (
-            <li className="nav-item me-3 ms-auto d-flex" onClick={logout}>
-              <Link className="nav-link active ms-auto d-flex" to="">
-                Logout
-              </Link>
-            </li>
-          )}
-          {user?.token && (
-            <Link className="text-decoration-none ms-auto" to="/images/upload/step-1">
-              <button className="btn btn-outline-dark d-none d-md-flex" type="submit">
-                Upload
-              </button>
-            </Link>
+              <li className="nav-item" onClick={logout}>
+                <Link className="nav-link active" to="">
+                  Logout
+                </Link>
+              </li>
+
+              <li className='nav-item'>
+                <Link className="btn btn-outline-dark" to="/images/upload/step-1">
+                    Upload
+                </Link>
+              </li>
+            </ul>
           )}
         </div>
       </nav>
 
-      <div className="hero">
+      <div className="hero input-group">
         <form onSubmit={login}>
-          <input type="search" placeholder="Search here..." aria-label="Search" onChange={onChange} value={searchData} />
+          <input className='form-control' type="text" placeholder="Search here..." aria-label="Search" onChange={onChange} value={searchData} />
           <button onClick={handleSearch}>Search</button>
         </form>
       </div>

@@ -8,9 +8,11 @@ import Loader from './components/Loader/Loader';
 import Toaster from './components/Toaster/Toaster';
 import UploadStepOne from './components/UploadStepOne/UploadStepOne';
 import UploadStepTwo from './components/UploadStepTwo/UploadStepTwo';
-import UserImages from './components/UserImages/UserImages';
+import UserImages from './components/User/UserImages';
 import {CommonLayout, WithSideBarLayout} from './layouts';
-import {AdminPage, DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
+import {DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
+import AdminPagePendingUsers from './Pages/AdminPage/AdminPagePendingUsers';
+import AdminPageUsers from './Pages/AdminPage/AdminPageUsers';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
 import {authSlice} from './store/slices/auth.slice';
 
@@ -39,7 +41,7 @@ function App() {
       <Toaster />
       <Header />
       <div className="container">
-        <div className="row p-2 px-2">
+        <div className="row p-2">
           <Routes>
             <Route
               element={
@@ -48,14 +50,14 @@ function App() {
                 </WithSideBarLayout>
               }
             >
-              <Route path="/admin-page/users" element={<AdminRoute component={AdminPage} />} />
+              <Route path="/admin-page/users" element={<AdminRoute component={AdminPageUsers} />} />
               <Route path="/profile" element={<PrivateRoute component={UserPage} />} />
               <Route path="/profile/images" element={<PrivateRoute component={UserImages} />} />
               <Route path="/admin-page/images" element={<AdminRoute component={Images} />} />
               <Route path="/images/upload/step-1" element={<PrivateRoute component={UploadStepOne} />} />
-              <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPage} />} />
-              <Route path="/admin-page/watermarks" element={<AdminRoute component={AdminPage} />} />
-              <Route path="/admin-page/pending-users" element={<AdminRoute component={AdminPage} />} />
+              <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPageUsers} />} />
+              <Route path="/admin-page/watermarks" element={<AdminRoute component={AdminPageUsers} />} />
+              <Route path="/admin-page/pending-users" element={<AdminRoute component={AdminPagePendingUsers} />} />
             </Route>
             <Route
               element={

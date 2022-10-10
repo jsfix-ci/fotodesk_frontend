@@ -20,11 +20,12 @@ export default function Images() {
   }
 
   return (
-    <form className="images" onSubmit={handleSubmit}>
-      <div className="keywords">
+    <form className="row justift-content-center align-items-center g-3 mt-4" onSubmit={handleSubmit}>
+      <div className="col-5 m-0">
         <input
+          className="form-control"
           type="text"
-          aria-label="First name"
+          aria-label="Keywords"
           placeholder="Keywords"
           name="keywords"
           onChange={handleChange}
@@ -32,31 +33,29 @@ export default function Images() {
         />
       </div>
 
-      <div className="col-7">
-        <div className="row">
-          <div className="author">
-            <input
-              className="form-control"
-              list="datalistOptions"
-              id="exampleDataList"
-              placeholder="Author"
-              name="author"
-              onChange={handleChange}
-              value={formData.author}
-            />
-            <datalist id="datalistOptions">
-              <option value="San Francisco" />
-              <option value="New York" />
-              <option value="Seattle" />
-              <option value="Los Angeles" />
-              <option value="Chicago" />
-            </datalist>
+      <div className="col-5 m-0">
+        <input
+          className="form-control"
+          list="datalistOptions"
+          id="exampleDataList"
+          placeholder="Author"
+          name="author"
+          onChange={handleChange}
+          value={formData.author}
+        />
+        <datalist id="datalistOptions">
+          <option value="San Francisco" />
+          <option value="New York" />
+          <option value="Seattle" />
+          <option value="Los Angeles" />
+          <option value="Chicago" />
+        </datalist>
+      </div>
 
-            <button className="search" type="submit">
-              Search
-            </button>
-          </div>
-        </div>
+      <div className='col-2 m-0'>
+        <button className="btn btn-primary" type="submit">
+          Search
+        </button>
       </div>
     </form>
   );

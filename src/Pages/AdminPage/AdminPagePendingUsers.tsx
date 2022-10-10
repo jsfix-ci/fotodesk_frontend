@@ -7,28 +7,23 @@ import UserList from '../../components/User/UsersList';
 import {RootState} from '../../store';
 import {authSlice} from '../../store/slices/auth.slice';
 
-export default function AdminPageUsers() {
-  const [search, setSearch] = useState('');
-
+function AdminPagePendingUsers() {
   const {users, user: admin} = useSelector((state: RootState) => state.auth);
-  const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
-
-  function showHide() {
-    setModalOpen(!modalOpen);
-  }
+  const [search, setSearch] = useState('');
+  
+  const dispatch = useDispatch();
   useEffect(() => {
-    const getUsers = async () => {
+    const getPendingUsers = async () => {
       try {
-        const {data} = await usersApi.getUsers(admin.token!,{'filter.isApproved': 1});
+        const {data} = await usersApi.getUsers(admin?.token!, {'filter.isApproved': 0});
         dispatch(authSlice.actions.setUsers(data));
       } catch (error) {
         console.log(error);
       }
     };
-    admin.token && getUsers();
-    
-  }, [dispatch, admin?.token]);
+    getPendingUsers();
+  }, [admin?.token, dispatch]);
 
   async function handleSubmit(payload: any) {
     try {
@@ -54,6 +49,10 @@ export default function AdminPageUsers() {
     }
   };
 
+  function showHide() {
+    setModalOpen(!modalOpen);
+  }
+
   return (
     <div className="admin">
       <div className="row">
@@ -67,3 +66,5 @@ export default function AdminPageUsers() {
     </div>
   );
 }
+
+export default AdminPagePendingUsers;

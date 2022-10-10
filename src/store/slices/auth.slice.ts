@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {ILinks, IMeta} from '../../utilities/common-interfaces';
 
-interface IUser {
+export interface IUser {
   token: null | string;
   role: null | string;
   id: null | number;
@@ -9,7 +9,9 @@ interface IUser {
   lastName: null | string;
   displayName: null | string;
   email: null | string;
+  isApproved?: boolean;
 }
+
 interface IUsers {
   data: IUser[];
   links?: ILinks;
@@ -65,7 +67,11 @@ export const authSlice = createSlice({
       return state;
     },
     updateUser: (state, action) => {
-      state.user = {...state.user, ...action.payload};
+      state.users = {...state.users, ...action.payload};
+      return state;
+    },
+    deleteUser: (state, action) => {      
+      state.users.data = state.users.data.filter((user) => user?.id !== action.payload);
       return state;
     },
   },
