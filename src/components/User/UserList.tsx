@@ -15,13 +15,15 @@ export default function UserList({users, admin, findUsers}: IUserList) {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const [user, setUser] = useState({});
-
+  const [legend, setLegend] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
 
   const approveUser = async (updateUser: any) => {
     try {
       const {data} = await usersApi.updateUser(updateUser?.id, {...updateUser, isApproved: !updateUser.isApproved}, admin?.token!);
-      dispatch(authSlice.actions.updateUser(data));
+      console.log(data);
+      
+      dispatch(authSlice.actions.updateUsers(data));
     } catch (error) {
       console.log(error);
     }
@@ -29,6 +31,7 @@ export default function UserList({users, admin, findUsers}: IUserList) {
 
   const editUser = async (user: any) => {
     try {
+      setLegend('Edit');
       setUser(user);
       setModalOpen(true);
     } catch (error) {
@@ -48,6 +51,7 @@ export default function UserList({users, admin, findUsers}: IUserList) {
   function showHide(user: any) {
     if (user) setUser({});
     setModalOpen(!modalOpen);
+    setLegend('Register');
   }
 
   const handleSearch = (e: any) => {
@@ -60,7 +64,8 @@ export default function UserList({users, admin, findUsers}: IUserList) {
         const {data} = await usersApi.updateUser(user.id!, {...user, isApproved: true}, admin.token!);
         dispatch(authSlice.actions.updateUsers(data));
       } else {
-        await usersApi.createUser(user, admin.token!);
+        const {data} = await usersApi.createUser({...user, isApproved: true}, admin.token!);
+        dispatch(authSlice.actions.addUser(data));
       }
     } catch (error) {
       console.log(error);
@@ -85,7 +90,8 @@ export default function UserList({users, admin, findUsers}: IUserList) {
           ))}
         </div>
       </div>
-      <UserModal showHide={showHide} modalClosed={!modalOpen} handleSubmit={handleSubmit} user={user} />
+      <UserModal showHide={showHide} modalClosed={!modalOpen} handleSubmit={handleSubmit} user={user} legend={legend} />
     </div>
   );
 }
+

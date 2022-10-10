@@ -7,8 +7,9 @@ interface IUserModal {
   handleSubmit: (user: IUser) => void;
   modalClosed: boolean;
   user?: any;
+  legend?: string;
 }
-export function UserModal({showHide, handleSubmit, modalClosed, user}: IUserModal) {
+export function UserModal({showHide, handleSubmit, modalClosed, user, legend}: IUserModal) {
   const registerFields = ['firstName', 'lastName', 'displayName', 'email', 'password', 'role'];
   if (modalClosed) return null;
   return (
@@ -17,19 +18,16 @@ export function UserModal({showHide, handleSubmit, modalClosed, user}: IUserModa
       tabIndex={-1}
       role="dialog"
       aria-labelledby="myExtraLargeModalLabel"
-      style={{display: 'block', paddingRight: '15px'}}
+      style={{display: 'block'}}
       aria-modal="true"
     >
       <div className="modal-dialog modal-xl">
-        <div className="modal-content">
-          <div className="modal-header">
-            <Register registerFields={registerFields} isAdmin={true} handleSubmit={handleSubmit} initialValues={user} />
-
-            <button onClick={() => showHide(user)} type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
+        <div className="modal-content col-auto">
+          <div className='modal-header align-items-start'>
+            <Register registerFields={registerFields} isAdmin={true} handleSubmit={handleSubmit} initialValues={user} legend={legend} />
+            <button onClick={() => showHide(user)} type="button" className="btn-close" data-dismiss="modal" aria-label="Close">
             </button>
           </div>
-          <div className="d-flex align-items-center"></div>
         </div>
       </div>
     </div>

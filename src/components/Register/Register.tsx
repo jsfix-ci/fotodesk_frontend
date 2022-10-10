@@ -3,14 +3,14 @@ import {IRegisterData} from '../../api/auth.api';
 import Form from '../Form/Form';
 import {formFields} from '../Form/form-utilities';
 
-export default function Register({isAdmin, registerFields, handleSubmit, initialValues}: any) {
+export default function Register({isAdmin, registerFields, handleSubmit, initialValues, legend}: any) {
   const registerFormFields = formFields.filter((formField) => registerFields?.includes(formField.name));
   const initialState = registerFormFields.reduce(
     (a, b) => ({
       ...a,
       [b.name]: {
         ...b,
-        required: b.type === 'password' && Object.values(initialValues) ? false : true,
+        required: b.type === 'password' && Object.values(!!initialValues) ? false : true,
         value: initialValues ? initialValues[b.name] : '',
         onChange: handleChange,
       },
@@ -46,5 +46,5 @@ export default function Register({isAdmin, registerFields, handleSubmit, initial
     setEnteredFormField((prevState: any) => ({...prevState, [name]: {...prevState[name], value: value.trim()}}));
   }
 
-  return <Form formFields={enteredFormFIelds} handleChange={handleChange} handleSubmit={onSubmit} isDisabled={isDisabled} />;
+  return <Form formFields={enteredFormFIelds} handleChange={handleChange} handleSubmit={onSubmit} isDisabled={isDisabled} legend={legend} />;
 }

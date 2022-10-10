@@ -17,7 +17,7 @@
     "noEmit": true,
     "jsx": "react",
     "typeRoots": ["./node_modules/@types", "./typings", "jest"],
-    "types": ["node", "jest"],
+    "types": ["node", "jest"]
   },
   "include": ["./src/**/*.tsx", "./src/**/*.ts"],
   "exclude": ["src/**/*module.css"]

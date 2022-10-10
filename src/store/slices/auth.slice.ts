@@ -65,6 +65,10 @@ export const authSlice = createSlice({
       state.users = initialState.users;
       return state;
     },
+    addUser: (state,action)=>{
+      state.users.data = state.users.data.concat(action.payload)
+      return state
+    },
     updateUser: (state, action) => {
       state.users = {...state.users, ...action.payload};
       return state;
@@ -82,9 +86,6 @@ export const authSlice = createSlice({
       state.users.data = newUsers;
       return state;
     },
-    deleteUser: (state, action) => {
-      state.users.data = state.users.data.filter((user) => user?.id !== action.payload);
-      return state;
-    },
+   
   },
 });
