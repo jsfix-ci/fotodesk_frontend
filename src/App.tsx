@@ -5,6 +5,7 @@ import {authApi, baseApi} from './api';
 import Header from './components/Header/Header';
 import Images from './components/Images/Images';
 import Loader from './components/Loader/Loader';
+import PendingImages from './components/PendingImages/PendingImages';
 import Toaster from './components/Toaster/Toaster';
 import UploadStepOne from './components/UploadStepOne/UploadStepOne';
 import UploadStepTwo from './components/UploadStepTwo/UploadStepTwo';
@@ -53,7 +54,7 @@ function App() {
               <Route path="/profile/images" element={<PrivateRoute component={UserImages} />} />
               <Route path="/admin-page/images" element={<AdminRoute component={Images} />} />
               <Route path="/images/upload/step-1" element={<PrivateRoute component={UploadStepOne} />} />
-              <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPage} />} />
+              <Route path="/admin-page/pending-images" element={<AdminRoute component={PendingImages} />} />
               <Route path="/admin-page/watermarks" element={<AdminRoute component={AdminPage} />} />
               <Route path="/admin-page/pending-users" element={<AdminRoute component={AdminPage} />} />
             </Route>

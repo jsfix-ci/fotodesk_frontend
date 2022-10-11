@@ -26,6 +26,9 @@ export default function Image({thumb, isAdmin, hasSidebar, id, tags}: any) {
                 <button type="button" className="col-5 btn btn-danger bg-secondary text-dark ms-2 border">
                   Delete
                 </button>
+                <button type="button" className="col-5 btn btn-danger bg-secondary text-dark ms-5  mt-3 border">
+                  Approved
+                </button>
               </>
             ) : (
               <></>
