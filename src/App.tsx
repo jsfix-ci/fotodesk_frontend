@@ -9,6 +9,7 @@ import Toaster from './components/Toaster/Toaster';
 import UploadStepOne from './components/UploadStepOne/UploadStepOne';
 import UploadStepTwo from './components/UploadStepTwo/UploadStepTwo';
 import UserImages from './components/UserImages/UserImages';
+import Watermarks from './components/Watermarks/Watermarks';
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import {AdminPage, DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
@@ -54,7 +55,7 @@ function App() {
               <Route path="/admin-page/images" element={<AdminRoute component={Images} />} />
               <Route path="/images/upload/step-1" element={<PrivateRoute component={UploadStepOne} />} />
               <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPage} />} />
-              <Route path="/admin-page/watermarks" element={<AdminRoute component={AdminPage} />} />
+              <Route path="/admin-page/watermarks" element={<AdminRoute component={Watermarks} />} />
               <Route path="/admin-page/pending-users" element={<AdminRoute component={AdminPage} />} />
             </Route>
             <Route

@@ -1,6 +1,6 @@
 import BaseApi from './base.api';
 
-export class Watermakrs extends BaseApi {
+export class WatermarksApi extends BaseApi {
   public async getWatermarks(token: string): Promise<any> {
     return await this.get('/admin/watermarks', token);
   }
@@ -13,7 +13,7 @@ export class Watermakrs extends BaseApi {
     return await this.get(`/admin/watermarks/${id}`, token);
   }
 
-  public async putWatermark(id: number, data: any, token: string): Promise<any> {
+  public async updateWatermark(id: number, data: any, token: string): Promise<any> {
     return await this.put(`/admin/watermarks/${id}`, data, token);
   }
 

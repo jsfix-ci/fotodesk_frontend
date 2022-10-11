@@ -82,7 +82,7 @@ export default function AdminPage() {
           <div className="modal-dialog modal-xl">
             <div className="modal-content">
               <div className="modal-header">
-                <Register registerFields={registerFields} isAdmin={true} handleSubmit={handleSubmit} />
+                <Register registerFields={registerFields} isAdmin={true} handleSubmit={handleSubmit} initialValues={users.data?.[0]} />
 
                 <button onClick={showHide} type="button" className="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
