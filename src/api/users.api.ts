@@ -4,8 +4,8 @@ export class UsersApi extends BaseApi {
   public async createUser(data: any, token: string): Promise<any> {
     return await this.post('/admin/users', data, token);
   }
-  public async getUsers(token: string): Promise<any> {
-    return await this.get('/admin/users', token);
+  public async getUsers(token: string, searchParams?: any): Promise<any> {
+    return await this.get('/admin/users', token, searchParams);
   }
 
   public async getUser(id: number, token: string): Promise<any> {

@@ -26,7 +26,7 @@ export default function RegisterPage() {
   }
   return (
     <>
-      <Register isAdmin={true} registerFields={registerFields} handleSubmit={handleSubmit} />
+      <Register isAdmin={true} registerFields={registerFields} handleSubmit={handleSubmit} legend={'Register'} />
     </>
   );
 }

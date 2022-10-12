@@ -40,7 +40,7 @@ export const watermarkSlice = createSlice({
       return state;
     },
     deleteWatermark: (state, action) => {
-      state.data = state.data.filter((ele: any) => (ele.id !== action.payload.id));
+      state.data = state.data.filter((ele: any) => ele.id !== action.payload.id);
       return state;
     },
   },
