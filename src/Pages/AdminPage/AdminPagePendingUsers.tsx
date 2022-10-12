@@ -26,7 +26,7 @@ function AdminPagePendingUsers({findUser}: any) {
       .catch((error) => console.log);
   }, [admin?.token, dispatch]);
 
-  return <UserList users={users?.data} admin={admin} findUsers={getPendingUsers} />;
+  return <UserList users={users?.data} admin={admin} findUsers={getPendingUsers} isPendingUsers={true}/>;
 }
 
 export default AdminPagePendingUsers;

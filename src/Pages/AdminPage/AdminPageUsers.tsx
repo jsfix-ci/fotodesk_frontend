@@ -29,5 +29,5 @@ export default function AdminPageUsers() {
     }
   };
 
-  return <UserList admin={admin} users={users.data} findUsers={getUsers} />;
+  return <UserList admin={admin} users={users.data} findUsers={getUsers} isPendingUsers={false}/>;
 }

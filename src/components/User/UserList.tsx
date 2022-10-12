@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {usersApi} from '../../api';
 import {authSlice, IUser} from '../../store/slices/auth.slice';
+import {statisticSlice} from '../../store/slices/statistics.slice';
 import {UserListItem} from './UserListItem';
 import {UserModal} from './UserModal';
 import {UserSearchForm} from './UserSearchForm';
@@ -10,8 +11,9 @@ interface IUserList {
   admin: IUser;
   users: IUser[];
   findUsers: (...args: any) => void;
+  isPendingUsers: boolean;
 }
-export default function UserList({users, admin, findUsers}: IUserList) {
+export default function UserList({users, admin, findUsers, isPendingUsers}: IUserList) {
   const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const [user, setUser] = useState({});
@@ -21,9 +23,13 @@ export default function UserList({users, admin, findUsers}: IUserList) {
   const approveUser = async (updateUser: any) => {
     try {
       const {data} = await usersApi.updateUser(updateUser?.id, {...updateUser, isApproved: !updateUser.isApproved}, admin?.token!);
-      console.log(data);
-
-      dispatch(authSlice.actions.updateUsers(data));
+      if (!!isPendingUsers){  
+        dispatch(authSlice.actions.deleteUser(data.id));
+      } else {
+        dispatch(authSlice.actions.updateUsers(data));
+      }
+      const {data: statistics} = await usersApi.getStats(admin?.token!);
+      dispatch(statisticSlice.actions.setStatistics({...statistics}));
     } catch (error) {
       console.log(error);
     }
@@ -67,6 +73,7 @@ export default function UserList({users, admin, findUsers}: IUserList) {
         const {data} = await usersApi.createUser({...user, isApproved: true}, admin.token!);
         dispatch(authSlice.actions.addUser(data));
       }
+      setModalOpen(!modalOpen);
     } catch (error) {
       console.log(error);
     }
@@ -94,3 +101,4 @@ export default function UserList({users, admin, findUsers}: IUserList) {
     </div>
   );
 }
+

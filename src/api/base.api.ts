@@ -7,6 +7,7 @@ export default class BaseApi {
   private request: AxiosInstance;
   private readonly messages = new Messages(commonSlice.actions.setMessage);
   protected token: string | null = null;
+  protected dispatch:any =  StoreKeeper.store.dispatch
   constructor() {
     this.request = axios.create({
       baseURL: process.env.REACT_APP_BACKEND_URL,
