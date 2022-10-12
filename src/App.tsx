@@ -9,7 +9,6 @@ import Toaster from './components/Toaster/Toaster';
 import UploadStepOne from './components/UploadStepOne/UploadStepOne';
 import UploadStepTwo from './components/UploadStepTwo/UploadStepTwo';
 import UserImages from './components/UserImages/UserImages';
-import Watermarks from './components/Watermarks/Watermarks';
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import {DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
 import AdminPagePendingImages from './Pages/AdminPage/AdminPagePendingImages';
