@@ -30,12 +30,12 @@ export default function Watermark({isDefault, id, path, user}: any) {
   }
 
   return (
-    <div>
+    <div className='col-md-4'>
       <div className="card p-3  border mt-5">
         <img className="card-img-none" src={path} alt="#" />
         <div className="card-body d-flex justify-content-center">
           <div className="mt-5 w-100">
-            <div className={`d-flex gap-2 justify-content-${!isDefault ? 'center' : 'end'}`}>
+            <div className={`d-flex gap-3 justify-content-${!isDefault ? 'center' : 'end'}`}>
               {!isDefault && (
                 <button className="btn bg-light" onClick={toggleDefault}>
                   Set as default

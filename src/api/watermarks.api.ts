@@ -5,8 +5,8 @@ export class WatermarksApi extends BaseApi {
     return await this.get('/admin/watermarks', token);
   }
 
-  public async uploadWatermarks(data: any, token: string): Promise<any> {
-    return await this.post('/admin/watermarks', data, token, true);
+  public async uploadWatermarks(data: any, token: string,): Promise<any> {
+    return await this.post('/admin/watermarks', data, token);
   }
 
   public async getWatermark(id: number, token: string): Promise<any> {
