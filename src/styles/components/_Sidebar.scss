@@ -24,6 +24,10 @@
           a {
             @extend .text-decoration-none, .text-start, .text-dark;
 
+            &:has(span) {
+              @extend .text-danger;
+            }
+
             margin-bottom: 1rem;
 
             &:is(:last-of-type) {

@@ -2,7 +2,7 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import Tags from './Tags';
 
-export default function Image({thumb, isAdmin, hasSidebar, id, tags}: any) {
+export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName}: any) {
   const navigate = useNavigate();
   const handleClick = (e: any) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ export default function Image({thumb, isAdmin, hasSidebar, id, tags}: any) {
       <div className="card p-3 col-12 border-0 ">
         <img className="card-img-none" src={thumb} alt="#" />
         <div className="card-body border">
-          <h4 className="text-dark text-start">Author Name</h4>
+          <h4 className="text-dark text-start">{authorName}</h4>
           <Tags tags={tags} />
 
           <div className="row mt-5">
