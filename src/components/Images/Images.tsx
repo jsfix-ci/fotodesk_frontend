@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import ImagePagination from '../ImagePagination/ImagePagination';
-import Pagination from '../Pagination/Pagination';
 
 export default function Images() {
   const [formData, setFormData] = useState({
@@ -61,7 +60,7 @@ export default function Images() {
           </div>
         </div>
       </form>
-      <Pagination />;
+
       <ImagePagination />
     </div>
   );

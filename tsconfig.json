@@ -19,6 +19,6 @@
     "typeRoots": ["./node_modules/@types", "./typings", "jest"],
     "types": ["node", "jest"]
   },
-  "include": ["./src/**/*.tsx", "./src/**/*.ts", "src/components/PendingImages/.PendingImages.tsx"],
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"],
   "exclude": ["src/**/*module.css"]
 }
