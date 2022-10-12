@@ -23,7 +23,7 @@ export default function UserList({users, admin, findUsers, isPendingUsers}: IUse
   const approveUser = async (updateUser: any) => {
     try {
       const {data} = await usersApi.updateUser(updateUser?.id, {...updateUser, isApproved: !updateUser.isApproved}, admin?.token!);
-      if (!!isPendingUsers){  
+      if (!!isPendingUsers) {
         dispatch(authSlice.actions.deleteUser(data.id));
       } else {
         dispatch(authSlice.actions.updateUsers(data));
@@ -101,4 +101,3 @@ export default function UserList({users, admin, findUsers, isPendingUsers}: IUse
     </div>
   );
 }
-
