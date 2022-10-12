@@ -33,7 +33,7 @@ export default function Detail({isAdmin}: any) {
 
           <div className="row mt-4">
             <h4 className="text-start">Related images</h4>
-            <Gallery hasSidebar images={image.relatedImages} isAdmin={isAdmin} />
+            <Gallery hasSidebar images={image.relatedImages} isAdmin={isAdmin} relatedImage={true} />
           </div>
         </div>
 
