@@ -9,12 +9,12 @@ import Toaster from './components/Toaster/Toaster';
 import UploadStepOne from './components/UploadStepOne/UploadStepOne';
 import UploadStepTwo from './components/UploadStepTwo/UploadStepTwo';
 import UserImages from './components/UserImages/UserImages';
+import Watermarks from './components/Watermarks/Watermarks';
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import {DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
 import AdminPagePendingImages from './Pages/AdminPage/AdminPagePendingImages';
 import AdminPagePendingUsers from './Pages/AdminPage/AdminPagePendingUsers';
 import AdminPageUsers from './Pages/AdminPage/AdminPageUsers';
-import AdminPageWaterMark from './Pages/AdminPage/AdminPageWaterMark';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
 import {authSlice} from './store/slices/auth.slice';
 import {statisticSlice} from './store/slices/statistics.slice';
@@ -64,7 +64,7 @@ function App() {
               <Route path="/admin-page/images" element={<AdminRoute component={Images} />} />
               <Route path="/images/upload/step-1" element={<PrivateRoute component={UploadStepOne} />} />
               <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPagePendingImages} />} />
-              <Route path="/admin-page/watermarks" element={<AdminRoute component={AdminPageWaterMark} />} />
+              <Route path="/admin-page/watermarks" element={<AdminRoute component={Watermarks} />} />
               <Route path="/admin-page/pending-users" element={<AdminRoute component={AdminPagePendingUsers} />} />
             </Route>
             <Route
