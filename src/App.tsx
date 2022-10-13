@@ -5,7 +5,7 @@ import {authApi, baseApi, usersApi} from './api';
 import Header from './components/Header/Header';
 import Images from './components/Images/Images';
 import Loader from './components/Loader/Loader';
-import PendingImages from './components/PendingImages/PendingImages';
+import PendingImages from './components/PendingImagesPagination.tsx/PendingImages';
 import Toaster from './components/Toaster/Toaster';
 import UploadStepOne from './components/Upload/UploadStepOne';
 import UploadStepTwo from './components/Upload/UploadStepTwo';
