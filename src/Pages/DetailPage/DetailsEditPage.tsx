@@ -7,7 +7,7 @@ import {RootState} from '../../store';
 import {imagesSlice} from '../../store/slices/images.slice';
 import {isAdmin} from '../../utilities/helper';
 
-export default function DetailPage() {
+export default function DetailsEditPage() {
   const {id} = useParams();
   const {user} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
@@ -26,5 +26,5 @@ export default function DetailPage() {
     };
   }, [id, dispatch]);
 
-  return <Detail isAdmin={isAdmin(user?.role!)} isDetailsEditPage={false} />;
+  return <Detail isAdmin={isAdmin(user?.role!)} isDetailsEditPage={true} idImage={id} />;
 }

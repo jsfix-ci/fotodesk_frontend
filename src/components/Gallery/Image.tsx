@@ -41,7 +41,7 @@ export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName,
           <div className="row justify-content-between m-0 mt-5">
             {isAdmin ? (
               <>
-                <button type="button" className="col-5 btn btn-primary">
+                <button type="button" className="col-5 btn btn-primary" onClick={() => navigate(`/details/edit/${id}`)}>
                   Edit
                 </button>
                 <button type="button" className="col-5 btn btn-danger bg-secondary border" onClick={() => deleteImage(id)}>

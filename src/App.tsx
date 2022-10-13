@@ -15,6 +15,7 @@ import {DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Page
 import AdminPagePendingImages from './Pages/AdminPage/AdminPagePendingImages';
 import AdminPagePendingUsers from './Pages/AdminPage/AdminPagePendingUsers';
 import AdminPageUsers from './Pages/AdminPage/AdminPageUsers';
+import DetailsEditPage from './Pages/DetailPage/DetailsEditPage';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
 import {authSlice} from './store/slices/auth.slice';
 import {statisticSlice} from './store/slices/statistics.slice';
@@ -77,6 +78,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/register" element={<OnlyPublicRoute component={RegisterPage} />} />
               <Route path="/details/:id" element={<DetailPage />} />
+              <Route path="/details/edit/:id" element={<DetailsEditPage />} />
               <Route path="*" element={<NotFoundPage />} />
               <Route path="/images/upload/step-2" element={<PrivateRoute component={UploadStepTwo} />} />
             </Route>

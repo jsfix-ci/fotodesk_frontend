@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {imagesApi} from '../../api';
 import {RootState} from '../../store';
 import {commonSlice, TypeEnum} from '../../store/slices/common.slice';
 import {imageSizes} from '../../utilities/image-utilities';
 import Gallery from '../Gallery/Gallery';
 import Tags from '../Gallery/Tags';
 
-export default function Detail({isAdmin}: any) {
+export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
   const {image} = useSelector((state: RootState) => state.images);
   const {user} = useSelector((state: RootState) => state.auth);
   const [currentWatermark, setCurrentWatermark] = useState('InfoBijeljina');
+  const [editedTags, setEditedTags] = useState('');
   const dispatch = useDispatch();
   const handleCopyUser = (value: string) => {
     navigator.clipboard.writeText(value);
@@ -25,6 +27,18 @@ export default function Detail({isAdmin}: any) {
     setCurrentWatermark(e.target.value);
   };
 
+  async function saveChanges() {
+    try {
+      await imagesApi.updateImage(+idImage, {...image, tags: editedTags}, user?.token!);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    if (image.tags) setEditedTags(image.tags);
+  }, [image]);
+
   return (
     <div className="container">
       <div className="row">
@@ -37,8 +51,8 @@ export default function Detail({isAdmin}: any) {
           </div>
         </div>
 
-        <div className="col-3">
-          <h4 className="fw-bold text-start">Author</h4>
+        <div className="col-3 text-start">
+          <h4 className="fw-bold">Author</h4>
           <div className="input-group w-75">
             <input
               type="text"
@@ -49,14 +63,24 @@ export default function Detail({isAdmin}: any) {
               readOnly
             />
           </div>
-          <h4 className="fw-bold text-start mt-4">Keywords</h4>
-          <div className="text-start w-50">
-            <Tags tags={image.tags} />
-          </div>
+          <h4 className="fw-bold mt-4">Keywords</h4>
+          {!!isDetailsEditPage ? (
+            <textarea
+              className="w-75 mt-3"
+              name="addTag"
+              placeholder="Add tag"
+              value={editedTags}
+              onChange={(e) => setEditedTags(e.target.value)}
+            ></textarea>
+          ) : (
+            <div className="w-50">
+              <Tags tags={image.tags} />
+            </div>
+          )}
           {isAdmin && (
             <>
-              <h4 className="fw-bold text-start mt-4">Watermark</h4>
-              <div className="form-check text-start">
+              <h4 className="fw-bold mt-4">Watermark</h4>
+              <div className="form-check">
                 <label className="form-check-label w-100">
                   <input
                     className="form-check-input"
@@ -69,7 +93,7 @@ export default function Detail({isAdmin}: any) {
                   InfoBijeljina
                 </label>
               </div>
-              <div className="form-check text-start">
+              <div className="form-check">
                 <label className="form-check-label w-100">
                   <input
                     className="form-check-input"
@@ -87,7 +111,7 @@ export default function Detail({isAdmin}: any) {
           )}
 
           {user?.token && (
-            <div className="dropdown text-start">
+            <div className="dropdown">
               <button
                 className="btn btn-secondary dropdown-toggle mt-3 w-75 p-2"
                 type="button"
@@ -107,6 +131,12 @@ export default function Detail({isAdmin}: any) {
                 ))}
               </ul>
             </div>
+          )}
+
+          {!!isDetailsEditPage && (
+            <button className="btn btn-secondary mt-3 w-75 p-2" type="button" onClick={() => saveChanges()}>
+              Save Changes
+            </button>
           )}
         </div>
       </div>
