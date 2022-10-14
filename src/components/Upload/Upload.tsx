@@ -1,15 +1,15 @@
+
 import React, {CSSProperties, useState} from 'react';
 import {useEffect} from 'react';
 import {useDropzone} from 'react-dropzone';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
-import {imagesApi} from '../../api';
 import {RootState} from '../../store';
-import {imagesSlice} from '../../store/slices/images.slice';
+import {useNavigate} from 'react-router-dom';
 
-export default function UploadStepOne() {
+
+export default function Upload({api, slice, fileUpload, setNewFiles, navigator,  submit}:any) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const token = useSelector((state: RootState) => state.auth.user.token);
   const thumbsContainer = {
     display: 'flex',
@@ -64,16 +64,33 @@ export default function UploadStepOne() {
       },
     });
 
-    async function handleProceed() {
+ async function handleProceed() {
+
       const data = new FormData();
       for (const file of files) {
         data.append('files', file.file);
       }
-      const {data: newImages} = await imagesApi.uploadImage(data, token!);
-      dispatch(imagesSlice.actions.setNewImages(newImages));
+      
 
-      navigate('/images/upload/step-2');
+
+      const {data: newFiles} = await api.uploadImage(data, token!);
+      dispatch(setNewFiles(newFiles));
+
+      navigate(navigator)
     }
+    async function handleSubmit() {
+        const data = new FormData();
+  
+        for (const file of files) {
+          data.append('file', file.file);
+        }
+  
+        data.append('isDefault', JSON.stringify(false))
+        
+        const {data: newWatermarks} = await api.uploadWatermarks(data, token!);
+        dispatch(slice.actions.addMoreWatermark(newWatermarks));
+        navigate(navigator)
+      }
 
     const removeFile = (e: any, fileName: string) => {
       e.preventDefault();
@@ -105,10 +122,11 @@ export default function UploadStepOne() {
     ));
 
     useEffect(() => {
-      // Make sure to revoke the data uris to avoid memory leaks, will run on unmount
+    
       return () => files.forEach((file: any) => URL.revokeObjectURL(file.preview));
     }, [files]);
 
+    console.log(submit)
     return (
       <section className="container">
         <div {...getRootProps({className: 'dropzone'})}>
@@ -117,8 +135,8 @@ export default function UploadStepOne() {
           <aside style={thumbsContainer as CSSProperties}>{thumbs}</aside>
         </div>
 
-        <button className={`proceed ${toggleProceed}`} type="submit" onClick={handleProceed}>
-          Proceed
+        <button className={`proceed ${toggleProceed}`} type="submit" onClick={() => submit ? handleSubmit() : handleProceed()}>
+          {submit ? 'Sumbit' : 'Proceed'}
         </button>
       </section>
     );
@@ -126,3 +144,6 @@ export default function UploadStepOne() {
 
   return <Previews />;
 }
+
+
+
