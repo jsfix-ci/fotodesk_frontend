@@ -21,5 +21,5 @@ export default function Home() {
       console.log(error);
     }
   };
-  return <Gallery hasSidebar={false} images={images.data} next={next} isAdmin={isAdmin(user?.role!)} />;
+  return <Gallery hasSidebar={false} images={images.data} next={next} isAdmin={isAdmin(user?.role!)} relatedImage={false} />;
 }

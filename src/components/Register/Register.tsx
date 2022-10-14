@@ -35,7 +35,7 @@ export default function Register({isAdmin, registerFields, handleSubmit, initial
       (acc, curr) => ({...acc, [curr]: enteredFormFIelds[curr]?.['value']}),
       {}
     ) as IRegisterData;
-    handleSubmit({...payload, id: initialValues.id});
+    handleSubmit({...payload, id: initialValues?.id});
   };
   useEffect(() => {
     changeDisable(enteredFormFIelds);
