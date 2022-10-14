@@ -8,6 +8,7 @@ export interface IImage {
   path: null | string;
   name: null | string;
   relatedImages: IImage[];
+  isApproved?: boolean;
   user?: {
     displayName: string;
   };
