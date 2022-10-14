@@ -24,7 +24,7 @@ export default function PendingImagesPagination() {
 
   return (
     <>
-      <div className="pagination d-flex justify-content-center m-2">
+      <div className="pagination d-flex justify-content-center pt-5">
         <button
           className="btn btn-outline-secondary"
           disabled={!images?.links?.previous}

@@ -46,11 +46,11 @@ export default function Images() {
             value={formData.author}
           />
           <datalist id="datalistOptions">
-            <option value="San Francisco" />
-            <option value="New York" />
-            <option value="Seattle" />
-            <option value="Los Angeles" />
-            <option value="Chicago" />
+            <option />
+            <option />
+            <option />
+            <option />
+            <option />
           </datalist>
         </div>
 

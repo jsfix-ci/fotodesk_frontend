@@ -15,7 +15,7 @@ export default function Gallery({isAdmin, hasSidebar, images, next}: IGalleryPro
   const {images: moreImages} = useSelector((state: RootState) => state.images);
 
   return (
-    <div className="container">
+    <div className="container mt-4">
       <InfiniteScroll
         dataLength={images.length}
         next={() => {
