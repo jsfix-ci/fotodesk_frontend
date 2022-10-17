@@ -30,7 +30,7 @@ export default function Watermark({isDefault, id, path, user}: any) {
   }
 
   return (
-    <div className='col-md-4'>
+    <div className="col-md-4">
       <div className="card p-3  border mt-5">
         <img className="card-img-none" src={path} alt="#" />
         <div className="card-body d-flex justify-content-center">

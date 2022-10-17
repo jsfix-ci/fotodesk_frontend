@@ -7,10 +7,10 @@ import {watermarksApi} from '../../api';
 import {RootState} from '../../store';
 import {watermarkSlice} from '../../store/slices/watermark.slice';
 
-export default function UploadWatermarks(isDefault:any) {
-  const navigate = useNavigate()
+export default function UploadWatermarks(isDefault: any) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-//   const navigate = useNavigate()
+  //   const navigate = useNavigate()
   const token = useSelector((state: RootState) => state.auth.user.token);
   const thumbsContainer = {
     display: 'flex',
@@ -49,7 +49,6 @@ export default function UploadWatermarks(isDefault:any) {
         'image/*': [],
       },
       multiple: true,
-      
 
       onDrop: (acceptedFiles: any) => {
         setFiles((prev: any) => [
@@ -73,12 +72,12 @@ export default function UploadWatermarks(isDefault:any) {
         data.append('file', file.file);
       }
 
-      data.append('isDefault', JSON.stringify(false))
-      
+      data.append('isDefault', JSON.stringify(false));
+
       const {data: newWatermarks} = await watermarksApi.uploadWatermarks(data, token!);
       dispatch(watermarkSlice.actions.addMoreWatermark(newWatermarks));
       console.log(data);
-      navigate('/admin-page/watermarks')
+      navigate('/admin-page/watermarks');
     }
 
     const removeFile = (e: any, fileName: string) => {
