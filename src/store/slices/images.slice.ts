@@ -78,5 +78,13 @@ export const imagesSlice = createSlice({
       state.newImages = [];
       return state;
     },
+    deleteImage: (state, action) => {
+      state.images.data = state.images.data.filter((image) => image?.id !== action.payload);
+      return state;
+    },
+    deleteRelatedImage: (state, action) => {
+      state.image.relatedImages = state.image.relatedImages.filter((image) => image?.id !== action.payload);
+      return state;
+    },
   },
 });

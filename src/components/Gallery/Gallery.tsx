@@ -10,8 +10,9 @@ interface IGalleryProps {
   hasSidebar?: boolean;
   images: IImage[];
   next?: (...args: any) => void;
+  relatedImage?: boolean;
 }
-export default function Gallery({isAdmin, hasSidebar, images, next}: IGalleryProps) {
+export default function Gallery({isAdmin, hasSidebar, images, next, relatedImage}: IGalleryProps) {
   const {images: moreImages} = useSelector((state: RootState) => state.images);
 
   return (
@@ -34,6 +35,7 @@ export default function Gallery({isAdmin, hasSidebar, images, next}: IGalleryPro
               id={image.id}
               tags={image.tags}
               authorName={image?.user?.displayName}
+              relatedImage={relatedImage}
             />
           ))}
         </div>
