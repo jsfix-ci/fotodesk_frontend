@@ -73,7 +73,7 @@ export default function Upload({api, slice, fileUpload, setNewFiles, navigator, 
       
 
 
-      const {data: newFiles} = await api.uploadImage(data, token!);
+      const {data: newFiles} = await fileUpload(data, token!);
       dispatch(setNewFiles(newFiles));
 
       navigate(navigator)
@@ -126,7 +126,7 @@ export default function Upload({api, slice, fileUpload, setNewFiles, navigator, 
       return () => files.forEach((file: any) => URL.revokeObjectURL(file.preview));
     }, [files]);
 
-    console.log(submit)
+    
     return (
       <section className="container">
         <div {...getRootProps({className: 'dropzone'})}>

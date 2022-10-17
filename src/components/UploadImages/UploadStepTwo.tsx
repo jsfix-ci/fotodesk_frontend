@@ -29,7 +29,6 @@ export default function UploadStepTwo({hasSidebar}: any) {
       token!
     );
     navigate('/profile');
-   
   }
 
   function showHide() {
