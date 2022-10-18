@@ -38,20 +38,12 @@ export default function Images() {
         <div className="col-5 m-0">
           <input
             className="form-control"
-            list="datalistOptions"
             id="exampleDataList"
             placeholder="Author"
             name="author"
             onChange={handleChange}
             value={formData.author}
           />
-          <datalist id="datalistOptions">
-            <option />
-            <option />
-            <option />
-            <option />
-            <option />
-          </datalist>
         </div>
 
         <div className="col-2 m-0">
