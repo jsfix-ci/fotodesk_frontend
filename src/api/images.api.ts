@@ -30,7 +30,7 @@ export class ImagesApi extends BaseApi {
   public async myImages(token: string, params?: any): Promise<any> {
     return await this.get('/admin/images', token, params);
   }
-  public async Images(token: string, params?: any): Promise<any> {
+  public async getPendingImages(token: string, params?: any): Promise<any> {
     return await this.get('/admin/images', token, params);
   }
 }

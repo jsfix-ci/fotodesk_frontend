@@ -15,7 +15,7 @@ export default function PendingImages() {
   useEffect(() => {
     const getImages = async () => {
       try {
-        const {data} = await imagesApi.Images(user.token!, {'filter.isApproved': 0});
+        const {data} = await imagesApi.getPendingImages(user.token!, {'filter.isApproved': 0});
         dispatch(imagesSlice.actions.setImages(data));
       } catch (error) {
         console.log(error);
