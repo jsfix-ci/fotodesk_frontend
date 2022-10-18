@@ -29,19 +29,6 @@ export default function UploadStepTwo({hasSidebar}: any) {
       token!
     );
     navigate('/profile');
-    //   setModalOpen(false);
-
-    //   if (isUserWarned) {
-    //     dispatch(imagesSlice.actions.resetNewImages());
-    //     return;
-    //   }
-
-    //   if (newImages.some((i: any) => !i?.tags?.length)) {
-    //     setModalOpen(true);
-    //     setUserIsWarned(true);
-    //     return;
-    //   }
-    //   dispatch(imagesSlice.actions.resetNewImages());
   }
 
   function showHide() {
