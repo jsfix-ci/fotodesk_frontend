@@ -6,7 +6,7 @@ import Upload from '../../components/Upload/Upload';
 import {RootState} from '../../store';
 import {watermarkSlice} from '../../store/slices/watermark.slice';
 
-export default function AdminPageUploadWatermarks(isDefault: any) {
+export default function AdminPageUploadWatermarks() {
   const {user} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
