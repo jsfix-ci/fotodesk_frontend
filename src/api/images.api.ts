@@ -27,9 +27,7 @@ export class ImagesApi extends BaseApi {
   public async addTags(data: any, token: string): Promise<any> {
     return await this.put('/admin/images/bulk-update', data, token);
   }
-  public async myImages(token: string, params?: any): Promise<any> {
-    return await this.get('/admin/images', token, params);
-  }
+
   public async getPendingImages(token: string, params?: any): Promise<any> {
     return await this.get('/admin/images', token, params);
   }

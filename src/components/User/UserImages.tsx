@@ -14,7 +14,7 @@ function UserImages() {
   useEffect(() => {
     const getImages = async () => {
       try {
-        const {data} = await imagesApi.myImages(user.token!);
+        const {data} = await imagesApi.getPendingImages(user.token!);
         dispatch(imagesSlice.actions.setImages(data));
       } catch (error) {
         console.log(error);
@@ -26,7 +26,7 @@ function UserImages() {
     try {
       const params = new URLSearchParams(url.split('?')[1]);
       const obj = Object.fromEntries(params);
-      const {data} = await imagesApi.myImages(user.token!, obj);
+      const {data} = await imagesApi.getPendingImages(user.token!, obj);
       dispatch(imagesSlice.actions.addMoreImages(data));
     } catch (error) {
       console.log(error);
