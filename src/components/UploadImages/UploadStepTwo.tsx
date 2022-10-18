@@ -4,13 +4,14 @@ import {useNavigate} from 'react-router-dom';
 import {imagesApi} from '../../api';
 import {RootState} from '../../store';
 import {imagesSlice} from '../../store/slices/images.slice';
+import {isAdmin} from '../../utilities/helper';
 import UploadStepTwoImage from './UploadStepTwoImage';
 
 export default function UploadStepTwo({hasSidebar}: any) {
   const {newImages} = useSelector((state: RootState) => state.images);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const token = useSelector((state: RootState) => state.auth.user.token);
+  const {user} = useSelector((state: RootState) => state.auth);
 
   const [modalOpen, setModalOpen] = useState(false);
   // const [isUserWarned, setUserIsWarned] = useState(false);
@@ -22,11 +23,12 @@ export default function UploadStepTwo({hasSidebar}: any) {
 
   async function handleSubmit(event: any) {
     event.preventDefault();
+    const imagesData = newImages.map((newImage) => ({...newImage, isApproved: isAdmin(user.role!) ? newImage.isApproved : undefined}));
     await imagesApi.addTags(
       {
-        images: newImages,
+        images: imagesData,
       },
-      token!
+      user.token!
     );
     navigate('/profile');
   }
