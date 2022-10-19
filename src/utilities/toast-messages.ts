@@ -58,20 +58,20 @@ export const messagesMap: {[key: string]: any} = {
     type: TypeEnum.error,
   },
   putimagesSuccess: {
-    text:'Uspijesna akcija',
-    type: TypeEnum.success
+    text: 'Uspijesna akcija',
+    type: TypeEnum.success,
   },
   putimagesError: {
     text: 'Neuspijesna akcija',
-    type: TypeEnum.error
+    type: TypeEnum.error,
   },
   deleteimagesSuccess: {
     text: 'Uspijesno ste obrisali sliku',
-    type: TypeEnum.success
+    type: TypeEnum.success,
   },
   deleteimagesError: {
     text: 'Neuspijesna akcija',
-    type: TypeEnum.error
+    type: TypeEnum.error,
   },
   postwatermarksSuccess: {
     text: 'Uspjesno ste dodali watermark',
