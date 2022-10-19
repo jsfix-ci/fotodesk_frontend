@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Outlet, Route, Routes} from 'react-router-dom';
-import {authApi, baseApi, usersApi} from './api';
+import {authApi, baseApi, usersApi, watermarksApi} from './api';
 import Header from './components/Header/Header';
 import Images from './components/Images/Images';
 import Loader from './components/Loader/Loader';
@@ -18,8 +18,10 @@ import AdminPageUploadWatermarks from './Pages/AdminPage/AdminPageUploadWatermar
 import AdminPageUsers from './Pages/AdminPage/AdminPageUsers';
 import DetailsEditPage from './Pages/DetailPage/DetailsEditPage';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
+import {RootState} from './store';
 import {authSlice} from './store/slices/auth.slice';
 import {statisticSlice} from './store/slices/statistics.slice';
+import {watermarkSlice} from './store/slices/watermark.slice';
 import {isAdmin} from './utilities/helper';
 
 function App() {
@@ -44,6 +46,18 @@ function App() {
       initializeUser(token);
     }
   }, [dispatch]);
+
+  const {user} = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    const getWatermarks = async () => {
+      if (user.token && isAdmin(user.role!)) {
+        const {data: watermarks} = await watermarksApi.getWatermarks(user.token!);
+        dispatch(watermarkSlice.actions.setWatermarks(watermarks));
+      }
+    };
+    getWatermarks();
+  }, [user.token, user.role, dispatch]);
 
   return (
     <div className="app">

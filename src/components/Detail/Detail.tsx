@@ -11,6 +11,9 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
   const {image} = useSelector((state: RootState) => state.images);
   const {user} = useSelector((state: RootState) => state.auth);
   const [currentWatermark, setCurrentWatermark] = useState('InfoBijeljina');
+  const {data} = useSelector((state: RootState) => state.watermarks);
+  console.log(data);
+
   const [editedTags, setEditedTags] = useState('');
   const dispatch = useDispatch();
   const handleCopyUser = (value: string) => {
@@ -81,31 +84,37 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
             <>
               <h4 className="fw-bold mt-4">Watermark</h4>
               <div className="form-check">
-                <label className="form-check-label w-100">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="watermark"
-                    checked={currentWatermark === 'InfoBijeljina'}
-                    onChange={handleWatermark}
-                    value="InfoBijeljina"
-                  />
-                  InfoBijeljina
-                </label>
+                {data.map((watermark, key) => {
+                  return (
+                    <label key={key} className="form-check-label w-100">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="watermark"
+                        // checked={currentWatermark === 'InfoBijeljina'}
+                        onChange={handleWatermark}
+                      />
+                      {watermark.name}
+                    </label>
+                  );
+                })}
               </div>
               <div className="form-check">
-                <label className="form-check-label w-100">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="watermark"
-                    id="flexRadioDefault2"
-                    checked={currentWatermark === 'Cafe.ba'}
-                    onChange={handleWatermark}
-                    value="Cafe.ba"
-                  />
-                  Cafe.ba
-                </label>
+                {data.map((watermark, key) => {
+                  return (
+                    <label key={key} className="form-check-label w-100">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="watermark"
+                        id="flexRadioDefault2"
+                        checked={currentWatermark === 'Cafe.ba'}
+                        onChange={handleWatermark}
+                      />
+                      {watermark.name}
+                    </label>
+                  );
+                })}
               </div>
             </>
           )}

@@ -30,7 +30,7 @@ export default function Watermarks({isDefault}: IWatermarksProps) {
 
   return (
     <div>
-      <div className="row">{data && data.map((watermark) => <Watermark key={watermark.name} {...watermark} user={user} />)}</div>
+      <div className="row">{data && data?.map((watermark) => <Watermark key={watermark.name} {...watermark} user={user} />)}</div>
     </div>
   );
 }
