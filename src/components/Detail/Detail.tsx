@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {imagesApi} from '../../api';
+import {imagesApi, watermarksApi} from '../../api';
 import {RootState} from '../../store';
 import {commonSlice, TypeEnum} from '../../store/slices/common.slice';
+import {IWatermark} from '../../store/slices/watermark.slice';
 import {imageSizes} from '../../utilities/image-utilities';
 import Gallery from '../Gallery/Gallery';
 import Tags from '../Gallery/Tags';
@@ -10,9 +11,8 @@ import Tags from '../Gallery/Tags';
 export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
   const {image} = useSelector((state: RootState) => state.images);
   const {user} = useSelector((state: RootState) => state.auth);
-  const [currentWatermark, setCurrentWatermark] = useState('InfoBijeljina');
+  const [currentWatermark, setCurrentWatermark] = useState<IWatermark>();
   const {data} = useSelector((state: RootState) => state.watermarks);
-  console.log(data);
 
   const [editedTags, setEditedTags] = useState('');
   const dispatch = useDispatch();
@@ -27,12 +27,13 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
   };
 
   const handleWatermark = (e: any) => {
-    setCurrentWatermark(e.target.value);
+    setCurrentWatermark(e);
   };
 
   async function saveChanges() {
     try {
       await imagesApi.updateImage(+idImage, {...image, tags: editedTags}, user?.token!);
+      await watermarksApi.updateWatermark(currentWatermark?.id!, currentWatermark, user?.token!);
     } catch (error) {
       console.log(error);
     }
@@ -87,30 +88,7 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
                 {data.map((watermark, key) => {
                   return (
                     <label key={key} className="form-check-label w-100">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="watermark"
-                        // checked={currentWatermark === 'InfoBijeljina'}
-                        onChange={handleWatermark}
-                      />
-                      {watermark.name}
-                    </label>
-                  );
-                })}
-              </div>
-              <div className="form-check">
-                {data.map((watermark, key) => {
-                  return (
-                    <label key={key} className="form-check-label w-100">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        name="watermark"
-                        id="flexRadioDefault2"
-                        checked={currentWatermark === 'Cafe.ba'}
-                        onChange={handleWatermark}
-                      />
+                      <input className="form-check-input" type="radio" name="watermark" onChange={() => handleWatermark(watermark)} />
                       {watermark.name}
                     </label>
                   );

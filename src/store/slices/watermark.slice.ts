@@ -4,6 +4,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 export interface IWatermark {
   id: number;
+  title: string;
   name: string;
   isDefault: boolean;
   path: string;
