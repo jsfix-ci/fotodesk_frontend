@@ -39,7 +39,7 @@ export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName,
           <Tags tags={tags} />
 
           <div className="row justify-content-between m-0 mt-5">
-            {isAdmin ? (
+            {!relatedImage && isAdmin ? (
               <>
                 <button type="button" className="col-5 btn btn-primary" onClick={() => navigate(`/details/edit/${id}`)}>
                   Edit

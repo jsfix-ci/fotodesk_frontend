@@ -70,8 +70,7 @@ export default function UserList({users, admin, findUsers, isPendingUsers}: IUse
         const {data} = await usersApi.updateUser(user.id!, {...user, isApproved: true}, admin.token!);
         dispatch(authSlice.actions.updateUsers(data));
       } else {
-        const {data} = await usersApi.createUser({...user, isApproved: true}, admin.token!);
-        dispatch(authSlice.actions.addUser(data));
+        await usersApi.createUser({...user, isApproved: true}, admin.token!);
       }
       setModalOpen(!modalOpen);
     } catch (error) {
