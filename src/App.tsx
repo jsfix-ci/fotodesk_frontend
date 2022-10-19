@@ -26,17 +26,13 @@ import {isAdmin} from './utilities/helper';
 
 function App() {
   const dispatch = useDispatch();
-
+  const {user} = useSelector((state: RootState) => state.auth);
   useEffect(() => {
     const initializeUser = async (token: string) => {
       try {
         const {data} = await authApi.me(token);
         baseApi.updateHeader(token);
         dispatch(authSlice.actions.login({token, ...data}));
-        if (isAdmin(data.role)) {
-          const {data: statistics} = await usersApi.getStats(token);
-          dispatch(statisticSlice.actions.setStatistics({...statistics}));
-        }
       } catch {
         localStorage.removeItem('token');
       }
@@ -47,16 +43,16 @@ function App() {
     }
   }, [dispatch]);
 
-  const {user} = useSelector((state: RootState) => state.auth);
-
   useEffect(() => {
-    const getWatermarks = async () => {
+    const getStatistics = async () => {
       if (user.token && isAdmin(user.role!)) {
+        const {data: statistics} = await usersApi.getStats(user.token!);
+        dispatch(statisticSlice.actions.setStatistics({...statistics}));
         const {data: watermarks} = await watermarksApi.getWatermarks(user.token!);
         dispatch(watermarkSlice.actions.setWatermarks(watermarks));
       }
     };
-    getWatermarks();
+    getStatistics();
   }, [user.token, user.role, dispatch]);
 
   return (
