@@ -12,7 +12,7 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
   const {image} = useSelector((state: RootState) => state.images);
   const {user} = useSelector((state: RootState) => state.auth);
   const [currentWatermark, setCurrentWatermark] = useState<IWatermark>();
-  const {data} = useSelector((state: RootState) => state.watermarks);
+  const {data} = useSelector((state: RootState) => state.watermarks.watermarks);
 
   const [editedTags, setEditedTags] = useState('');
   const dispatch = useDispatch();
@@ -89,7 +89,7 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
                   return (
                     <label key={key} className="form-check-label w-100">
                       <input className="form-check-input" type="radio" name="watermark" onChange={() => handleWatermark(watermark)} />
-                      {watermark.name}
+                      {watermark.title}
                     </label>
                   );
                 })}
