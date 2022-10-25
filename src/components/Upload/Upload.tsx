@@ -62,7 +62,7 @@ export default function Upload({handleSubmit}: any) {
         </div>
 
         <button className={`proceed ${toggleProceed}`} type="submit" onClick={handleClick}>
-          Submit
+          Proceed
         </button>
       </section>
     );

@@ -72,7 +72,7 @@ export default class BaseApi {
     });
   }
   protected async put(url: string, data: any, token: string): Promise<any> {
-    console.log(data);
+   
     return this.request({
       url,
       method: 'PUT',
