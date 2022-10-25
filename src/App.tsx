@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Outlet, Route, Routes} from 'react-router-dom';
 import {authApi, baseApi, usersApi} from './api';
 import Header from './components/Header/Header';
@@ -19,23 +19,20 @@ import AdminPageUploadWatermarksStepTwo from './Pages/AdminPage/AdminPageUploadW
 import AdminPageUsers from './Pages/AdminPage/AdminPageUsers';
 import DetailsEditPage from './Pages/DetailPage/DetailsEditPage';
 import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuards';
+import {RootState} from './store';
 import {authSlice} from './store/slices/auth.slice';
 import {statisticSlice} from './store/slices/statistics.slice';
 import {isAdmin} from './utilities/helper';
 
 function App() {
   const dispatch = useDispatch();
-
+  const {user} = useSelector((state: RootState) => state.auth);
   useEffect(() => {
     const initializeUser = async (token: string) => {
       try {
         const {data} = await authApi.me(token);
         baseApi.updateHeader(token);
         dispatch(authSlice.actions.login({token, ...data}));
-        if (isAdmin(data.role)) {
-          const {data: statistics} = await usersApi.getStats(token);
-          dispatch(statisticSlice.actions.setStatistics({...statistics}));
-        }
       } catch {
         localStorage.removeItem('token');
       }
@@ -45,6 +42,16 @@ function App() {
       initializeUser(token);
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    const getStatistics = async () => {
+      if (user.token && isAdmin(user.role!)) {
+        const {data: statistics} = await usersApi.getStats(user.token!);
+        dispatch(statisticSlice.actions.setStatistics({...statistics}));
+      }
+    };
+    getStatistics();
+  }, [user.token, user.role, dispatch]);
 
   return (
     <div className="app">

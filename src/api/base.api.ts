@@ -27,15 +27,24 @@ export default class BaseApi {
       (success) => {
         clearTimeout(loadingTimeout);
         StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
-        const key = success.config.method! + success.config.url?.split('/').at(-1) ?? '';
+        const key =
+          success.config.method! +
+            success.config.url
+              ?.split('/')
+              .filter((s: string) => isNaN(Number(s)))
+              .at(-1) ?? '';
         this.messages.generateSuccess(key);
         return success;
       },
       (error) => {
         clearTimeout(loadingTimeout);
         StoreKeeper.store.dispatch(commonSlice.actions.setIsLoading(false));
-        console.log(error);
-        const key = error.config.method! + error.config.url?.split('/').at(-1) ?? '';
+        const key =
+          error.config.method! +
+            error.config.url
+              ?.split('/')
+              .filter((s: string) => isNaN(Number(s)))
+              .at(-1) ?? '';
         this.messages.generateError(key);
         throw error;
       }

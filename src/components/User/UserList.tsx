@@ -49,6 +49,8 @@ export default function UserList({users, admin, findUsers, isPendingUsers}: IUse
     try {
       await usersApi.deleteUser(userId, admin?.token!);
       dispatch(authSlice.actions.deleteUser(userId));
+      const {data: statistics} = await usersApi.getStats(admin?.token!);
+      dispatch(statisticSlice.actions.setStatistics({...statistics}));
     } catch (error) {
       console.log(error);
     }
@@ -70,8 +72,7 @@ export default function UserList({users, admin, findUsers, isPendingUsers}: IUse
         const {data} = await usersApi.updateUser(user.id!, {...user, isApproved: true}, admin.token!);
         dispatch(authSlice.actions.updateUsers(data));
       } else {
-        const {data} = await usersApi.createUser({...user, isApproved: true}, admin.token!);
-        dispatch(authSlice.actions.addUser(data));
+        await usersApi.createUser({...user, isApproved: true}, admin.token!);
       }
       setModalOpen(!modalOpen);
     } catch (error) {
