@@ -23,5 +23,4 @@ export class WatermarksApi extends BaseApi {
   public async addTitle(id: number, data: any, token: string): Promise<any> {
     return await this.put(`admin/watermarks/${id}`, data, token);
   }
-  
 }

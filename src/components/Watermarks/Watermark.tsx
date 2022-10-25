@@ -7,15 +7,12 @@ export default function Watermark({isDefault, id, path, user, title}: any) {
   const [currentTitle, setCurrentTitle] = useState(title);
   const dispatch = useDispatch();
   async function changeTitle() {
-    console.log(isDefault);
-    
     try {
       const res = await watermarksApi.addTitle(
         id,
         {
-          isDefault:!!isDefault ? isDefault : true,
-          title:currentTitle,
-
+          isDefault: !!isDefault ? isDefault : true,
+          title: currentTitle,
         },
         user.token
       );
@@ -31,14 +28,11 @@ export default function Watermark({isDefault, id, path, user, title}: any) {
         id,
         {
           isDefault: true,
-          title:currentTitle,
-         
+          title: currentTitle,
         },
         user.token
       );
       dispatch(watermarkSlice.actions.updateDefault(res.data));
-     
-      
     } catch (error) {
       console.log(error);
     }

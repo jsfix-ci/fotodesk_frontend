@@ -60,15 +60,15 @@ export const watermarkSlice = createSlice({
       const currentID = state.watermarks.data.findIndex((ele: any) => ele.id === action.payload.id);
       state.watermarks.data[currentID] = action.payload;
       return state;
-      
     },
     updateDefault: (state, action) => {
-      console.log(action.payload.id)
       state.watermarks.data = state.watermarks.data.map((watermark) => ({...watermark, isDefault: watermark.id === action.payload.id}));
       return state;
     },
     updateWatermark: (state, action) => {
-      state.watermarks.data = state.watermarks.data.map(watermark=>watermark.id===action.payload.id ? action.payload : {...watermark, isDefault:false})
+      state.watermarks.data = state.watermarks.data.map((watermark) =>
+        watermark.id === action.payload.id ? action.payload : {...watermark, isDefault: false}
+      );
       return state;
     },
     deleteWatermark: (state, action) => {
