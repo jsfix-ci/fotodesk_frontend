@@ -5,14 +5,9 @@ import {RootState} from '../../store';
 import {watermarkSlice} from '../../store/slices/watermark.slice';
 import Watermark from './Watermark';
 
-interface IWatermarksProps {
-  id: number;
-  name: string;
-  isDefault?: boolean;
-  path: string;
-}
-export default function Watermarks({isDefault}: IWatermarksProps) {
-  const {data} = useSelector((state: RootState) => state.watermarks);
+export default function Watermarks() {
+  const {data: watermarks}: any = useSelector((state: RootState) => state.watermarks.watermarks);
+
   const {user} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
@@ -20,6 +15,7 @@ export default function Watermarks({isDefault}: IWatermarksProps) {
     const getWatermarks = async () => {
       try {
         const {data} = await watermarksApi.getWatermarks(user.token!);
+
         dispatch(watermarkSlice.actions.setWatermarks(data));
       } catch (error) {
         console.log(error);
@@ -30,7 +26,11 @@ export default function Watermarks({isDefault}: IWatermarksProps) {
 
   return (
     <div>
-      <div className="row">{data && data.map((watermark) => <Watermark key={watermark.name} {...watermark} user={user} />)}</div>
+      <div className="row">
+        {watermarks?.map((watermark: any) => (
+          <Watermark key={watermark.name} {...watermark} user={user} />
+        ))}
+      </div>
     </div>
   );
 }
