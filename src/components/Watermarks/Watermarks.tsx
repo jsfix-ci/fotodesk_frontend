@@ -15,7 +15,7 @@ export default function Watermarks() {
     const getWatermarks = async () => {
       try {
         const {data} = await watermarksApi.getWatermarks(user.token!);
-        console.log(data);
+        
 
         dispatch(watermarkSlice.actions.setWatermarks(data));
       } catch (error) {

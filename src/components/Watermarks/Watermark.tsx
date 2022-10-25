@@ -11,7 +11,7 @@ export default function Watermark({isDefault, id, path, user, title}: any) {
       const res = await watermarksApi.addTitle(
         id,
         {
-          isDefault: !!isDefault ? isDefault : true,
+          isDefault,
           title: currentTitle,
         },
         user.token

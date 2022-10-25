@@ -20,7 +20,7 @@ export default function AdminPageUploadWatermarksStepTwo({hasSidebar}: any) {
     event.preventDefault();
 
     const {data} = await watermarksApi.addTitle(newWatermark.id!, {...newWatermark, title: title}, token!);
-    console.log(data);
+    
 
     dispatch(watermarkSlice.actions.updateWatermark(data));
     navigate('/admin-page/watermarks');
