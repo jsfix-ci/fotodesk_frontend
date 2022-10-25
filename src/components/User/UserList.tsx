@@ -49,6 +49,8 @@ export default function UserList({users, admin, findUsers, isPendingUsers}: IUse
     try {
       await usersApi.deleteUser(userId, admin?.token!);
       dispatch(authSlice.actions.deleteUser(userId));
+      const {data: statistics} = await usersApi.getStats(admin?.token!);
+      dispatch(statisticSlice.actions.setStatistics({...statistics}));
     } catch (error) {
       console.log(error);
     }

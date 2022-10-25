@@ -20,4 +20,7 @@ export class WatermarksApi extends BaseApi {
   public async deleteWatermark(id: number, token: string): Promise<any> {
     return await this.delete(`/admin/watermarks/${id}`, token);
   }
+  public async addTitle(id: number, data: any, token: string): Promise<any> {
+    return await this.put(`admin/watermarks/${id}`, data, token);
+  }
 }

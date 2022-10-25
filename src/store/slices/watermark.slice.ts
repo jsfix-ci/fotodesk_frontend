@@ -1,21 +1,41 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-// import {ILinks, IMeta} from '../../utilities/common-interfaces';
-
 export interface IWatermark {
-  id: number;
-  title: string;
-  name: string;
-  isDefault: boolean;
-  path: string;
+  id: null | number;
+  name: null | string;
+  isDefault: null | boolean;
+  path: null | string;
+  title: null | string;
 }
 
 interface IWatermarks {
   data: IWatermark[];
 }
 
-const initialState: IWatermarks = {
-  data: [],
+interface IWatermarksState {
+  watermarks: IWatermarks;
+  watermark: IWatermark;
+  newWatermark: IWatermark;
+}
+
+const initialState: IWatermarksState = {
+  watermarks: {
+    data: [],
+  },
+  watermark: {
+    id: null,
+    name: null,
+    isDefault: null,
+    path: null,
+    title: null,
+  },
+  newWatermark: {
+    id: null,
+    name: null,
+    isDefault: null,
+    path: null,
+    title: null,
+  },
 };
 
 export const watermarkSlice = createSlice({
@@ -23,25 +43,37 @@ export const watermarkSlice = createSlice({
   initialState,
   reducers: {
     setWatermarks: (state, action) => {
-      state.data = action.payload;
+      state.watermarks.data = action.payload;
       return state;
     },
     addMoreWatermark: (state, action) => {
-      state.data = state.data.concat(action.payload);
-      state.data = action.payload.isDefault;
+      state.watermarks.data = state.watermarks.data.concat(action.payload);
+      state.watermarks.data = action.payload.isDefault;
       return state;
     },
 
     setWatermark: (state, action) => {
-      (state as any).isDefault = action.payload.isDefault;
+      state.newWatermark = action.payload;
+      return state;
+    },
+    updateCurrentWatermark: (state, action) => {
+      state.watermarks.data = state.watermarks.data.map((watermark) =>
+        watermark.id === action.payload.id ? {...action.payload} : {...watermark}
+      );
+      return state;
+    },
+    updateDefault: (state, action) => {
+      state.watermarks.data = state.watermarks.data.map((watermark) => ({...watermark, isDefault: watermark.id === action.payload.id}));
       return state;
     },
     updateWatermark: (state, action) => {
-      state.data = state.data.map((ele: any) => (ele.id === action.payload.id ? {...ele, isDefault: true} : {...ele, isDefault: false}));
+      state.watermarks.data = state.watermarks.data.map((watermark) =>
+        watermark.id === action.payload.id ? action.payload : {...watermark, isDefault: false}
+      );
       return state;
     },
     deleteWatermark: (state, action) => {
-      state.data = state.data.filter((ele: any) => ele.id !== action.payload.id);
+      state.watermarks.data = state.watermarks.data.filter((ele: any) => ele.id !== action.payload.id);
       return state;
     },
   },

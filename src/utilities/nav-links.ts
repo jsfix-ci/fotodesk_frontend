@@ -51,6 +51,6 @@ export const adminLinks: ILink[] = [
   },
   {
     label: 'Upload watermark',
-    path: '/admin-page/upload-watermarks',
+    path: '/admin-page/upload-watermarks/step-1',
   },
 ];

@@ -6,7 +6,7 @@ import Upload from '../../components/Upload/Upload';
 import {RootState} from '../../store';
 import {watermarkSlice} from '../../store/slices/watermark.slice';
 
-export default function AdminPageUploadWatermarks() {
+export default function AdminPageUploadWatermarksStepOne() {
   const {user} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -18,10 +18,11 @@ export default function AdminPageUploadWatermarks() {
     }
 
     data.append('isDefault', 'false');
+    data.append('title', '');
 
-    const {data: newWatermarks} = await watermarksApi.uploadWatermarks(data, user.token!);
-    dispatch(watermarkSlice.actions.addMoreWatermark(newWatermarks));
-    navigate('/admin-page/watermarks');
+    const {data: newWatermark} = await watermarksApi.uploadWatermarks(data, user.token!);
+    dispatch(watermarkSlice.actions.setWatermark(newWatermark));
+    navigate('/admin-page/upload-watermarks/step-2');
   }
   return (
     <>
