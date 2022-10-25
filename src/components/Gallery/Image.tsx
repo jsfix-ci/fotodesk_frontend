@@ -47,6 +47,9 @@ export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName,
                 <button type="button" className="col-5 btn btn-danger bg-secondary border" onClick={() => deleteImage(id)}>
                   Delete
                 </button>
+                <button type="button" className="col-5 btn btn-danger bg-secondary text-dark ms-5  mt-3 border">
+                  Approved
+                </button>
               </>
             ) : (
               <></>

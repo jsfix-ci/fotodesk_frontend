@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Outlet, Route, Routes} from 'react-router-dom';
-import {authApi, baseApi, usersApi} from './api';
+import {authApi, baseApi, usersApi, watermarksApi} from './api';
 import Header from './components/Header/Header';
 import Images from './components/Images/Images';
 import Loader from './components/Loader/Loader';
+import PendingImages from './components/PendingImagesPagination.tsx/PendingImages';
 import Toaster from './components/Toaster/Toaster';
 import UploadStepOne from './components/UploadImages/UploadStepOne';
 import UploadStepTwo from './components/UploadImages/UploadStepTwo';
@@ -12,7 +13,6 @@ import UserImages from './components/User/UserImages';
 import Watermarks from './components/Watermarks/Watermarks';
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import {DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
-import AdminPagePendingImages from './Pages/AdminPage/AdminPagePendingImages';
 import AdminPagePendingUsers from './Pages/AdminPage/AdminPagePendingUsers';
 import AdminPageUploadWatermarksStepOne from './Pages/AdminPage/AdminPageUploadWatermarksStepOne';
 import AdminPageUploadWatermarksStepTwo from './Pages/AdminPage/AdminPageUploadWatermarksStepTwo';
@@ -22,6 +22,7 @@ import {AdminRoute, OnlyPublicRoute, PrivateRoute} from './RouteGuards/RouteGuar
 import {RootState} from './store';
 import {authSlice} from './store/slices/auth.slice';
 import {statisticSlice} from './store/slices/statistics.slice';
+import {watermarkSlice} from './store/slices/watermark.slice';
 import {isAdmin} from './utilities/helper';
 
 function App() {
@@ -48,6 +49,8 @@ function App() {
       if (user.token && isAdmin(user.role!)) {
         const {data: statistics} = await usersApi.getStats(user.token!);
         dispatch(statisticSlice.actions.setStatistics({...statistics}));
+        const {data: watermarks} = await watermarksApi.getWatermarks(user.token!);
+        dispatch(watermarkSlice.actions.setWatermarks(watermarks));
       }
     };
     getStatistics();
@@ -73,7 +76,7 @@ function App() {
               <Route path="/profile/images" element={<PrivateRoute component={UserImages} />} />
               <Route path="/admin-page/images" element={<AdminRoute component={Images} />} />
               <Route path="/images/upload/step-1" element={<PrivateRoute component={UploadStepOne} />} />
-              <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPagePendingImages} />} />
+              <Route path="/admin-page/pending-images" element={<AdminRoute component={PendingImages} />} />
               <Route path="/admin-page/watermarks" element={<AdminRoute component={Watermarks} />} />
               <Route path="/admin-page/upload-watermarks/step-1" element={<AdminRoute component={AdminPageUploadWatermarksStepOne} />} />
               <Route path="/admin-page/upload-watermarks/step-2" element={<AdminRoute component={AdminPageUploadWatermarksStepTwo} />} />
