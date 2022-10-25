@@ -23,7 +23,6 @@ export default function AdminPageUploadWatermarksStepOne() {
     const {data: newWatermark} = await watermarksApi.uploadWatermarks(data, user.token!);
     dispatch(watermarkSlice.actions.setWatermark(newWatermark));
     navigate('/admin-page/upload-watermarks/step-2');
-    
   }
   return (
     <>

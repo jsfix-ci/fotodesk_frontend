@@ -57,7 +57,9 @@ export const watermarkSlice = createSlice({
       return state;
     },
     updateCurrentWatermark: (state, action) => {
-      state.watermarks.data = state.watermarks.data.map((watermark) => (watermark.id===action.payload.id ? {...action.payload} : {...watermark}));
+      state.watermarks.data = state.watermarks.data.map((watermark) =>
+        watermark.id === action.payload.id ? {...action.payload} : {...watermark}
+      );
       return state;
     },
     updateDefault: (state, action) => {
