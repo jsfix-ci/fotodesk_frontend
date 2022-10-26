@@ -1,7 +1,6 @@
 import React from 'react';
+import Watermarks from '../../components/Watermarks/Watermarks';
 
-function AdminPageWaterMark() {
-  return <div>AdminPageWaterMark</div>;
+export default function AdminPageWaterMark() {
+  return <Watermarks />;
 }
-
-export default AdminPageWaterMark;
