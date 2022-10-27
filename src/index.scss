@@ -1,23 +1,31 @@
-// include customized bootstrap
-@import './styles/config/config';
-
 // include all of Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+// include customized bootstrap
+@import './styles/config/variables';
+
+// Layout
+@import 'styles/layout/Header';
+@import 'styles/layout/Sidebar';
+
+// Pages
+@import 'styles/pages/App';
+@import 'styles/pages/Detail';
+@import 'styles/pages/AdminPage';
+@import 'styles/pages/UsersList';
+@import 'styles/pages/Register';
+@import 'styles/pages/UploadStepOne';
+@import 'styles/pages/UploadStepTwo';
+@import 'styles/pages/LoginForm';
+@import 'styles/pages/Gallery';
+
 // include components
-@import './styles/components/App';
-@import './styles/components/Header';
-@import './styles/components/Sidebar';
-@import './styles/components/Detail';
-@import './styles/components/AdminPage';
-@import './styles/components/UsersList';
-@import './styles/components/LoginForm';
-@import './styles/components/Images';
-@import './styles/components/Register';
-@import './styles/components/UploadStepOne';
-@import './styles/components/UploadStepTwo';
-@import './styles/components/Loader';
-@import './styles/components/Gallery';
+@import './styles/components/reboot';
+@import './styles/components/type';
+@import './styles/components/buttons';
+@import './styles/components/card';
+@import 'styles/components/images';
+@import 'styles/components/loader';
 
 // external libraries
 @import 'react-toastify/dist/ReactToastify.css';

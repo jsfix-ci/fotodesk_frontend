@@ -1,0 +1,20 @@
+.hero {
+  @extend .container-fluid, .py-5, .bg-secondary;
+  background: url('../images/hero_bg.png');
+
+  form {
+    @extend .d-flex, .justify-content-center, .py-4, .mx-auto, .w-50;
+
+    @media screen and(max-width: 375px) {
+      width: 100% !important;
+    }
+
+    input {
+      @extend .form-control, .me-2;
+    }
+
+    button {
+      @extend .btn, .btn-danger;
+    }
+  }
+}

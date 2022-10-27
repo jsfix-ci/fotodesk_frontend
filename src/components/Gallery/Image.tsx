@@ -33,18 +33,17 @@ export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName,
 
   return (
     <div className={colSize}>
-      <div className="card p-3 col-12 border-0 ">
+      <div className="card">
         <img onClick={handleClick} className="card-img-none" src={thumb} alt="#" />
-        <div className="card-body border">
-          <h4 className="text-dark text-start">{authorName}</h4>
+        <div className="card-body">
+          <h4 className="text-start">{authorName}</h4>
           <Tags tags={tags} />
-
-          <div className="row justify-content-between m-0 mt-5">
-            {!relatedImage && (
-              <AdminImageButtons isAdmin={isAdmin} relatedImage={relatedImage} deleteImage={deleteImage} navigate={navigate} id={id} />
-            )}
-          </div>
         </div>
+        {!relatedImage && (
+        <div className="card-footer">
+              <AdminImageButtons isAdmin={isAdmin} relatedImage={relatedImage} deleteImage={deleteImage} navigate={navigate} id={id} />
+        </div>
+        )}
       </div>
     </div>
   );

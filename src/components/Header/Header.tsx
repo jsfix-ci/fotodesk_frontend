@@ -23,7 +23,7 @@ export default function Header() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid py-2">
           <Link className="navbar-brand ms-3" to="/">
-            Logo
+            <img src={'/images/logo.png'} alt={'Fotodesk'} />
           </Link>
           <button
             className="navbar-toggler"

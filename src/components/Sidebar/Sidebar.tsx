@@ -15,36 +15,23 @@ export default function SideBar({isAdmin}: any) {
   };
 
   return (
-    <div className="sidebar col-2">
-      <aside className="p-0">
-        <div className="toogle">
-          <button
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbar-nav-alt-markup"
-            aria-controls="navbar-nav-alt-markup"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span></span>
-          </button>
-          <div id="navbar-nav-alt-markup">
-            <div className="link m-0">
-              {isAdmin
-                ? adminLinks.map((adminLink: ILink) => (
-                    <Link key={adminLink.label} to={adminLink.path}>
-                      {adminLink.label} {generateCount(adminLink.key!)}
-                    </Link>
-                  ))
-                : userLinks.map((userLink: ILink) => (
-                    <Link key={userLink.path} to={userLink.path}>
-                      {userLink.label}
-                    </Link>
-                  ))}
-            </div>
-          </div>
+      <div className="sidebar col-2 mt-4">
+        <div className="list-group">
+
+          {isAdmin
+              ? adminLinks.map((adminLink: ILink) => (
+                  <Link key={adminLink.label} to={adminLink.path} className={'list-group-item list-group-item-action'}>
+                    {adminLink.label} {generateCount(adminLink.key!)}
+                  </Link>
+              ))
+              : userLinks.map((userLink: ILink) => (
+                  <Link key={userLink.path} to={userLink.path} className={'list-group-item list-group-item-action'}>
+                    {userLink.label}
+                  </Link>
+              ))}
+
         </div>
-      </aside>
-    </div>
+      </div>
+
   );
 }

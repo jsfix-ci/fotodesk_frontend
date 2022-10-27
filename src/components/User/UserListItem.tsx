@@ -10,38 +10,22 @@ interface IUserListItem {
 }
 export function UserListItem({user, admin, deleteUser, approveUser, editUser}: IUserListItem) {
   return (
-    <div className="users-list">
-      <div className="col-12">
-        <div className="row w-100">
-          <div className="col-3">
-            <p className="full-name">{user?.displayName}</p>
-          </div>
-          <div className="col-3">
-            <p className="mb-0">{user?.email}</p>
-          </div>
-          <div className="offset-2 col-4">
-            <div className="admin-action">
-              <p className="edit" onClick={() => editUser(user)}>
-                Edit
-              </p>
-
-              {user?.id !== admin?.id && (
-                <>
-                  <p className="mx-2 mb-0">|</p>
-                  <p className="delete" onClick={() => deleteUser(user?.id)}>
-                    Delete
-                  </p>
-                </>
-              )}
-              <p className="mx-2 mb-0">|</p>
-
-              <p className="approve" onClick={() => approveUser(user)}>
-                {user?.isApproved ? 'Block' : 'Approve'}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <tr>
+        <td>{user?.displayName}</td>
+        <td>{user?.email}</td>
+        <td>
+          <a className="btn btn-sm btn-secondary me-2" onClick={() => editUser(user)}>
+            Edit
+          </a>
+          {user?.id !== admin?.id && (
+                <a className="btn btn-sm btn-danger me-2" onClick={() => deleteUser(user?.id)}>
+                  Delete
+                </a>
+          )}
+          <a className="btn btn-sm btn-success" onClick={() => approveUser(user)}>
+            {user?.isApproved ? 'Block' : 'Approve'}
+          </a>
+        </td>
+      </tr>
   );
 }

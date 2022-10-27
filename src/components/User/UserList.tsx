@@ -83,9 +83,17 @@ export default function UserList({users, admin, findUsers, isPendingUsers}: IUse
   return (
     <div className="admin">
       <div className="row">
-        <div className="col-12 ">
+        <div className="col-12">
           <UserSearchForm findUser={findUsers} handleSearch={handleSearch} showHide={showHide} search={search} />
-
+          <table className="table table-striped mt-4">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
           {users.map((user) => (
             <UserListItem
               key={user.displayName}
@@ -96,6 +104,10 @@ export default function UserList({users, admin, findUsers, isPendingUsers}: IUse
               editUser={editUser}
             />
           ))}
+            </tbody>
+          </table>
+
+
         </div>
       </div>
       <UserModal showHide={showHide} modalClosed={!modalOpen} handleSubmit={handleSubmit} user={user} legend={legend} />

@@ -2,16 +2,16 @@ import React from 'react';
 
 export default function AdminImageButtons({isAdmin, relatedImage, deleteImage, navigate, id}: any) {
   return (
-    <div className="row justify-content-between m-0 mt-5">
+    <div>
       {!relatedImage && isAdmin ? (
         <>
-          <button type="button" className="col-5 btn btn-primary" onClick={() => navigate(`/details/edit/${id}`)}>
+          <button type="button" className="btn btn-sm btn-primary me-2" onClick={() => navigate(`/details/edit/${id}`)}>
             Edit
           </button>
-          <button type="button" className="col-5 btn btn-danger bg-secondary border" onClick={() => deleteImage(id)}>
+          <button type="button" className="btn btn-sm btn-danger me-2" onClick={() => deleteImage(id)}>
             Delete
           </button>
-          <button type="button" className="btn btn-danger bg-secondary text-dark mt-3 border">
+          <button type="button" className="btn btn-sm btn-success">
             Approved
           </button>
         </>

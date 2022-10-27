@@ -1,14 +1,20 @@
 .dropzone {
-  display: 'inline-flex';
-  border: '1px solid #eaeaea';
+  display: flex;
   margin-top: 32px;
+  justify-content: center;
   margin-bottom: 8px;
   margin-right: 8px;
   width: 100%;
   min-height: 250px;
-  padding: 4px;
-  box-sizing: 'border-box';
-  background-color: rgb(227, 227, 227);
+  padding: 40px;
+  color: $gray-500;
+  background-color: $gray-200;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
 }
 
 .remove {
