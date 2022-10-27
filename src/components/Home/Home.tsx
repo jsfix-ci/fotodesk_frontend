@@ -9,7 +9,6 @@ import Gallery from '../Gallery/Gallery';
 export default function Home() {
   const {images} = useSelector((state: RootState) => state.images);
   const {user} = useSelector((state: RootState) => state.auth);
-
   const dispatch = useDispatch();
   const next = async (url: string) => {
     try {
