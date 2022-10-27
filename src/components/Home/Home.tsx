@@ -1,24 +1,25 @@
-import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch} from 'react-redux';
+import {useLocation} from 'react-router-dom';
 import {imagesApi} from '../../api';
-import {RootState} from '../../store';
 import {imagesSlice} from '../../store/slices/images.slice';
-import {isAdmin} from '../../utilities/helper';
-import Gallery from '../Gallery/Gallery';
+import HomeLayout from './HomeLayout';
 
 export default function Home() {
-  const {images} = useSelector((state: RootState) => state.images);
-  const {user} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
-  const next = async (url: string) => {
-    try {
-      const params = new URLSearchParams(url.split('?')[1]);
-      const obj = Object.fromEntries(params);
-      const {data} = await imagesApi.getImages(obj);
-      dispatch(imagesSlice.actions.addMoreImages(data));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  return <Gallery hasSidebar={false} images={images.data} next={next} isAdmin={isAdmin(user?.role!)} relatedImage={false} />;
+  const location = useLocation();
+  useEffect(() => {
+    const getImages = async () => {
+      try {
+        const params = new URLSearchParams(location.search.slice(1));
+        const obj = Object.fromEntries(params);
+        const {data} = await imagesApi.getImages(obj);
+        dispatch(imagesSlice.actions.setImages(data));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getImages();
+  }, [dispatch, location]);
+  return <HomeLayout />;
 }

@@ -22,6 +22,6 @@ export default function PendingImages() {
       }
     };
     getImages();
-  });
+  }, [dispatch, user.token]);
   return <Gallery hasSidebar={true} images={images.data} isAdmin={isAdmin(user?.role!)} />;
 }

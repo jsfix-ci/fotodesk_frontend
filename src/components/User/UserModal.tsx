@@ -1,6 +1,6 @@
 import React from 'react';
 import {IUser} from '../../store/slices/auth.slice';
-import Register from '../Register/Register';
+import RegisterForm from '../Register/RegisterForm';
 
 interface IUserModal {
   showHide: (...args: any) => void;
@@ -24,7 +24,7 @@ export function UserModal({showHide, handleSubmit, modalClosed, user, legend}: I
       <div className="modal-dialog modal-xl">
         <div className="modal-content col-auto">
           <div className="modal-header align-items-start">
-            <Register registerFields={registerFields} isAdmin={true} handleSubmit={handleSubmit} initialValues={user} legend={legend} />
+            <RegisterForm registerFields={registerFields} isAdmin={true} handleSubmit={handleSubmit} initialValues={user} legend={legend} />
             <button onClick={() => showHide(user)} type="button" className="btn-close" data-dismiss="modal" aria-label="Close"></button>
           </div>
         </div>
