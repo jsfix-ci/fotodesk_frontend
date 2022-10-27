@@ -88,7 +88,13 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
                 {data.map((watermark, key) => {
                   return (
                     <label key={key} className="form-check-label w-100">
-                      <input className="form-check-input" type="radio" name="watermark" onChange={() => handleWatermark(watermark)} />
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name="watermark"
+                        checked={watermark.isDefault!}
+                        onChange={() => handleWatermark(watermark)}
+                      />
                       {watermark.title}
                     </label>
                   );

@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom';
-import {ILinksHeader, loggedIn, loggedOut} from '../../utilities/header-links';
-import LoginForm from '../LoginForm/LoginForm';
+import HeaderLinks from './HeaderLinks';
 
 export default function Header() {
   const {user} = useSelector((state: any) => state.auth);
@@ -38,37 +37,8 @@ export default function Header() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse d-flex" id="navbarTogglerDemo02">
-            {!user?.token && (
-              <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex justify-content-end">
-                <li className="nav-item">
-                  <LoginForm />
-                </li>
-
-                {loggedOut.map((item: ILinksHeader) => {
-                  return (
-                    <li key={item.label} className="nav-item me-3 ms-auto d-flex">
-                      <Link className="nav-link active ms-auto d-flex" to={item.path}>
-                        {item.label}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+            <HeaderLinks user={user} />
           </div>
-          {user?.token && (
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 g-2">
-              {loggedIn.map((item: ILinksHeader) => {
-                return (
-                  <li key={item.label} className="nav-item me-3 ms-auto d-flex">
-                    <Link className="nav-link active ms-auto d-flex" to={item.path}>
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
         </div>
       </nav>
 
