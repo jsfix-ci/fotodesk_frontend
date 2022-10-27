@@ -1,5 +1,6 @@
 .hero {
   @extend .container-fluid, .py-5, .bg-secondary;
+
   background: url('../images/hero_bg.png');
 
   form {
