@@ -2,9 +2,9 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {imagesApi} from '../../api';
-import AdminButtons from '../../Pages/AdminPage/AdminButtons';
 import {RootState} from '../../store';
 import {imagesSlice} from '../../store/slices/images.slice';
+import AdminImageButtons from './AdminImageButtons';
 import Tags from './Tags';
 
 export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName, relatedImage}: any) {
@@ -41,7 +41,7 @@ export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName,
 
           <div className="row justify-content-between m-0 mt-5">
             {!relatedImage && (
-              <AdminButtons isAdmin={isAdmin} relatedImage={relatedImage} deleteImage={deleteImage} navigate={navigate} id={id} />
+              <AdminImageButtons isAdmin={isAdmin} relatedImage={relatedImage} deleteImage={deleteImage} navigate={navigate} id={id} />
             )}
           </div>
         </div>
