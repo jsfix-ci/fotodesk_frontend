@@ -3,7 +3,6 @@ import React from 'react';
 export default function AdminDetails({
   handleCopyUser,
   setEditedTags,
-  isAdmin,
   handleWatermark,
   Tags,
   isDetailsEditPage,
@@ -41,21 +40,18 @@ export default function AdminDetails({
           <Tags tags={image.tags} />
         </div>
       )}
-      {isAdmin && (
-        <>
-          <h4 className="fw-bold mt-4">Watermark</h4>
-          <div className="form-check">
-            {data.map((watermark: any, key: any) => {
-              return (
-                <label key={key} className="form-check-label w-100">
-                  <input className="form-check-input" type="radio" name="watermark" onChange={() => handleWatermark(watermark)} />
-                  {watermark.title}
-                </label>
-              );
-            })}
-          </div>
-        </>
-      )}
+
+      <h4 className="fw-bold mt-4">Watermark</h4>
+      <div className="form-check">
+        {data.map((watermark: any, key: any) => {
+          return (
+            <label key={key} className="form-check-label w-100">
+              <input className="form-check-input" type="radio" name="watermark" onChange={() => handleWatermark(watermark)} />
+              {watermark.title}
+            </label>
+          );
+        })}
+      </div>
 
       {user?.token && (
         <div className="dropdown">
