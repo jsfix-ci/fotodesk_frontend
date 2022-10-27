@@ -94,20 +94,18 @@ export default function UserList({users, admin, findUsers, isPendingUsers}: IUse
               </tr>
             </thead>
             <tbody>
-          {users.map((user) => (
-            <UserListItem
-              key={user.displayName}
-              user={user}
-              admin={admin}
-              approveUser={approveUser}
-              deleteUser={deleteUser}
-              editUser={editUser}
-            />
-          ))}
+              {users.map((user) => (
+                <UserListItem
+                  key={user.displayName}
+                  user={user}
+                  admin={admin}
+                  approveUser={approveUser}
+                  deleteUser={deleteUser}
+                  editUser={editUser}
+                />
+              ))}
             </tbody>
           </table>
-
-
         </div>
       </div>
       <UserModal showHide={showHide} modalClosed={!modalOpen} handleSubmit={handleSubmit} user={user} legend={legend} />

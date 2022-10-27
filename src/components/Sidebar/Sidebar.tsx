@@ -15,23 +15,20 @@ export default function SideBar({isAdmin}: any) {
   };
 
   return (
-      <div className="sidebar col-2 mt-4">
-        <div className="list-group">
-
-          {isAdmin
-              ? adminLinks.map((adminLink: ILink) => (
-                  <Link key={adminLink.label} to={adminLink.path} className={'list-group-item list-group-item-action'}>
-                    {adminLink.label} {generateCount(adminLink.key!)}
-                  </Link>
-              ))
-              : userLinks.map((userLink: ILink) => (
-                  <Link key={userLink.path} to={userLink.path} className={'list-group-item list-group-item-action'}>
-                    {userLink.label}
-                  </Link>
-              ))}
-
-        </div>
+    <div className="sidebar col-2 mt-4">
+      <div className="list-group">
+        {isAdmin
+          ? adminLinks.map((adminLink: ILink) => (
+              <Link key={adminLink.label} to={adminLink.path} className={'list-group-item list-group-item-action'}>
+                {adminLink.label} {generateCount(adminLink.key!)}
+              </Link>
+            ))
+          : userLinks.map((userLink: ILink) => (
+              <Link key={userLink.path} to={userLink.path} className={'list-group-item list-group-item-action'}>
+                {userLink.label}
+              </Link>
+            ))}
       </div>
-
+    </div>
   );
 }

@@ -40,9 +40,9 @@ export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName,
           <Tags tags={tags} />
         </div>
         {!relatedImage && (
-        <div className="card-footer">
-              <AdminImageButtons isAdmin={isAdmin} relatedImage={relatedImage} deleteImage={deleteImage} navigate={navigate} id={id} />
-        </div>
+          <div className="card-footer">
+            <AdminImageButtons isAdmin={isAdmin} relatedImage={relatedImage} deleteImage={deleteImage} navigate={navigate} id={id} />
+          </div>
         )}
       </div>
     </div>

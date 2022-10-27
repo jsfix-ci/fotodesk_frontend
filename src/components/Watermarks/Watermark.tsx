@@ -58,21 +58,21 @@ export default function Watermark({isDefault, id, path, user, title}: any) {
           <img src={path} alt="#" />
           <textarea onChange={handleChange} className={'form-control'} value={currentTitle}></textarea>
         </div>
-          <div className="card-footer">
-              {!isDefault && (
-                <button className="btn btn-sm btn-info me-2" onClick={toggleDefault}>
-                  Set as default
-                </button>
-              )}
-              <button className="btn btn-sm btn-success me-2" onClick={changeTitle}>
-                Save
-              </button>
+        <div className="card-footer">
+          {!isDefault && (
+            <button className="btn btn-sm btn-info me-2" onClick={toggleDefault}>
+              Set as default
+            </button>
+          )}
+          <button className="btn btn-sm btn-success me-2" onClick={changeTitle}>
+            Save
+          </button>
 
-              <button type="button" className="btn btn-sm btn-danger" disabled={isDefault} onClick={deleteWatermark}>
-                Delete
-              </button>
-            </div>
+          <button type="button" className="btn btn-sm btn-danger" disabled={isDefault} onClick={deleteWatermark}>
+            Delete
+          </button>
         </div>
+      </div>
     </div>
   );
 }
