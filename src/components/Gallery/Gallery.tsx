@@ -11,10 +11,11 @@ interface IGalleryProps {
   images: IImage[];
   next?: (...args: any) => void;
   relatedImage?: boolean;
+  deleteImage?: any;
+  id?: number;
 }
-export default function Gallery({isAdmin, hasSidebar, images, next, relatedImage}: IGalleryProps) {
+export default function Gallery({isAdmin, hasSidebar, images, next, relatedImage, deleteImage}: IGalleryProps) {
   const {images: moreImages} = useSelector((state: RootState) => state.images);
-
   return (
     <div className="container mt-4">
       <InfiniteScroll
@@ -36,6 +37,7 @@ export default function Gallery({isAdmin, hasSidebar, images, next, relatedImage
               tags={image.tags}
               authorName={image?.user?.displayName}
               relatedImage={relatedImage}
+              deleteImage={deleteImage}
             />
           ))}
         </div>
