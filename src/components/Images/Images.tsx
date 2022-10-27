@@ -1,7 +1,13 @@
-import React, {useState} from 'react';
-import PendingImagesPagination from '../PendingImagePagination/PendingImagesPagination';
+import React, {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {useLocation} from 'react-router-dom';
+import {imagesApi} from '../../api';
+import {imagesSlice} from '../../store/slices/images.slice';
+import PendingImagesPagination from '../ImagePagination/ImagesPagination';
 
 export default function Images() {
+  const dispatch = useDispatch();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     keywords: '',
     author: '',
@@ -14,11 +20,26 @@ export default function Images() {
       [name]: value,
     }));
   }
+
   function handleSubmit(event: any) {
     event.preventDefault();
 
     return;
   }
+
+  useEffect(() => {
+    const getImages = async () => {
+      try {
+        const params = new URLSearchParams(location.search.slice(1));
+        const obj = Object.fromEntries(params);
+        const {data} = await imagesApi.getImages(obj);
+        dispatch(imagesSlice.actions.setImages(data));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getImages();
+  }, [dispatch, location]);
 
   return (
     <div>

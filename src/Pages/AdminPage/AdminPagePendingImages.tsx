@@ -1,7 +1,6 @@
 import React from 'react';
+import PendingImages from '../../components/Images/PendingImages';
 
-function AdminPagePendingImages() {
-  return <div>AdminPagePendingImages</div>;
+export default function AdminPagePendingImages() {
+  return <PendingImages />;
 }
-
-export default AdminPagePendingImages;

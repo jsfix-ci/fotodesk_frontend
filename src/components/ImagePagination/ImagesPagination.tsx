@@ -6,7 +6,7 @@ import {imagesSlice} from '../../store/slices/images.slice';
 import {isAdmin} from '../../utilities/helper';
 import Gallery from '../Gallery/Gallery';
 
-export default function PendingImagesPagination() {
+export default function ImagesPagination() {
   const {images} = useSelector((state: RootState) => state.images);
   const {user} = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ export default function PendingImagesPagination() {
 
   return (
     <>
-      <div className="pagination d-flex justify-content-center pt-5">
+      <div className="pagination d-flex justify-content-center pt-5 gap-4">
         <button
           className="btn btn-outline-secondary"
           disabled={!images?.links?.previous}
@@ -36,7 +36,7 @@ export default function PendingImagesPagination() {
           Next
         </button>
       </div>
-      <Gallery hasSidebar={false} images={images.data} isAdmin={isAdmin(user?.role!)} />
+      <Gallery hasSidebar={true} images={images.data} isAdmin={isAdmin(user?.role!)} />
     </>
   );
 }

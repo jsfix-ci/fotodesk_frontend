@@ -1,28 +1,15 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom';
-import {authSlice} from '../../store/slices/auth.slice';
-import LoginForm from '../LoginForm/LoginForm';
+import HeaderLinks from './HeaderLinks';
 
 export default function Header() {
   const {user} = useSelector((state: any) => state.auth);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchData, setSearchData] = useState('');
 
   function onChange(e: any) {
     setSearchData(e.target.value);
-  }
-
-  function login(e: any) {
-    e.preventDefault();
-  }
-
-  function logout(e: any) {
-    e.preventDefault();
-    localStorage.removeItem('token');
-    dispatch(authSlice.actions.logout());
-    navigate('/');
   }
 
   const handleSearch = (e: any) => {
@@ -50,45 +37,13 @@ export default function Header() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse d-flex" id="navbarTogglerDemo02">
-            {!user?.token && (
-              <ul className="navbar-nav ms-auto mb-2 mb-lg-0 d-flex justify-content-end">
-                <li className="nav-item">
-                  <LoginForm />
-                </li>
-                <li className="nav-item me-3 ms-auto d-flex">
-                  <Link className="nav-link active ms-auto d-flex" to="/register">
-                    Register
-                  </Link>
-                </li>
-              </ul>
-            )}
+            <HeaderLinks user={user} />
           </div>
-          {user?.token && (
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0 g-2">
-              <li className="nav-item">
-                <Link className="nav-link active" to="/profile">
-                  Profile
-                </Link>
-              </li>
-
-              <li className="nav-item" onClick={logout}>
-                <Link className="nav-link active" to="">
-                  Logout
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="btn btn-outline-dark" to="/images/upload/step-1">
-                  Upload
-                </Link>
-              </li>
-            </ul>
-          )}
         </div>
       </nav>
 
       <div className="hero input-group">
-        <form onSubmit={login}>
+        <form onSubmit={handleSearch}>
           <input
             className="form-control"
             type="text"
@@ -97,7 +52,7 @@ export default function Header() {
             onChange={onChange}
             value={searchData}
           />
-          <button onClick={handleSearch}>Search</button>
+          <button type="submit">Search</button>
         </form>
       </div>
     </header>
