@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function AdminButtons({isAdmin, relatedImage, deleteImage, navigate, id}: any) {
+export default function AdminImageButtons({isAdmin, relatedImage, deleteImage, navigate, id}: any) {
   return (
     <div className="row justify-content-between m-0 mt-5">
       {!relatedImage && isAdmin ? (

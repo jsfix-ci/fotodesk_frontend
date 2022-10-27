@@ -76,14 +76,12 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
             handleCopyUser={handleCopyUser}
             setEditedTags={setEditedTags}
             isAdmin={isAdmin}
-            handleWatermark={handleWatermark}
             Tags={Tags}
             isDetailsEditPage={isDetailsEditPage}
             image={image}
             editedTags={editedTags}
             saveChanges={saveChanges}
             imageSizes={imageSizes}
-            data={data}
             user={user}
           />
         )}

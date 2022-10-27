@@ -3,15 +3,12 @@ import React from 'react';
 export default function UsersDetails({
   handleCopyUser,
   setEditedTags,
-  isAdmin,
-  handleWatermark,
   Tags,
   isDetailsEditPage,
   image,
   editedTags,
   saveChanges,
   imageSizes,
-  data,
   user,
 }: any) {
   return (
