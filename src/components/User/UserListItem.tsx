@@ -14,17 +14,17 @@ export function UserListItem({user, admin, deleteUser, approveUser, editUser}: I
       <td>{user?.displayName}</td>
       <td>{user?.email}</td>
       <td>
-        <a className="btn btn-sm btn-secondary me-2" onClick={() => editUser(user)}>
+        <button className="btn btn-sm btn-secondary me-2" onClick={() => editUser(user)}>
           Edit
-        </a>
+        </button>
         {user?.id !== admin?.id && (
-          <a className="btn btn-sm btn-danger me-2" onClick={() => deleteUser(user?.id)}>
+          <button className="btn btn-sm btn-danger me-2" onClick={() => deleteUser(user?.id)}>
             Delete
-          </a>
+          </button>
         )}
-        <a className="btn btn-sm btn-success" onClick={() => approveUser(user)}>
+        <button className="btn btn-sm btn-success" onClick={() => approveUser(user)}>
           {user?.isApproved ? 'Block' : 'Approve'}
-        </a>
+        </button>
       </td>
     </tr>
   );
