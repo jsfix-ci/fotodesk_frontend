@@ -14,17 +14,17 @@ export default function DetailEdit() {
   useEffect(() => {
     const getImage = async (id: number) => {
       try {
-        const {data} = await imagesApi.getImage(id);
+        const {data} = await imagesApi.getAdminImage(id, user.token!);
         dispatch(imagesSlice.actions.setImage(data));
       } catch (error) {
         console.log(error);
       }
     };
-    id && getImage(+id);
+    id && user?.token && getImage(+id);
     return () => {
       dispatch(imagesSlice.actions.resetImage());
     };
-  }, [id, dispatch]);
+  }, [id, user?.token, dispatch]);
 
   return <Detail isAdmin={isAdmin(user?.role!)} isDetailsEditPage={true} idImage={id} />;
 }

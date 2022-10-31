@@ -21,3 +21,4 @@ export default function AdminImageButtons({isAdmin, relatedImage, deleteImage, n
     </div>
   );
 }
+<img></img>;

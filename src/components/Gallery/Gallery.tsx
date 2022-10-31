@@ -19,7 +19,7 @@ export default function Gallery({isAdmin, hasSidebar, images, next, relatedImage
   return (
     <div className="container mt-4">
       <InfiniteScroll
-        dataLength={images.length}
+        dataLength={images?.length}
         next={() => {
           next?.(moreImages.links?.next!);
         }}
