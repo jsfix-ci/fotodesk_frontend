@@ -7,6 +7,7 @@ import Loader from './components/Loader/Loader';
 import Toaster from './components/Toaster/Toaster';
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import {DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
+import AdminPage from './Pages/AdminPage/AdminPage';
 import AdminPageDetailsEdit from './Pages/AdminPage/AdminPageDetailsEdit';
 import AdminPageImages from './Pages/AdminPage/AdminPageImages';
 import AdminPagePendingImages from './Pages/AdminPage/AdminPagePendingImages';
@@ -77,6 +78,7 @@ function App() {
               <Route path="/profile" element={<PrivateRoute component={UserPage} />} />
               <Route path="/profile/images" element={<PrivateRoute component={UserPageImages} />} />
               <Route path="/admin-page/images" element={<AdminRoute component={AdminPageImages} />} />
+              <Route path="/admin-page/profile" element={<AdminRoute component={AdminPage} />} />
               <Route path="/images/upload/step-1" element={<PrivateRoute component={UploadImagesPageStepOne} />} />
               <Route path="/images/upload/step-2" element={<PrivateRoute component={UploadImagesPageStepTwo} />} />
               <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPagePendingImages} />} />
