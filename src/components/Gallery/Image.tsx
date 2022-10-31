@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {imagesApi, usersApi} from '../../api';
 import {RootState} from '../../store';
 import {imagesSlice} from '../../store/slices/images.slice';
-import { statisticSlice } from '../../store/slices/statistics.slice';
+import {statisticSlice} from '../../store/slices/statistics.slice';
 import AdminImageButtons from './AdminImageButtons';
 import Tags from './Tags';
 
