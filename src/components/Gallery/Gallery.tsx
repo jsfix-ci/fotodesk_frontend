@@ -30,12 +30,9 @@ export default function Gallery({isAdmin, hasSidebar, images, next, relatedImage
           {images?.map((image) => (
             <Image
               key={image.name}
-              thumb={image.path}
+              image={image}
               isAdmin={isAdmin}
               hasSidebar={hasSidebar}
-              id={image.id}
-              tags={image.tags}
-              authorName={image?.user?.displayName}
               relatedImage={relatedImage}
               deleteImage={deleteImage}
             />
