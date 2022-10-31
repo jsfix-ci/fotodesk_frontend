@@ -21,7 +21,7 @@ export const userLinks: ILink[] = [
 export const adminLinks: ILink[] = [
   {
     label: 'Profile',
-    path: '/admin-page/profile',
+    path: '/profile',
   },
   {
     label: 'Users',

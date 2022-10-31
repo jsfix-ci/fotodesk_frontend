@@ -43,5 +43,5 @@
     "color-function-notation": "legacy",
     "scss/at-extend-no-missing-placeholder": null
   },
-  "extends": ["stylelint-config-standard", "stylelint-config-prettier", "stylelint-config-standard-scss", "stylelint-config-prettier-scss"]
+  "extends": ["stylelint-config-standard", "stylelint-config-prettier", "stylelint-config-standard-scss"]
 }

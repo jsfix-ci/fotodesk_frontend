@@ -7,15 +7,17 @@ import Loader from './components/Loader/Loader';
 import Toaster from './components/Toaster/Toaster';
 import {CommonLayout, WithSideBarLayout} from './layouts';
 import {DetailPage, HomePage, NotFoundPage, RegisterPage, UserPage} from './Pages';
-import AdminPage from './Pages/AdminPage/AdminPage';
-import AdminPageDetailsEdit from './Pages/AdminPage/AdminPageDetailsEdit';
-import AdminPageImages from './Pages/AdminPage/AdminPageImages';
-import AdminPagePendingImages from './Pages/AdminPage/AdminPagePendingImages';
-import AdminPagePendingUsers from './Pages/AdminPage/AdminPagePendingUsers';
-import AdminPageUploadWatermarksStepOne from './Pages/AdminPage/AdminPageUploadWatermarksStepOne';
-import AdminPageUploadWatermarksStepTwo from './Pages/AdminPage/AdminPageUploadWatermarksStepTwo';
-import AdminPageUsers from './Pages/AdminPage/AdminPageUsers';
-import AdminPageWaterMark from './Pages/AdminPage/AdminPageWaterMark';
+import {
+  AdminPageDetailsEdit,
+  AdminPageImages,
+  AdminPagePendingImages,
+  AdminPagePendingUsers,
+  AdminPageUploadStepTwoWatermark,
+  AdminPageUploadWatermarksStepOne,
+  AdminPageUploadWatermarksStepTwo,
+  AdminPageUsers,
+  AdminPageWaterMark,
+} from './Pages/AdminPage';
 import LogoutPage from './Pages/LogoutPage/LogoutPage';
 import UploadImagesPageStepOne from './Pages/UploadImagesPage/UploadImagesPageStepOne';
 import UploadImagesPageStepTwo from './Pages/UploadImagesPage/UploadImagesPageStepTwo';
@@ -78,13 +80,13 @@ function App() {
               <Route path="/profile" element={<PrivateRoute component={UserPage} />} />
               <Route path="/profile/images" element={<PrivateRoute component={UserPageImages} />} />
               <Route path="/admin-page/images" element={<AdminRoute component={AdminPageImages} />} />
-              <Route path="/admin-page/profile" element={<AdminRoute component={AdminPage} />} />
               <Route path="/images/upload/step-1" element={<PrivateRoute component={UploadImagesPageStepOne} />} />
               <Route path="/images/upload/step-2" element={<PrivateRoute component={UploadImagesPageStepTwo} />} />
               <Route path="/admin-page/pending-images" element={<AdminRoute component={AdminPagePendingImages} />} />
               <Route path="/admin-page/watermarks" element={<AdminRoute component={AdminPageWaterMark} />} />
               <Route path="/admin-page/upload-watermarks/step-1" element={<AdminRoute component={AdminPageUploadWatermarksStepOne} />} />
               <Route path="/admin-page/upload-watermarks/step-2" element={<AdminRoute component={AdminPageUploadWatermarksStepTwo} />} />
+              <Route path="/admin-page/upload-step-two-watermark" element={<AdminRoute component={AdminPageUploadStepTwoWatermark} />} />
             </Route>
             <Route
               element={

@@ -3,15 +3,13 @@
   border-radius: 7px;
   box-shadow: 1px 1px 10px 4px $gray-200;
   margin-bottom: 1.2rem;
+  &:not(:has(input)) {
+    min-height: 390px;
+  }
 }
 
 .card-footer {
   padding: 1rem;
   background-color: $white;
   border-top: var(--#{$prefix}card-border-width) solid $gray-200;
-}
-
-.col-md-4 .card,
-.col-md-3 .card {
-  min-height: 380px;
 }
