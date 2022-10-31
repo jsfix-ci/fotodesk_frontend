@@ -35,7 +35,7 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
   async function saveChanges() {
     try {
       await imagesApi.updateImage(+idImage, {...image, tags: editedTags}, user?.token!);
-      await watermarksApi.updateWatermark(currentWatermark?.id!, currentWatermark, user?.token!);
+      await watermarksApi.updateWatermark(currentWatermark?.id!, {...currentWatermark, isDefault: true}, user?.token!);
     } catch (error) {
       console.log(error);
     }

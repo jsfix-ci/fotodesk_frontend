@@ -1,30 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {useLocation} from 'react-router-dom';
+import {debounce} from 'lodash';
 import {imagesApi} from '../../api';
 import {imagesSlice} from '../../store/slices/images.slice';
-import PendingImagesPagination from '../ImagePagination/ImagesPagination';
+import ImagesPagination from '../ImagePagination/ImagesPagination';
 
 export default function Images() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const [formData, setFormData] = useState({
-    keywords: '',
-    author: '',
-  });
 
-  function handleChange(event: any) {
-    const {name, value} = event.target;
-    setFormData((prevFormData: any) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  }
+  const handleChange = debounce((event: any) => {
+    handleSubmit(event.target.value);
+  }, 1000);
 
-  function handleSubmit(event: any) {
-    event.preventDefault();
-
-    return;
+  async function handleSubmit(value: string | number) {
+    try {
+      const {data} = await imagesApi.getImages({search: value});
+      dispatch(imagesSlice.actions.setImages(data));
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
@@ -43,37 +39,23 @@ export default function Images() {
 
   return (
     <div>
-      <form className="row justift-content-center align-items-center g-3 mt-4" onSubmit={handleSubmit}>
-        <div className="col-5 m-0">
-          <input
-            className="form-control"
-            type="text"
-            aria-label="Keywords"
-            placeholder="Keywords"
-            name="keywords"
-            onChange={handleChange}
-            value={formData.keywords}
-          />
+      <div className="card mt-4">
+        <div className="card-body">
+          <div className="row">
+            <div className="col-12">
+              <input
+                className="form-control"
+                type="text"
+                aria-label="Keywords"
+                placeholder="Keywords"
+                name="keywords"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
         </div>
-
-        <div className="col-5 m-0">
-          <input
-            className="form-control"
-            id="exampleDataList"
-            placeholder="Author"
-            name="author"
-            onChange={handleChange}
-            value={formData.author}
-          />
-        </div>
-
-        <div className="col-2 m-0">
-          <button className="btn btn-primary" type="submit">
-            Search
-          </button>
-        </div>
-      </form>
-      <PendingImagesPagination />
+      </div>
+      <ImagesPagination />
     </div>
   );
 }

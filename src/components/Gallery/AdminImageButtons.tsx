@@ -11,7 +11,7 @@ export default function AdminImageButtons({deleteImage, navigate, image, approve
       </button>
       {!image.isApproved && (
         <button type="button" className="btn btn-sm btn-success" onClick={() => approveImage(image.id)}>
-          Approved
+          Approve
         </button>
       )}
     </div>
