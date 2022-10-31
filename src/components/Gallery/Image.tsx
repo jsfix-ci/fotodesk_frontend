@@ -34,7 +34,7 @@ export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName,
   return (
     <div className={colSize}>
       <div className="card">
-        <img onClick={handleClick} className="card-img-none" src={thumb} alt="#" />
+        <img onClick={handleClick} src={thumb} alt="#" />
         <div className="card-body">
           <h4 className="text-start">{authorName}</h4>
           <Tags tags={tags} />
