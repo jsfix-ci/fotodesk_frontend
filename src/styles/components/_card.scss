@@ -11,7 +11,7 @@
   border-top: var(--#{$prefix}card-border-width) solid $gray-200;
 }
 
-.col-md-4 .card, .col-md-3 .card{
+.col-md-4 .card,
+.col-md-3 .card {
   min-height: 360px;
-  
 }
