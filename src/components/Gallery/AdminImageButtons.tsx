@@ -17,4 +17,3 @@ export default function AdminImageButtons({deleteImage, navigate, image, approve
     </div>
   );
 }
-<img></img>;
