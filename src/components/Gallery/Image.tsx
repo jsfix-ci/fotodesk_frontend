@@ -7,7 +7,7 @@ import {imagesSlice} from '../../store/slices/images.slice';
 import AdminImageButtons from './AdminImageButtons';
 import Tags from './Tags';
 
-export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName, relatedImage}: any) {
+export default function Image({isAdmin, hasSidebar, id, tags, authorName, relatedImage, image}: any) {
   const {user: admin} = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ export default function Image({thumb, isAdmin, hasSidebar, id, tags, authorName,
   return (
     <div className={colSize}>
       <div className="card">
-        <img onClick={handleClick} src={thumb} alt="#" />
+      <img onClick={handleClick} className="card-img-none" src={image.path} alt="#" />
         <div className="card-body">
           <h4 className="text-start">{authorName}</h4>
           <Tags tags={tags} />
