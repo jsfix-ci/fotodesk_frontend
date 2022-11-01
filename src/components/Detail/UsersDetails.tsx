@@ -1,16 +1,7 @@
 import React from 'react';
+import Tags from '../Gallery/Tags';
 
-export default function UsersDetails({
-  handleCopyUser,
-  setEditedTags,
-  Tags,
-  isDetailsEditPage,
-  image,
-  editedTags,
-  saveChanges,
-  imageSizes,
-  user,
-}: any) {
+export default function UsersDetails({handleCopyUser, image, imageSizes, user}: any) {
   return (
     <div className="col-3 text-start">
       <h4 className="fw-bold">Author</h4>
@@ -25,19 +16,10 @@ export default function UsersDetails({
         />
       </div>
       <h4 className="fw-bold mt-4">Keywords</h4>
-      {!!isDetailsEditPage ? (
-        <textarea
-          className="w-75 mt-3"
-          name="addTag"
-          placeholder="Add tag"
-          value={editedTags}
-          onChange={(e) => setEditedTags(e.target.value)}
-        ></textarea>
-      ) : (
-        <div className="w-50">
-          <Tags tags={image.tags} />
-        </div>
-      )}
+
+      <div className="w-50">
+        <Tags tags={image.tags} />
+      </div>
 
       {user?.token && (
         <div className="dropdown">
@@ -60,12 +42,6 @@ export default function UsersDetails({
             ))}
           </ul>
         </div>
-      )}
-
-      {!!isDetailsEditPage && (
-        <button className="btn btn-secondary mt-3 w-75 p-2" type="button" onClick={() => saveChanges()}>
-          Save Changes
-        </button>
       )}
     </div>
   );

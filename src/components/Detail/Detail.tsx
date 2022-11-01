@@ -3,18 +3,17 @@ import {useDispatch, useSelector} from 'react-redux';
 import {imagesApi, watermarksApi} from '../../api';
 import {RootState} from '../../store';
 import {commonSlice, TypeEnum} from '../../store/slices/common.slice';
-import {IWatermark} from '../../store/slices/watermark.slice';
+import {imagesSlice} from '../../store/slices/images.slice';
+import {watermarkSlice} from '../../store/slices/watermark.slice';
 import {imageSizes} from '../../utilities/image-utilities';
 import Gallery from '../Gallery/Gallery';
-import Tags from '../Gallery/Tags';
 import AdminDetails from './AdminDetails';
 import UsersDetails from './UsersDetails';
 
 export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
   const {image} = useSelector((state: RootState) => state.images);
   const {user} = useSelector((state: RootState) => state.auth);
-  const [currentWatermark, setCurrentWatermark] = useState<IWatermark>();
-  const {data} = useSelector((state: RootState) => state.watermarks.watermarks);
+  const {data: watermarks} = useSelector((state: RootState) => state.watermarks.watermarks);
 
   const [editedTags, setEditedTags] = useState('');
   const dispatch = useDispatch();
@@ -28,14 +27,15 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
     );
   };
 
-  const handleWatermark = (e: any) => {
-    setCurrentWatermark(e);
+  const handleWatermark = async (watermark: any) => {
+    const {data} = await imagesApi.getAdminImage(+idImage, user?.token!, {watermarkId: watermark.id});
+    dispatch(imagesSlice.actions.setImage(data));
+    dispatch(watermarkSlice.actions.updateDefault(watermark));
   };
 
   async function saveChanges() {
     try {
       await imagesApi.updateImage(+idImage, {...image, tags: editedTags}, user?.token!);
-      await watermarksApi.updateWatermark(currentWatermark?.id!, {...currentWatermark, isDefault: true}, user?.token!);
     } catch (error) {
       console.log(error);
     }
@@ -45,45 +45,40 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
     if (image.tags) setEditedTags(image.tags);
   }, [image]);
 
+  useEffect(() => {
+    async function getWatermarks() {
+      const {data: watermarks} = await watermarksApi.getWatermarks(user.token!);
+      dispatch(watermarkSlice.actions.setWatermarks(watermarks));
+    }
+    getWatermarks();
+  }, [user.token, dispatch]);
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-9">
           <img src={image?.path!} className="img-fluid" alt="..." />
 
-          <div className="row mt-4">
-            <h4 className="text-start">Related images</h4>
-            <Gallery hasSidebar images={image.relatedImages} isAdmin={isAdmin} relatedImage={true} />
-          </div>
+          {!isAdmin && (
+            <div className="row mt-4">
+              <h4 className="text-start">Related images</h4>
+              <Gallery hasSidebar images={image.relatedImages} isAdmin={isAdmin} relatedImage={true} />
+            </div>
+          )}
         </div>
         {isAdmin ? (
           <AdminDetails
             handleCopyUser={handleCopyUser}
             setEditedTags={setEditedTags}
-            isAdmin={isAdmin}
             handleWatermark={handleWatermark}
-            Tags={Tags}
-            isDetailsEditPage={isDetailsEditPage}
             image={image}
             editedTags={editedTags}
             saveChanges={saveChanges}
             imageSizes={imageSizes}
-            data={data}
-            user={user}
+            data={watermarks}
           />
         ) : (
-          <UsersDetails
-            handleCopyUser={handleCopyUser}
-            setEditedTags={setEditedTags}
-            isAdmin={isAdmin}
-            Tags={Tags}
-            isDetailsEditPage={isDetailsEditPage}
-            image={image}
-            editedTags={editedTags}
-            saveChanges={saveChanges}
-            imageSizes={imageSizes}
-            user={user}
-          />
+          <UsersDetails handleCopyUser={handleCopyUser} image={image} imageSizes={imageSizes} user={user} />
         )}
       </div>
     </div>
