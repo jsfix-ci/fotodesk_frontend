@@ -5,8 +5,8 @@ export class ImagesApi extends BaseApi {
     return await this.get('/images', undefined, query);
   }
 
-  public async getImage(id: number): Promise<any> {
-    return await this.get(`/images/${id}`);
+  public async getImage(id: number, token?: string): Promise<any> {
+    return await this.get(`/images/${id}`, token);
   }
 
   public async getLatestImages(): Promise<any> {
@@ -30,5 +30,8 @@ export class ImagesApi extends BaseApi {
 
   public async getPendingImages(token: string, params?: any): Promise<any> {
     return await this.get('/admin/images', token, params);
+  }
+  public async getAdminImage(id: number, token: string, params?: any): Promise<any> {
+    return await this.get(`/admin/images/${id}`, token, params);
   }
 }

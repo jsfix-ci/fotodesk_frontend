@@ -12,8 +12,8 @@ export default function Image({image, isAdmin, hasSidebar, relatedImage}: any) {
   const {user: admin} = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const handleClick = (e: any) => {
+    if (isAdmin) return;
     e.preventDefault();
     navigate(`/details/${image.id}`);
   };
