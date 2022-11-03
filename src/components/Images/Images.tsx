@@ -16,7 +16,7 @@ export default function Images() {
 
   async function handleSubmit(value: string | number) {
     try {
-      const {data} = await imagesApi.getImages({search: value});
+      const {data} = await imagesApi.getGuestImages({search: value});
       dispatch(imagesSlice.actions.setImages(data));
     } catch (error) {
       console.log(error);
@@ -28,7 +28,7 @@ export default function Images() {
       try {
         const params = new URLSearchParams(location.search.slice(1));
         const obj = Object.fromEntries(params);
-        const {data} = await imagesApi.getImages(obj);
+        const {data} = await imagesApi.getGuestImages(obj);
         dispatch(imagesSlice.actions.setImages(data));
       } catch (error) {
         console.log(error);

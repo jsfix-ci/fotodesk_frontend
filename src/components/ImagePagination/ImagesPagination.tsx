@@ -15,7 +15,7 @@ export default function ImagesPagination() {
     try {
       const params = new URLSearchParams(url.split('?')[1]);
       const obj = Object.fromEntries(params);
-      const {data} = await imagesApi.getImages(obj);
+      const {data} = await imagesApi.getGuestImages(obj);
       dispatch(imagesSlice.actions.setImages(data));
     } catch (error) {
       console.log(error);
