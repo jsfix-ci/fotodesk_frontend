@@ -28,7 +28,7 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
   };
 
   const handleWatermark = async (watermark: any) => {
-    const {data} = await imagesApi.getAdminImage(+idImage, user?.token!, {watermarkId: watermark.id});
+    const {data} = await imagesApi.getUserImage(+idImage, user?.token!, {watermarkId: watermark.id});
     dispatch(imagesSlice.actions.setImage(data));
     dispatch(watermarkSlice.actions.updateDefault(watermark));
   };
@@ -50,8 +50,8 @@ export default function Detail({isAdmin, isDetailsEditPage, idImage}: any) {
       const {data: watermarks} = await watermarksApi.getWatermarks(user.token!);
       dispatch(watermarkSlice.actions.setWatermarks(watermarks));
     }
-    getWatermarks();
-  }, [user.token, dispatch]);
+    if (!!isDetailsEditPage) getWatermarks();
+  }, [isDetailsEditPage, user.token, dispatch]);
 
   return (
     <div className="container">

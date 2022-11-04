@@ -14,7 +14,7 @@ export default function DetailEdit() {
   useEffect(() => {
     const getImage = async (id: number) => {
       try {
-        const {data} = await imagesApi.getAdminImage(id, user.token!);
+        const {data} = await imagesApi.getUserImage(id, user.token!);
         dispatch(imagesSlice.actions.setImage(data));
       } catch (error) {
         console.log(error);

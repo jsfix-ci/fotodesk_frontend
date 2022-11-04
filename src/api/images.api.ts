@@ -1,11 +1,11 @@
 import BaseApi from './base.api';
 
 export class ImagesApi extends BaseApi {
-  public async getImages(query?: any): Promise<any> {
+  public async getGuestImages(query?: any): Promise<any> {
     return await this.get('/images', undefined, query);
   }
 
-  public async getImage(id: number, token?: string): Promise<any> {
+  public async getGuestImage(id: number, token?: string): Promise<any> {
     return await this.get(`/images/${id}`, token);
   }
 
@@ -28,10 +28,10 @@ export class ImagesApi extends BaseApi {
     return await this.put('/admin/images/bulk-update', data, token);
   }
 
-  public async getPendingImages(token: string, params?: any): Promise<any> {
+  public async getUserImages(token: string, params?: any): Promise<any> {
     return await this.get('/admin/images', token, params);
   }
-  public async getAdminImage(id: number, token: string, params?: any): Promise<any> {
+  public async getUserImage(id: number, token: string, params?: any): Promise<any> {
     return await this.get(`/admin/images/${id}`, token, params);
   }
 }
