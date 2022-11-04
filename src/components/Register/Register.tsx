@@ -15,7 +15,8 @@ export default function Register() {
 
       dispatch(
         authSlice.actions.login({
-          ...data,
+          ...data.user,
+          token: data.token!,
         })
       );
       localStorage.setItem('token', data.token);
